@@ -2,6 +2,7 @@ const User = require("../Models/User.module");
 const fs = require("fs");
 const HttpError = require("../support/http-error");
 const Verification = require("../Models/Verification");
+const fileUpload = require("express-fileupload");
 exports.sendVerificationCodeSMS = async (req, res, next) => {
   const { phone_number } = req.body;
   const verificationCode = Math.floor(Math.random() * 9000 + 1000);
@@ -139,20 +140,19 @@ exports.register = async (req, res, next) => {
   }
 };
 
-exports.storeSeconderyUserData = async () => {
-  const { image } = req.body;
-  fs.writeFileSync(
-    "images/image.gpg",
-    image,
-    "base64",
-    function (err) {
-        if (err) {
-            const err = new HttpError(error.message, 401);
-                return next(err);
-        }
-        console.log('Image saved successfully');
-      }
-  );
+exports.storeSeconderyUserData = async (req, res, next) => {
+    console.log(req.files);
+  if (!req.files || Object.keys(req.files).length === 0) {
+    const err = new HttpError("No files were uploaded.", 401);
+    return next(err);
+  }
+  let image = req.files.image;
+  image.mv('images/image.jpg', function(error) {
+    if (error) {
+        const err = new HttpError(error.message, 401);
+        return next(err);
+    }
+
+    res.send('File uploaded!');
+  });
 };
-
-

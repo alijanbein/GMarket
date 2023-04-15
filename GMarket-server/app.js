@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const AuthRoutes = require("./routes/auth-routes");
 const bodyParser = require("body-parser")
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
+
 require("dotenv").config();
 
 app.use(bodyParser.urlencoded({ extended: false }))
