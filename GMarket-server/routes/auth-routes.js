@@ -1,8 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-
-router.get("/test",(req,res,next)=>{
-    res.send("<h1>alinj</h1>")
-})
+const { sendVerificationCodeSMS } = require("../Controllers/authController");
+router.get("/test",sendVerificationCodeSMS);
 
 module.exports = router;
