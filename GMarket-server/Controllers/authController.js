@@ -115,14 +115,28 @@ exports.register = async(req, res,next) => {
     const type_valid = inputVerify(type,"type");
 
     if(first_name_valid && last_name_valid && email_valid && phone_valid && type_valid){
-        const user = await User.find({phone_number})
+        let user = await User.findOne({phone_number});
+        if(!user){
+            user = new User();
+            user.first_name = first_name;
+            user.last_name = last_name;
+            user.email = email;
+            user.type = type;
+            user.phone_number = phone_number; 
+            await user.save()
+        }
+
+        res.send({
+            status: "succes",
+            user: user
+        })
     }
     else {
         const err = new HttpError("invalid format", 401);
         return next(err);
     }
    } catch (error) {
-    const err = new HttpError("invalid format", 401);
+    const err = new HttpError(error.message, 401);
     return next(err);
    }
 }
