@@ -37,11 +37,21 @@ exports.sendVerificationCodeSMS = async (req,res,next) =>{
         //     // }
         //     res.send("message sent")}).catch(error =>{
         //     const err = new HttpError(error.message,405)
-        //     next(err);
+        //     return next(err);
         // });
         
     } catch (error) {
         const err = new HttpError("Server Error try again later",405)
         next(err);
     }
+}
+
+exports.confirmVerificationCode = async (req,res,next) => {
+    const {code,phone_number} = req.body;
+    const number = await Verification.findOne({phone_number: phone_number});
+    if(!number){
+        const err = new HttpError("somthing wen't wrong please try again later",405);
+        return next(err)
+    }
+    
 }
