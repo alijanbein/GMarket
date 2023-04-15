@@ -105,7 +105,7 @@ const inputVerify = (input, type) => {
     else return false;
 }
 
-exports.register = async() => {
+exports.register = async(req, res,next) => {
     const {first_name, last_name,email,phone_number,type,image, bio} = req.body;
     const first_name_valid = inputVerify(first_name,"name")
     const last_name_valid = inputVerify(last_name,"name");
@@ -116,6 +116,7 @@ exports.register = async() => {
         console.log("validated succefulyy");
     }
     else {
-        
+        const err = new HttpError("invalid format", 401);
+        return next(err);
     }
 }
