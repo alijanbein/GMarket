@@ -73,7 +73,7 @@ exports.confirmVerificationCode = async (req, res, next) => {
 };
 
 const inputVerify = (input, type) => {
-    if(type = 'name'){
+    if(type =='name'){
         if(input.length <= 0){
             return false
         }
@@ -89,7 +89,7 @@ const inputVerify = (input, type) => {
     }
     else if(type == "phone"){
         const phoneRegex = /^[0-9]+$/;
-        if (!!input.match(phoneRegex)) {
+        if (!!input.match(phoneRegex) && input.length == 11) {
             return true
         }
         else return false;
@@ -106,17 +106,23 @@ const inputVerify = (input, type) => {
 }
 
 exports.register = async(req, res,next) => {
+   try {
     const {first_name, last_name,email,phone_number,type,image, bio} = req.body;
     const first_name_valid = inputVerify(first_name,"name")
     const last_name_valid = inputVerify(last_name,"name");
     const email_valid = inputVerify(email,"email");
-    const phone_valid = inputVerify(email,"phone");
-    const type_valid = inputVerify(email,"type");
+    const phone_valid = inputVerify(phone_number,"phone");
+    const type_valid = inputVerify(type,"type");
+
     if(first_name_valid && last_name_valid && email_valid && phone_valid && type_valid){
-        console.log("validated succefulyy");
+        
     }
     else {
         const err = new HttpError("invalid format", 401);
         return next(err);
     }
+   } catch (error) {
+    const err = new HttpError("invalid format", 401);
+    return next(err);
+   }
 }
