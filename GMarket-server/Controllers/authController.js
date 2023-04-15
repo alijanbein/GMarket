@@ -74,21 +74,28 @@ exports.confirmVerificationCode = async (req, res, next) => {
 
 const inputVerify = (input, type) => {
     if(type = 'name'){
-        if(input.lengh <= 0){
+        if(input.length <= 0){
             return false
         }
         else return true
     }
     else if(type == "email"){
-        const emailRegex = /^([a-zA-Z0-9\._]+)@([a-zA-Z])+\.([a-z]+)$/ || false;
-        const emailIsValid = !!email.match(emailRegex);
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/ ;
+        const emailIsValid = !!input.match(emailRegex);
         if (emailIsValid) {
             return true
         }
         else return false;
     }
+    else if(type == "phone"){
+        const phoneRegex = /^[0-9]+$/;
+        if (!!input.match(phoneRegex)) {
+            return true
+        }
+        else return false;
+    }
     else if(type == "type"){
-        if (type == "farmer" || type == "customer") {
+        if (input == "farmer" || input == "customer") {
             return true;
         }
         else {
@@ -100,4 +107,15 @@ const inputVerify = (input, type) => {
 
 exports.register = async() => {
     const {first_name, last_name,email,phone_number,type,image, bio} = req.body;
+    const first_name_valid = inputVerify(first_name,"name")
+    const last_name_valid = inputVerify(last_name,"name");
+    const email_valid = inputVerify(email,"email");
+    const phone_valid = inputVerify(email,"phone");
+    const type_valid = inputVerify(email,"type");
+    if(first_name_valid && last_name_valid && email_valid && phone_valid && type_valid){
+        console.log("validated succefulyy");
+    }
+    else {
+        
+    }
 }
