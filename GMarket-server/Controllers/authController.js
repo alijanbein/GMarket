@@ -146,13 +146,23 @@ exports.storeSeconderyUserData = async (req, res, next) => {
     const err = new HttpError("No files were uploaded.", 401);
     return next(err);
   }
+  const filePath = "public/images/image.png"
   let image = req.files.image;
-  image.mv('images/image.jpg', function(error) {
+  image.mv(filePath, function(error) {
     if (error) {
         const err = new HttpError(error.message, 401);
         return next(err);
     }
-
-    res.send('File uploaded!');
   });
+  image.mv(filePath, function(error) {
+    if (error) {
+        const err = new HttpError(error.message, 401);
+        return next(err);
+    }
+    const imageURL =  `${req.protocol}://${req.hostname}:${process.env.PORT}/${filePath}`;
+    res.send({status: "succes",
+    image : imageURL
+    })
+  });
+  
 };
