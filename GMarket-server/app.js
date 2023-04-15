@@ -1,7 +1,11 @@
 const express = require("express");
 const app = express();
 const AuthRoutes = require("./routes/auth-routes");
+const bodyParser = require("body-parser")
 require("dotenv").config();
+
+app.use(bodyParser.urlencoded({ extended: false }))
+
 
 app.use("/auth", AuthRoutes);
 
@@ -15,4 +19,7 @@ app.use((error, req, res, next) => {
   res.send({ message: error.message || "sonthing went wrong !" });
 });
 
-app.listen(process.env.PORT, () => {});
+app.listen(process.env.PORT, () => {
+    console.log("server is runing ");
+    require("./db.config")
+});
