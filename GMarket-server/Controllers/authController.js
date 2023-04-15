@@ -21,10 +21,7 @@ exports.sendVerificationCodeSMS = async (req, res, next) => {
         to: "+"+phone_number,
       })
       .then((message) => {
-        const userExist = User.find({ phone_number: "wdwqd" });
-        // if (userExist) {
-        //     console.log(userExist);
-        // }
+        
         res.send("message sent");
       })
       .catch((error) => {
@@ -74,3 +71,33 @@ exports.confirmVerificationCode = async (req, res, next) => {
     return next(err);
   }
 };
+
+const inputVerify = (input, type) => {
+    if(type = 'name'){
+        if(input.lengh <= 0){
+            return false
+        }
+        else return true
+    }
+    else if(type == "email"){
+        const emailRegex = /^([a-zA-Z0-9\._]+)@([a-zA-Z])+\.([a-z]+)$/ || false;
+        const emailIsValid = !!email.match(emailRegex);
+        if (emailIsValid) {
+            return true
+        }
+        else return false;
+    }
+    else if(type == "type"){
+        if (type == "farmer" || type == "customer") {
+            return true;
+        }
+        else {
+            return false
+        }
+    }
+    else return false;
+}
+
+exports.register = async() => {
+    const {first_name, last_name,email,phone_number,type,image, bio} = req.body;
+}
