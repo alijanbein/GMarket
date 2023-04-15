@@ -115,7 +115,7 @@ exports.register = async(req, res,next) => {
     const type_valid = inputVerify(type,"type");
 
     if(first_name_valid && last_name_valid && email_valid && phone_valid && type_valid){
-        
+        const user = await User.find({phone_number})
     }
     else {
         const err = new HttpError("invalid format", 401);
