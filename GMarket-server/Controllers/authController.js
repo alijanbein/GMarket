@@ -1,13 +1,22 @@
 const User = require('../Models/User.module');
 const HttpError = require('../support/http-error');
-
-exports.sendVerificationCodeSMS = (req,res,next) =>{
-    console.log(req.body);
+const Verification = require("../Models/Verification")
+exports.sendVerificationCodeSMS = async (req,res,next) =>{
+    const {phone_number} = req.body
     const verificationCode = Math.floor(Math.random() * 9000 + 1000);
 
     const message  = "to verifiy your number this is the verification Code " + verificationCode
     try {
-        
+        const verificationExist = await Verification.findOne({phone_number:phone_number});
+        if(verificationExist){
+            verificationExist.verification_code = verificationCode;
+            await verificationExist.save()
+        }
+        // const verification = new Verification()
+        // verification.phone_number = phone_number;
+        // verification.verification_code = verificationCode
+        // verification.save()
+        res.send(verification);
         // const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
         // client.messages
