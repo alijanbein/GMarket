@@ -1,4 +1,5 @@
 const User = require("../Models/User.module");
+const fs = require("fs");
 const HttpError = require("../support/http-error");
 const Verification = require("../Models/Verification");
 exports.sendVerificationCodeSMS = async (req, res, next) => {
@@ -18,10 +19,9 @@ exports.sendVerificationCodeSMS = async (req, res, next) => {
       .create({
         body: message,
         from: "+16203776088",
-        to: "+"+phone_number,
+        to: "+" + phone_number,
       })
       .then((message) => {
-        
         res.send("message sent");
       })
       .catch((error) => {
@@ -73,70 +73,86 @@ exports.confirmVerificationCode = async (req, res, next) => {
 };
 
 const inputVerify = (input, type) => {
-    if(type =='name'){
-        if(input.length <= 0){
-            return false
-        }
-        else return true
+  if (type == "name") {
+    if (input.length <= 0) {
+      return false;
+    } else return true;
+  } else if (type == "email") {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailIsValid = !!input.match(emailRegex);
+    if (emailIsValid) {
+      return true;
+    } else return false;
+  } else if (type == "phone") {
+    const phoneRegex = /^[0-9]+$/;
+    if (!!input.match(phoneRegex) && input.length == 11) {
+      return true;
+    } else return false;
+  } else if (type == "type") {
+    if (input == "farmer" || input == "customer") {
+      return true;
+    } else {
+      return false;
     }
-    else if(type == "email"){
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/ ;
-        const emailIsValid = !!input.match(emailRegex);
-        if (emailIsValid) {
-            return true
-        }
-        else return false;
-    }
-    else if(type == "phone"){
-        const phoneRegex = /^[0-9]+$/;
-        if (!!input.match(phoneRegex) && input.length == 11) {
-            return true
-        }
-        else return false;
-    }
-    else if(type == "type"){
-        if (input == "farmer" || input == "customer") {
-            return true;
-        }
-        else {
-            return false
-        }
-    }
-    else return false;
-}
+  } else return false;
+};
 
-exports.register = async(req, res,next) => {
-   try {
-    const {first_name, last_name,email,phone_number,type,image, bio} = req.body;
-    const first_name_valid = inputVerify(first_name,"name")
-    const last_name_valid = inputVerify(last_name,"name");
-    const email_valid = inputVerify(email,"email");
-    const phone_valid = inputVerify(phone_number,"phone");
-    const type_valid = inputVerify(type,"type");
+exports.register = async (req, res, next) => {
+  try {
+    const { first_name, last_name, email, phone_number, type, image, bio } =
+      req.body;
+    const first_name_valid = inputVerify(first_name, "name");
+    const last_name_valid = inputVerify(last_name, "name");
+    const email_valid = inputVerify(email, "email");
+    const phone_valid = inputVerify(phone_number, "phone");
+    const type_valid = inputVerify(type, "type");
 
-    if(first_name_valid && last_name_valid && email_valid && phone_valid && type_valid){
-        let user = await User.findOne({phone_number});
-        if(!user){
-            user = new User();
-            user.first_name = first_name;
-            user.last_name = last_name;
-            user.email = email;
-            user.type = type;
-            user.phone_number = phone_number; 
-            await user.save()
-        }
+    if (
+      first_name_valid &&
+      last_name_valid &&
+      email_valid &&
+      phone_valid &&
+      type_valid
+    ) {
+      let user = await User.findOne({ phone_number });
+      if (!user) {
+        user = new User();
+        user.first_name = first_name;
+        user.last_name = last_name;
+        user.email = email;
+        user.type = type;
+        user.phone_number = phone_number;
+        await user.save();
+      }
 
-        res.send({
-            status: "succes",
-            user: user
-        })
+      res.send({
+        status: "succes",
+        user: user,
+      });
+    } else {
+      const err = new HttpError("invalid format", 401);
+      return next(err);
     }
-    else {
-        const err = new HttpError("invalid format", 401);
-        return next(err);
-    }
-   } catch (error) {
+  } catch (error) {
     const err = new HttpError(error.message, 401);
     return next(err);
-   }
-}
+  }
+};
+
+exports.storeSeconderyUserData = async () => {
+  const { image } = req.body;
+  fs.writeFileSync(
+    "images/image.gpg",
+    image,
+    "base64",
+    function (err) {
+        if (err) {
+            const err = new HttpError(error.message, 401);
+                return next(err);
+        }
+        console.log('Image saved successfully');
+      }
+  );
+};
+
+
