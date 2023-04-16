@@ -33,6 +33,7 @@ exports.addRate = async (req, res, next) => {
       const err = new HttpError("User undefined", 405);
       return next(err);
     }
+    console.log( targetUser.rating);
     targetUser.rating.push(rating);
     await targetUser.save();
     res.send({ status: "succes", user: targetUser });
@@ -42,7 +43,7 @@ exports.addRate = async (req, res, next) => {
   }
 };
 
-exports.getRate = async () => {
+exports.getRate = async (req,res,next) => {
   try {
     const { phone_number } = req.body;
     const user = await User.findOne({ phone_number: phone_number });
