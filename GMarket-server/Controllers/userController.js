@@ -35,13 +35,11 @@ exports.addRate = async (req, res, next) => {
       return next(err);
     }
     const ratedBefore = targetUser.rating.filter(data => data.user_number == user_number);
-    console.log(ratedBefore);
     if(ratedBefore.length > 0){
         ratedBefore[0].rate = rating;
         await targetUser.save()
     }
    else {
-    console.log("test");
     const newRate  = {
         user_number : user_number,
         rate: rating 
