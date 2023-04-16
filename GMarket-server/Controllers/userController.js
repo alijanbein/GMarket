@@ -139,7 +139,11 @@ exports.sendMessage = async (req,res,next) => {
             participants:{$all: [sender,reciver]}
         });
         if(!conversation){ 
-            
+            const newConversation = new Message({
+                participants: [sender, recipient],
+                messages: [],
+                lastActivity: new Date().toISOString()
+              });
         }
     } catch (error) {
         
