@@ -27,15 +27,26 @@ exports.getUserByNumber = async (req, res, next) => {
 
 exports.addRate = async (req, res, next) => {
   try {
+    const user_number = req.user.phone_number;
     const { rating, phone_number } = req.body;
     const targetUser = await User.findOne({ phone_number: phone_number });
     if (!targetUser) {
       const err = new HttpError("User undefined", 405);
       return next(err);
     }
-    console.log( targetUser.rating);
-    targetUser.rating.push(rating);
+    const ratedBefore = targetUser.rating.filter(data => data.user_number == user_number);
+    if(!!ratedBefore){
+        ratedBefore[0].rate = rating;
+        await targetUser.save()
+    }
+   else {
+    const newRate  = {
+        user_number : user_number,
+        rate: rating 
+    }
+    targetUser.rating.push(newRate);
     await targetUser.save();
+   }
     res.send({ status: "succes", user: targetUser });
   } catch (error) {
     const err = new HttpError("Server Error", 500);
