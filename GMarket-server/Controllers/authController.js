@@ -175,10 +175,10 @@ exports.storeSeconderyUserData = async (req, res, next) => {
         user.bio = bio
         await user.save()
       }
-      user = new User();
-      user.imageURL = imageURL;
-      user.bio = bio
-      await user.save()
+      else {
+        const err = new HttpError("Error user do not exist please re register or login", 401);
+        return next(err);
+      }
     } catch (error) {
        const err = new HttpError("database error", 403);
         return next(err);
