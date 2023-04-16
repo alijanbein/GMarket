@@ -6,5 +6,5 @@ exports.authMiddleware = async(req, res, next) => {
         const error = new HttpError("your are not authorized",405);
         return next(error);
     }
-    
+  
 }
