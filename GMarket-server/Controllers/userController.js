@@ -73,3 +73,7 @@ exports.getRate = async (req,res,next) => {
     return next(err);
   }
 };
+
+exports.reportUser =async () => {
+    
+}
