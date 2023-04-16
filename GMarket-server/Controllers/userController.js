@@ -129,6 +129,12 @@ exports.getReports = async (req,res,next) => {
   }
 };
 
+exports.sendMessage = async () => {
+    
+}
+exports.getUsersMessgesdBefore = async () => {}
+exports.getConversation = async () => {}
+
 
 
 
