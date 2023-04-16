@@ -138,7 +138,7 @@ exports.sendMessage = async (req,res,next) => {
         const conversation = await Message.findOne({
             participants:{$all: [sender,reciver]}
         });
-        if(!conversation){
+        if(!conversation){ 
             
         }
     } catch (error) {
