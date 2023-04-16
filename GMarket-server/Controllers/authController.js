@@ -122,6 +122,7 @@ exports.register = async (req, res, next) => {
       type_valid
     ) {
       let user = await User.findOne({ phone_number });
+      console.log(user);
       if (!user) {
         user = new User();
         user.first_name = first_name;

@@ -74,9 +74,7 @@ exports.getRate = async (req,res,next) => {
   }
 };
 
-exports.reportUser =async () => {
-    
-}
+
 exports.reportUser = async (req, res, next) => {
   try {
     const user_number = req.user.phone_number;
@@ -86,8 +84,10 @@ exports.reportUser = async (req, res, next) => {
       const err = new HttpError("User undefined", 405);
       return next(err);
     }
-    const reportedBefore = targetUser.rating.filter(data => data.user_number == user_number);
-    if(ratedBefore.length > 0){
+    console.log(message);
+    const reportedBefore = targetUser.reported.filter(data => data.user_number == user_number);
+    console.log(reportedBefore);
+    if(reportedBefore.length > 0){
         const err = new HttpError("your report has been sent before waitng for admin", 200);
         return next(err);
     }
