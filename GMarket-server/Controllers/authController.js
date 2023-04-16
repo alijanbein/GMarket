@@ -1,6 +1,7 @@
 const User = require("../Models/User.module");
 const HttpError = require("../support/http-error");
 const Verification = require("../Models/Verification");
+const jwt = require("jsonwebtoken")
 const fileUpload = require("express-fileupload");
 var mime = require("mime");
 
@@ -130,10 +131,11 @@ exports.register = async (req, res, next) => {
         user.phone_number = phone_number;
         await user.save();
       }
-
+      const token = jwt.sign({user},process.env.SECRET);
       res.send({
         status: "succes",
         user: user,
+        token:token
       });
     } else {
       const err = new HttpError("invalid format", 401);
