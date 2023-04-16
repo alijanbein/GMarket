@@ -3,7 +3,7 @@ const { default: mongoose } = require("mongoose");
 const userSchema = new mongoose.Schema({
   first_name: { type: String, require: true },
   last_name: { type: String, require: true },
-  type: { type: String, require: true, enum: ["customer", "farmer"] },
+  type: { type: String, require: true, enum: ["customer", "farmer","admin"] },
   email: { type: String, require: true },
   phone_number: { type: Number, require: true, unique: true },
   rating: [{ type: Number, default: 0 }],

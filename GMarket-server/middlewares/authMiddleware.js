@@ -6,5 +6,11 @@ exports.authMiddleware = async(req, res, next) => {
         const error = new HttpError("your are not authorized",405);
         return next(error);
     }
-  
+    try {
+        const user = jwt.verify(token,process.env.SECRET);
+        req["user"] = user.user
+        next()
+    } catch (error) {
+        
+    }
 }

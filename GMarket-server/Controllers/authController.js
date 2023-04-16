@@ -1,7 +1,7 @@
-const User = require("../Models/User.module");
+const User = require("../Models/User.model");
 const HttpError = require("../support/http-error");
 const Verification = require("../Models/Verification");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 const fileUpload = require("express-fileupload");
 var mime = require("mime");
 
@@ -76,9 +76,9 @@ exports.confirmVerificationCode = async (req, res, next) => {
 };
 
 const inputVerify = (input, type) => {
-  if(!!!input){
+  if (!!!input) {
     const err = new HttpError("null input", 403);
-      return next(err);
+    return next(err);
   }
   if (type == "name") {
     if (input.length <= 0) {
@@ -131,11 +131,11 @@ exports.register = async (req, res, next) => {
         user.phone_number = phone_number;
         await user.save();
       }
-      const token = jwt.sign({user},process.env.SECRET);
+      const token = jwt.sign({ user }, process.env.SECRET);
       res.send({
         status: "succes",
         user: user,
-        token:token
+        token: token,
       });
     } else {
       const err = new HttpError("invalid format", 401);
@@ -150,7 +150,7 @@ exports.register = async (req, res, next) => {
 exports.storeSeconderyUserData = async (req, res, next) => {
   try {
     const { bio, phone_number } = req.body;
-    const bio_valid = inputVerify(bio,"name")
+    const bio_valid = inputVerify(bio, "name");
     if (!bio_valid) {
       const err = new HttpError("invalid input", 401);
       return next(err);
@@ -168,30 +168,32 @@ exports.storeSeconderyUserData = async (req, res, next) => {
     }
     const filePath = `images/${phone_number}.${extention}`;
     let image = req.files.image;
-    image.mv(filePath, function  (error) {
+    image.mv(filePath, function (error) {
       if (error) {
         const err = new HttpError(error.message, 401);
         return next(err);
       }
     });
-    let user
+    let user;
     try {
-       user = await User.findOne({phone_number:phone_number});
-     
-      if(user){
+      user = await User.findOne({ phone_number: phone_number });
+
+      if (user) {
         user.profile_picture = imageURL;
-        user.bio = bio
-        await user.save()
-      }
-      else {
-        const err = new HttpError("Error user do not exist please re register or login", 401);
+        user.bio = bio;
+        await user.save();
+      } else {
+        const err = new HttpError(
+          "Error user do not exist please re register or login",
+          401
+        );
         return next(err);
       }
     } catch (error) {
-       const err = new HttpError(error.message, 403);
-        return next(err);
+      const err = new HttpError(error.message, 403);
+      return next(err);
     }
-    res.send({ status: "succes", imageURL: imageURL ,user:user});
+    res.send({ status: "succes", imageURL: imageURL, user: user });
   } catch (error) {
     const err = new HttpError("Somthing wen wrong", 500);
     return next(err);
