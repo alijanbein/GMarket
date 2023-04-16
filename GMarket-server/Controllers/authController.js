@@ -166,7 +166,12 @@ exports.storeSeconderyUserData = async (req, res, next) => {
     try {
       let user = await User.findOne({phone_number:phone_number});
       if(user){
-        
+        const bio_valid = inputVerify(bio,"name")
+        if (!bio_valid) {
+          const err = new HttpError("invalid input", 401);
+          return next(err);
+        }
+       
       }
     } catch (error) {
        const err = new HttpError("database error", 403);
