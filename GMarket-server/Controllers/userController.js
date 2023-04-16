@@ -79,6 +79,10 @@ exports.reportUser = async (req, res, next) => {
   try {
     const user_number = req.user.phone_number;
     const { message, phone_number } = req.body;
+    if(message.length <= 0){
+        const err = new HttpError("Invalid input", 405);
+        return next(err);
+    }
     const targetUser = await User.findOne({ phone_number: phone_number });
     if (!targetUser) {
       const err = new HttpError("User undefined", 405);
