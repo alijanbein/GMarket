@@ -165,16 +165,20 @@ exports.storeSeconderyUserData = async (req, res, next) => {
     });
     try {
       let user = await User.findOne({phone_number:phone_number});
+      const bio_valid = inputVerify(bio,"name")
+      if (!bio_valid) {
+        const err = new HttpError("invalid input", 401);
+        return next(err);
+      }
       if(user){
-        const bio_valid = inputVerify(bio,"name")
-        if (!bio_valid) {
-          const err = new HttpError("invalid input", 401);
-          return next(err);
-        }
         user.imageURL = imageURL;
         user.bio = bio
         await user.save()
       }
+      user = new User();
+      user.imageURL = imageURL;
+      user.bio = bio
+      await user.save()
     } catch (error) {
        const err = new HttpError("database error", 403);
         return next(err);
