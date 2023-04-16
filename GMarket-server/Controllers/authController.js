@@ -153,8 +153,7 @@ exports.storeSeconderyUserData = async (req, res, next) => {
     const err = new HttpError("No files were uploaded.", 401);
     return next(err);
   }
-  const filePath = "images/image.png"
-  const imagePathURL = 'image.png'
+  const filePath = `images/${phone_number}.${extention}`
   let image = req.files.image;
   image.mv(filePath, function(error) {
     if (error) {
