@@ -1,8 +1,9 @@
 const User = require("../Models/User.module");
-const fs = require("fs");
 const HttpError = require("../support/http-error");
 const Verification = require("../Models/Verification");
 const fileUpload = require("express-fileupload");
+var mime = require('mime');
+
 exports.sendVerificationCodeSMS = async (req, res, next) => {
   const { phone_number } = req.body;
   const verificationCode = Math.floor(Math.random() * 9000 + 1000);
@@ -141,11 +142,17 @@ exports.register = async (req, res, next) => {
 };
 
 exports.storeSeconderyUserData = async (req, res, next) => {
-    console.log(req.files);
+  console.log(req.files.image);
+  const extention = mime.getExtension(req.files.image.mimetype) 
+  if(extention != "png" || extention != "jpg"){
+    const err = new HttpError("can't upload this type of image", 401);
+    return next(err);
+  }
   if (!req.files || Object.keys(req.files).length === 0) {
     const err = new HttpError("No files were uploaded.", 401);
     return next(err);
   }
+  const {bio,phone_number} = req.body
   const filePath = "images/image.png"
   const imagePathURL = 'image.png'
   let image = req.files.image;
