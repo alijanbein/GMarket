@@ -171,7 +171,9 @@ exports.storeSeconderyUserData = async (req, res, next) => {
           const err = new HttpError("invalid input", 401);
           return next(err);
         }
-       
+        user.imageURL = imageURL;
+        user.bio = bio
+        await user.save()
       }
     } catch (error) {
        const err = new HttpError("database error", 403);
