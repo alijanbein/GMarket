@@ -1,1 +1,3 @@
-exports
+exports.getUserByNumber = async() => {
+    
+}
