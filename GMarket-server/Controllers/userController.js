@@ -25,6 +25,22 @@ exports.getUserByNumber = async (req, res, next) => {
   }
 };
 
+exports.addRate = async(req, res, next) => {
+   try {
+    const { rating, phone_number } = req.body;
+    const targetUser = await User.findOne({phone_number:phone_number});
+    if (!targetUser) {
+        const err = new HttpError("User undefined", 405);
+        return next(err);
+    }
+    targetUser.rating.push(rating);
+    await targetUser.save();
+   } catch (error) {
+    const err = new HttpError("Server Error", 500);
+    return next(err);
+   }
+}
+
 
 
 
