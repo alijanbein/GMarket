@@ -11,6 +11,7 @@ exports.authMiddleware = async(req, res, next) => {
         req["user"] = user.user;
         next();
     } catch (error) {
-        
+        const err = new HttpError("token does not exist",405);
+        return next(err);
     }
 }

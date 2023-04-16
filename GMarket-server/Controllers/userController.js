@@ -3,7 +3,8 @@ const HttpError = require("../support/http-error");
 
 exports.getUserByNumber = async (req, res, next) => {
   try {
-    const { phone_number } = req.body;
+    const authUser = req.user;
+    const phone_number = authUser.phone_number
     console.log(req.body);
     if(!!!phone_number){
         const err = new HttpError("invalid input", 401);
@@ -23,3 +24,8 @@ exports.getUserByNumber = async (req, res, next) => {
     return next(err);
   }
 };
+
+
+
+
+

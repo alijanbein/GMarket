@@ -5,6 +5,7 @@ const UserRoutes = require("./routes/user-routes")
 const bodyParser = require("body-parser")
 const HttpError = require("./support/http-error")
 const fileUpload = require('express-fileupload');
+const { authMiddleware } = require("./middlewares/authMiddleware");
 app.use(fileUpload());
 
 require("dotenv").config();
@@ -13,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 app.use("/photos",express.static('images'));
 app.use("/auth", AuthRoutes);
-app.use("/user", UserRoutes);
+app.use("/user",authMiddleware, UserRoutes);
 
 app.use((req, res, next) => {
   const error = new HttpError("can't find route", 404);
