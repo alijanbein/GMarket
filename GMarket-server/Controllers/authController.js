@@ -142,17 +142,17 @@ exports.register = async (req, res, next) => {
 };
 
 exports.storeSeconderyUserData = async (req, res, next) => {
-  console.log(req.files.image);
+  const {bio,phone_number} = req.body
   const extention = mime.getExtension(req.files.image.mimetype) 
-  if(extention != "png" || extention != "jpg"){
+  if(extention != "png" && extention != "jpg"){
     const err = new HttpError("can't upload this type of image", 401);
     return next(err);
   }
+  const imageURL = `${req.protocol}://${req.hostname}:${process.env.PORT}/photos/${phone_number}.${extention}`
   if (!req.files || Object.keys(req.files).length === 0) {
     const err = new HttpError("No files were uploaded.", 401);
     return next(err);
   }
-  const {bio,phone_number} = req.body
   const filePath = "images/image.png"
   const imagePathURL = 'image.png'
   let image = req.files.image;
@@ -164,7 +164,7 @@ exports.storeSeconderyUserData = async (req, res, next) => {
   });
 
   res.send({status: "succes",
-  imageURL: `${req.protocol}://${req.hostname}:${process.env.PORT}/photos/${imagePathURL}`
+  imageURL: imageURL
 
 })
   
