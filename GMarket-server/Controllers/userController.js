@@ -128,26 +128,41 @@ exports.getReports = async (req, res, next) => {
   }
 };
 
-exports.sendMessage = async (req,res,next) => {
-    const {message, reciver} = req.body;
-    if(!message || !reciver){
-        const err = new HttpError("invalid input", 4.5);
+exports.sendMessage = async (req, res, next) => {
+  const { message, recipient } = req.body;
+  const user = req.user;
+  const sender = user._id;
+  if (!message || !reciver) {
+    const err = new HttpError("invalid input", 405);
     return next(err);
+  }
+  try {
+    let conversation = await Message.findOne({
+      participants: { $all: [sender, recipient] },
+    });
+    if (!conversation) {
+      const newConversation = new Message({
+        participants: [sender, recipient],
+        messages: [],
+        lastActivity: new Date().toISOString(),
+      });
+      await newConversation.save();
+
+      conversation = newConversation;
     }
-    try {
-        const conversation = await Message.findOne({
-            participants:{$all: [sender,reciver]}
-        });
-        if(!conversation){ 
-            const newConversation = new Message({
-                participants: [sender, recipient],
-                messages: [],
-                lastActivity: new Date().toISOString()
-              });
-        }
-    } catch (error) {
-        
-    }
+    conversation.conversation.push({
+      sender,
+      recipient,
+      message,
+      timestamp: new Date().toISOString(),
+    });
+    conversation.lastActivity = new Date().toISOString();
+    await conversation.save();
+    res.send({ status: "sucess", conversation: conversation });
+  } catch (error) {
+    const err = new HttpError("sever error", 5);
+    return next(err);
+  }
 };
 
 exports.getUsersMessgesdBefore = async (req, res, next) => {
@@ -158,12 +173,11 @@ exports.getUsersMessgesdBefore = async (req, res, next) => {
       .populate("participants")
       .sort("-lastActivity");
     res.send({
-        status: "sucess",
-        messages:messages
-    })
+      status: "sucess",
+      messages: messages,
+    });
   } catch (error) {
     const err = new HttpError("Server Error", 500);
     return next(err);
   }
 };
-
