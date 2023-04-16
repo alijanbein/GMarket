@@ -11,14 +11,12 @@ require("dotenv").config();
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 app.use("/photos",express.static('images'));
-
-
 app.use("/auth", AuthRoutes);
 
-// app.use((req, res, next) => {
-//   const error = new HttpError("can't find route", 404);
-//   return next(error);
-// });
+app.use((req, res, next) => {
+  const error = new HttpError("can't find route", 404);
+  return next(error);
+});
 
 app.use((error, req, res, next) => {
   res.status(error.code || 400);

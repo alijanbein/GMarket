@@ -2,7 +2,7 @@ const User = require("../Models/User.module");
 const HttpError = require("../support/http-error");
 const Verification = require("../Models/Verification");
 const fileUpload = require("express-fileupload");
-var mime = require('mime');
+var mime = require("mime");
 
 exports.sendVerificationCodeSMS = async (req, res, next) => {
   const { phone_number } = req.body;
@@ -142,29 +142,39 @@ exports.register = async (req, res, next) => {
 };
 
 exports.storeSeconderyUserData = async (req, res, next) => {
-  const {bio,phone_number} = req.body
-  const extention = mime.getExtension(req.files.image.mimetype) 
-  if(extention != "png" && extention != "jpg"){
-    const err = new HttpError("can't upload this type of image", 401);
-    return next(err);
-  }
-  const imageURL = `${req.protocol}://${req.hostname}:${process.env.PORT}/photos/${phone_number}.${extention}`
-  if (!req.files || Object.keys(req.files).length === 0) {
-    const err = new HttpError("No files were uploaded.", 401);
-    return next(err);
-  }
-  const filePath = `images/${phone_number}.${extention}`
-  let image = req.files.image;
-  image.mv(filePath, function(error) {
-    if (error) {
+  try {
+    const { bio, phone_number } = req.body;
+    const extention = mime.getExtension(req.files.image.mimetype);
+    console.log(extention);
+    if (extention != "png" && extention != "jpg" && extention != "jpeg") {
+      const err = new HttpError("can't upload this type of image", 401);
+      return next(err);
+    }
+    const imageURL = `${req.protocol}://${req.hostname}:${process.env.PORT}/photos/${phone_number}.${extention}`;
+    if (!req.files || Object.keys(req.files).length === 0) {
+      const err = new HttpError("No files were uploaded.", 401);
+      return next(err);
+    }
+    const filePath = `images/${phone_number}.${extention}`;
+    let image = req.files.image;
+    image.mv(filePath, function  (error) {
+      if (error) {
         const err = new HttpError(error.message, 401);
         return next(err);
+      }
+    });
+    try {
+      let user = await User.findOne({phone_number:phone_number});
+      if(user){
+        
+      }
+    } catch (error) {
+       const err = new HttpError("database error", 403);
+        return next(err);
     }
-  });
-
-  res.send({status: "succes",
-  imageURL: imageURL
-
-})
-  
+    res.send({ status: "succes", imageURL: imageURL });
+  } catch (error) {
+    const err = new HttpError("Somthing wen wrong", 500);
+    return next(err);
+  }
 };
