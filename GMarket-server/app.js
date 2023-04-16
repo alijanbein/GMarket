@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const AuthRoutes = require("./routes/auth-routes");
+const UserRoutes = require("./routes/user-routes")
 const bodyParser = require("body-parser")
 const HttpError = require("./support/http-error")
 const fileUpload = require('express-fileupload');
@@ -12,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 app.use("/photos",express.static('images'));
 app.use("/auth", AuthRoutes);
+app.use("/user", UserRoutes);
 
 app.use((req, res, next) => {
   const error = new HttpError("can't find route", 404);
