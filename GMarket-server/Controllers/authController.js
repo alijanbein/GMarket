@@ -75,6 +75,10 @@ exports.confirmVerificationCode = async (req, res, next) => {
 };
 
 const inputVerify = (input, type) => {
+  if(!!!input){
+    const err = new HttpError("null input", 403);
+      return next(err);
+  }
   if (type == "name") {
     if (input.length <= 0) {
       return false;
@@ -144,6 +148,11 @@ exports.register = async (req, res, next) => {
 exports.storeSeconderyUserData = async (req, res, next) => {
   try {
     const { bio, phone_number } = req.body;
+    const bio_valid = inputVerify(bio,"name")
+    if (!bio_valid) {
+      const err = new HttpError("invalid input", 401);
+      return next(err);
+    }
     const extention = mime.getExtension(req.files.image.mimetype);
     console.log(extention);
     if (extention != "png" && extention != "jpg" && extention != "jpeg") {
@@ -163,15 +172,12 @@ exports.storeSeconderyUserData = async (req, res, next) => {
         return next(err);
       }
     });
+    let user
     try {
-      let user = await User.findOne({phone_number:phone_number});
-      const bio_valid = inputVerify(bio,"name")
-      if (!bio_valid) {
-        const err = new HttpError("invalid input", 401);
-        return next(err);
-      }
+       user = await User.findOne({phone_number:phone_number});
+     
       if(user){
-        user.imageURL = imageURL;
+        user.profile_picture = imageURL;
         user.bio = bio
         await user.save()
       }
@@ -180,10 +186,10 @@ exports.storeSeconderyUserData = async (req, res, next) => {
         return next(err);
       }
     } catch (error) {
-       const err = new HttpError("database error", 403);
+       const err = new HttpError(error.message, 403);
         return next(err);
     }
-    res.send({ status: "succes", imageURL: imageURL });
+    res.send({ status: "succes", imageURL: imageURL ,user:user});
   } catch (error) {
     const err = new HttpError("Somthing wen wrong", 500);
     return next(err);
