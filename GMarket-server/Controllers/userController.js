@@ -35,11 +35,13 @@ exports.addRate = async (req, res, next) => {
       return next(err);
     }
     const ratedBefore = targetUser.rating.filter(data => data.user_number == user_number);
-    if(!!ratedBefore){
+    console.log(ratedBefore);
+    if(ratedBefore.length > 0){
         ratedBefore[0].rate = rating;
         await targetUser.save()
     }
    else {
+    console.log("test");
     const newRate  = {
         user_number : user_number,
         rate: rating 
@@ -49,7 +51,7 @@ exports.addRate = async (req, res, next) => {
    }
     res.send({ status: "succes", user: targetUser });
   } catch (error) {
-    const err = new HttpError("Server Error", 500);
+    const err = new HttpError(error.message, 500);
     return next(err);
   }
 };
@@ -62,7 +64,7 @@ exports.getRate = async (req,res,next) => {
       const err = new HttpError("User undefined", 405);
       return next(err);
     }
-    const sum = user.rating.reduce((acc, curr) => acc + curr, 0);
+    const sum = user.rating.reduce((acc, curr) => acc + curr.rate, 0);
     const rating  = sum/user.rating.length;
     res.send({status: "succes",
     rating: rating
