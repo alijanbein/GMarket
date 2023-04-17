@@ -16,3 +16,21 @@ exports.getReports = async (req, res, next) => {
       return next(err);
     }
   };
+
+
+  exports.getUsers = async(req,res,next) => {
+    try {
+        const users = await User.find();
+        if(!users){
+            const err = new HttpError("can't find Users", 500);
+            return next(err);
+        }
+        res.send({
+            status: "sucess",
+            users: users
+        })
+    } catch (error) {
+        const err = new HttpError("Server Error", 500);
+        return next(err);
+    }
+  }
