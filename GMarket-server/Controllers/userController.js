@@ -1,6 +1,7 @@
 const Message = require("../Models/Message.model");
 const Report = require("../Models/Reports");
 const User = require("../Models/User.model");
+const Poster = require("../Models/poster");
 const HttpError = require("../support/http-error");
 
 exports.getUserByNumber = async (req, res, next) => {
@@ -82,10 +83,16 @@ exports.reportUser = async (req, res, next) => {
       const err = new HttpError("Invalid input", 405);
       return next(err);
     }
-    const reportedBefore = await Report.findOne({sender : user_number, reported : phone_number});
-    if(reportedBefore){
-        const err = new HttpError("You Reported this user before, waiting for admin", 200);
-        return next(err);
+    const reportedBefore = await Report.findOne({
+      sender: user_number,
+      reported: phone_number,
+    });
+    if (reportedBefore) {
+      const err = new HttpError(
+        "You Reported this user before, waiting for admin",
+        200
+      );
+      return next(err);
     }
     const newReport = new Report();
     newReport.sender = user_number;
@@ -98,8 +105,6 @@ exports.reportUser = async (req, res, next) => {
     return next(err);
   }
 };
-
-
 
 exports.sendMessage = async (req, res, next) => {
   const { message, recipient } = req.body;
@@ -154,32 +159,45 @@ exports.getUsersMessgesdBefore = async (req, res, next) => {
     return next(err);
   }
 };
-exports.getOneConversation = async (req,res,next) => {
+exports.getOneConversation = async (req, res, next) => {
   try {
     const { recipient } = req.body;
-  const user = req.user;
-  const user_id = user._id;
+    const user = req.user;
+    const user_id = user._id;
 
-  const conversation = await Message.findOne({
-    participants: { $all: [user_id, recipient] },
-    
-  });
-  if(!conversation){
-    const err = new HttpError("can't find this conversation", 500);
-    return next(err);
-  }
-  res.send({
-    status: 
-    "sucess",
-    conversation: conversation
-  })
+    const conversation = await Message.findOne({
+      participants: { $all: [user_id, recipient] },
+    });
+    if (!conversation) {
+      const err = new HttpError("can't find this conversation", 500);
+      return next(err);
+    }
+    res.send({
+      status: "sucess",
+      conversation: conversation,
+    });
   } catch (error) {
     const err = new HttpError("Server Error", 500);
     return next(err);
   }
 };
 
-exports.search = async(req,res,next) => {
-  const {search_text} = req.body;
-  
-}
+exports.search = async (req, res, next) => {
+ try {
+  const { search_text } = req.body;
+  const search_response = [];
+  const regex = new RegExp("^" + search_text, "i");
+  const ExistUser = await User.find({ first_name: { $regex: regex } });
+  const ExistPoster = await Poster.find({ title: { $regex: regex } });
+  if (!ExistUser.length == 0) {
+    search_response.push(ExistUser);
+  }
+  if (!ExistPoster.length == 0) {
+    search_response.push(ExistPoster);
+  }
+  res.send({ status: "sucess", search_response: search_response });
+ } catch (error) {
+  const err = new HttpError("Server Error", 500);
+  return next(err);
+ }
+};
