@@ -96,7 +96,7 @@ const inputVerify = (input, type) => {
       return true;
     } else return false;
   } else if (type == "type") {
-    if (input == "farmer" || input == "customer") {
+    if (input == "farmer" || input == "customer" || input == "admin") {
       return true;
     } else {
       return false;
