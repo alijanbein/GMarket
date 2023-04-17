@@ -1,7 +1,8 @@
 const { Router } = require("express");
-const { addPoster } = require("../Controllers/posterController");
+const { addPoster, getRecommedePosts } = require("../Controllers/posterController");
 const router = Router();
 
 router.post('/add_post',addPoster)
+router.post('/get_recommended_posts',getRecommedePosts)
 
 module.exports = router
