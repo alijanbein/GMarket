@@ -93,3 +93,4 @@ exports.addCarouselImages = async(req,res,next) => {
   }
 }
 
+exports.deleteCarousel
