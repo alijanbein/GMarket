@@ -202,4 +202,8 @@ exports.search = async (req, res, next) => {
  }
 };
 
+exports.getCarouselImages = async(req,res,next) => {
+  const carousel = await Sho
+}
+
 
