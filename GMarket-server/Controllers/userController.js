@@ -181,7 +181,7 @@ exports.getUsersMessgesdBefore = async (req, res, next) => {
     return next(err);
   }
 };
-exports.getOneConversation = async () => {
+exports.getOneConversation = async (req,res,next) => {
   try {
     const { recipient } = req.body;
   const user = req.user;
