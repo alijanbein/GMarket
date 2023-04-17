@@ -1,11 +1,12 @@
+const Poster = require("../Models/poster");
 const HttpError = require("../support/http-error");
-const mime = require("mime")
-exports.addPoster = async(req,res,next) => {
-    // const {name,categorie,desctiption} = req.body;
-    const {poster_image} = req.files.poster_image;
+const mime = require("mime");
+exports.addPoster = async (req, res, next) => {
+  try {
+    const { title, product_type, descrtiption } = req.body;
     const user = req.user;
-    const userID = user._id
-    const phone_number = user.phone_number
+    const userID = user._id;
+    const phone_number = user.phone_number;
     const extention = mime.getExtension(req.files.poster_image.mimetype);
     console.log(extention);
     if (extention != "png" && extention != "jpg" && extention != "jpeg") {
@@ -25,5 +26,16 @@ exports.addPoster = async(req,res,next) => {
         return next(err);
       }
     });
-    res.send(imageURL)
+    const newPoster = new Poster();
+    newPoster.title = title;
+    newPoster.product_type = product_type;
+    newPoster.farmer = userID;
+    newPoster.image_url = imageURL;
+    newPoster.description = descrtiption;
+    await newPoster.save();
+    res.send({ status: "sucess", poter: newPoster });
+  } catch (error) {
+    const err = new HttpError("server error", 500);
+      return next(err);
   }
+};
