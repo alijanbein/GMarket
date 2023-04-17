@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const AuthRoutes = require("./routes/auth-routes");
 const UserRoutes = require("./routes/user-routes");
+const PostRoutes = require("./routes/poster-routes")
 const adminRoutes = require("./routes/admin-routes")
 const bodyParser = require("body-parser")
 const HttpError = require("./support/http-error")
@@ -18,7 +19,8 @@ app.use(bodyParser.json());
 app.use("/photos",express.static('images'));
 app.use("/auth", AuthRoutes);
 app.use("/user",authMiddleware, UserRoutes);
-app.use("/admin",authMiddleware,adminMiddleware,adminRoutes)
+app.use("/posts",authMiddleware, UserRoutes);
+app.use("/admin",authMiddleware,adminMiddleware,PostRoutes)
 
 app.use((req, res, next) => {
   const error = new HttpError("can't find route", 404);
