@@ -1,4 +1,5 @@
 const Message = require("../Models/Message.model");
+const Report = require("../Models/Reports");
 const User = require("../Models/User.model");
 const HttpError = require("../support/http-error");
 
@@ -81,31 +82,17 @@ exports.reportUser = async (req, res, next) => {
       const err = new HttpError("Invalid input", 405);
       return next(err);
     }
-    const targetUser = await User.findOne({ phone_number: phone_number });
-    if (!targetUser) {
-      const err = new HttpError("User undefined", 405);
-      return next(err);
+    const reportedBefore = await Report.findOne({sender : user_number, reported : phone_number});
+    if(reportedBefore){
+        const err = new HttpError("You Reported this user before, waiting for admin", 200);
+        return next(err);
     }
-    console.log(message);
-    const reportedBefore = targetUser.reported.filter(
-      (data) => data.user_number == user_number
-    );
-    console.log(reportedBefore);
-    if (reportedBefore.length > 0) {
-      const err = new HttpError(
-        "your report has been sent before waitng for admin",
-        200
-      );
-      return next(err);
-    } else {
-      const newReport = {
-        user_number: user_number,
-        message: message,
-      };
-      targetUser.reported.push(newReport);
-      await targetUser.save();
-    }
-    res.send({ status: "sucess", user: targetUser });
+    const newReport = new Report();
+    newReport.sender = user_number;
+    newReport.reported = phone_number;
+    newReport.message = message;
+    await newReport.save();
+    res.send({ status: "sucess", report: newReport });
   } catch (error) {
     const err = new HttpError(error.message, 500);
     return next(err);
