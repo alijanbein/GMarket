@@ -1,3 +1,6 @@
+const User = require("../Models/User.model");
+const HttpError = require("../support/http-error");
+
 exports.getReports = async (req, res, next) => {
     try {
       const { phone_number } = req.body;
