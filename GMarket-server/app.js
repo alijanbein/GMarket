@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use("/photos",express.static('images'));
 app.use("/auth", AuthRoutes);
 app.use("/user",authMiddleware, UserRoutes);
-app.use("/admin",authMiddleware,adminMiddleware,adminRouter)
+app.use("/admin",authMiddleware,adminMiddleware,adminRoutes)
 
 app.use((req, res, next) => {
   const error = new HttpError("can't find route", 404);
