@@ -178,3 +178,8 @@ exports.getOneConversation = async (req,res,next) => {
     return next(err);
   }
 };
+
+exports.search = async(req,res,next) => {
+  const {search_text} = req.body;
+  
+}
