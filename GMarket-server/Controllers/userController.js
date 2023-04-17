@@ -1,5 +1,6 @@
 const Message = require("../Models/Message.model");
 const Report = require("../Models/Reports");
+const Show = require("../Models/Show");
 const User = require("../Models/User.model");
 const Poster = require("../Models/poster");
 const HttpError = require("../support/http-error");
@@ -183,27 +184,33 @@ exports.getOneConversation = async (req, res, next) => {
 };
 
 exports.search = async (req, res, next) => {
- try {
-  const { search_text } = req.body;
-  const search_response = [];
-  const regex = new RegExp("^" + search_text, "i");
-  const ExistUser = await User.find({ first_name: { $regex: regex } });
-  const ExistPoster = await Poster.find({ title: { $regex: regex } });
-  if (!ExistUser.length == 0) {
-    search_response.push(ExistUser);
+  try {
+    const { search_text } = req.body;
+    const search_response = [];
+    const regex = new RegExp("^" + search_text, "i");
+    const ExistUser = await User.find({ first_name: { $regex: regex } });
+    const ExistPoster = await Poster.find({ title: { $regex: regex } });
+    if (!ExistUser.length == 0) {
+      search_response.push(ExistUser);
+    }
+    if (!ExistPoster.length == 0) {
+      search_response.push(ExistPoster);
+    }
+    res.send({ status: "sucess", search_response: search_response });
+  } catch (error) {
+    const err = new HttpError("Server Error", 500);
+    return next(err);
   }
-  if (!ExistPoster.length == 0) {
-    search_response.push(ExistPoster);
-  }
-  res.send({ status: "sucess", search_response: search_response });
- } catch (error) {
-  const err = new HttpError("Server Error", 500);
-  return next(err);
- }
 };
 
-exports.getCarouselImages = async(req,res,next) => {
-  const carousel = await Sho
-}
-
-
+exports.getCarouselImages = async (req, res, next) => {
+  try {
+  
+    const carousel = await Show.find();
+    res.send({ status: "sucess", carousel: carousel });
+    
+  } catch (error) {
+    const err = new HttpError("Server Error", 500);
+    return next(err);
+  }
+};
