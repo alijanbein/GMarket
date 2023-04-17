@@ -52,14 +52,21 @@ exports.getRecommedePosts = async (req, res, next) => {
 
 
 exports.deletePoster = async(req,res,next) =>{
+   try {
     const {poster_id} = req.body;
-
-    Poster.findOneAndDelete({id:poster_id}).then(poster => {
+    const user = req.user;
+    const farmer = user._id
+    Poster.findOneAndDelete({_id:poster_id,farmer:farmer}).then(poster => {
+      console.log(poster);
       res.send({status: "sucess",
       poster : poster
     })
     }).catch(error => {
-      const err = new HttpError("server error", 500);
+      const err = new HttpError("error while deleting", 500);
       return next(err);
     })
+   } catch (error) {
+    const err = new HttpError("server error", 500);
+    return next(err);
+   }
 } 
