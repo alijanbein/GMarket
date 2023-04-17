@@ -93,4 +93,9 @@ exports.addCarouselImages = async(req,res,next) => {
   }
 }
 
-exports.deleteCarousel
+exports.deleteCarousel =async(req,res,next) => {
+  const {image_id} = req.body;
+  const show =await Show.findOne({section:"home"});
+  const newCarousel = show.carousel.filter(data => data._id != image_id);
+  console.log(newCarousel);
+}
