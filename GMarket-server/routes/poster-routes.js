@@ -3,6 +3,6 @@ const { addPoster, getRecommedePosts } = require("../Controllers/posterControlle
 const router = Router();
 
 router.post('/add_post',addPoster)
-router.post('/get_recommended_posts',getRecommedePosts)
+router.post('/get_recommended_posters',getRecommedePosts)
 
 module.exports = router

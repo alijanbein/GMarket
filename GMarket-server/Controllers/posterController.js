@@ -51,3 +51,15 @@ exports.getRecommedePosts = async (req, res, next) => {
 };
 
 
+exports.deletePoster = async(req,res,next) =>{
+    const {poster_id} = req.body;
+
+    Poster.findOneAndDelete({id:poster_id}).then(poster => {
+      res.send({status: "sucess",
+      poster : poster
+    })
+    }).catch(error => {
+      const err = new HttpError("server error", 500);
+      return next(err);
+    })
+} 
