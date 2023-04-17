@@ -4,7 +4,7 @@ const router = Router();
 
 router.get('/reports',getReports);
 router.get('/users',getUsers);
-router.get('/delete_by_id',deleteUser);
+router.post('/delete_by_id',deleteUser);
 
 
 
