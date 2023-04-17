@@ -82,9 +82,9 @@ exports.addCarouselImages = async(req,res,next) => {
       categories: []
     })
     await newShow.save()
-    show = newShow
+    show = newShow;
   }
-  show.carousel.push(imageURL)
+  show.carousel.push({image_url:imageURL})
   await show.save();
   res.send({status:"sucess",show:show})
   } catch (error) {
