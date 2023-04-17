@@ -181,3 +181,27 @@ exports.getUsersMessgesdBefore = async (req, res, next) => {
     return next(err);
   }
 };
+exports.getOneConversation = async () => {
+  try {
+    const { recipient } = req.body;
+  const user = req.user;
+  const user_id = user._id;
+
+  const conversation = await Message.findOne({
+    participants: { $all: [user_id, recipient] },
+    
+  });
+  if(!conversation){
+    const err = new HttpError("can't find this conversation", 500);
+    return next(err);
+  }
+  res.send({
+    status: 
+    "sucess",
+    conversation: conversation
+  })
+  } catch (error) {
+    const err = new HttpError("Server Error", 500);
+    return next(err);
+  }
+};
