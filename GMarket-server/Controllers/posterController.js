@@ -36,8 +36,18 @@ exports.addPoster = async (req, res, next) => {
     res.send({ status: "sucess", poter: newPoster });
   } catch (error) {
     const err = new HttpError("server error", 500);
-      return next(err);
+    return next(err);
   }
+};
+
+exports.getRecommedePosts = async (req, res, next) => {
+ try {
+  const posters = await Poster.find();
+  res.send({ status: "sucess", posters: posters });
+ } catch (error) {
+  const err = new HttpError("server error", 500);
+  return next(err);
+ }
 };
 
 
