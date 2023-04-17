@@ -132,7 +132,7 @@ exports.sendMessage = async (req, res, next) => {
   const { message, recipient } = req.body;
   const user = req.user;
   const sender = user._id;
-  if (!message || !reciver) {
+  if (!message || !recipient) {
     const err = new HttpError("invalid input", 405);
     return next(err);
   }
