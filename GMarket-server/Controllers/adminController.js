@@ -53,7 +53,8 @@ exports.deleteUser = async (req, res, next) => {
 
 
 exports.addCarouselImages = async(req,res,next) => {
-  const extention = mime.getExtension(req.files.poster_image.mimetype);
+  try {
+    const extention = mime.getExtension(req.files.poster_image.mimetype);
   console.log(extention);
   if (extention != "png" && extention != "jpg" && extention != "jpeg") {
     const err = new HttpError("can't upload this type of image", 401);
@@ -72,6 +73,15 @@ exports.addCarouselImages = async(req,res,next) => {
       return next(err);
     }
   });
-  const carousel = Show.find();
-  
+  const show = await Show.findOne({section:"home"});
+  show.carousel.push(imageURL)
+  await show.save();
+  res.send({status:"sucess",show:show})
+  } catch (error) {
+    const err = new HttpError(error.message, 500);
+    return next(err);
+  }
+
 }
+
+
