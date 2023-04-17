@@ -2,7 +2,7 @@ const Report = require("../Models/Reports");
 const Show = require("../Models/Show");
 const User = require("../Models/User.model");
 const HttpError = require("../support/http-error");
-
+const mime = require("mime")
 exports.getReports = async (req, res, next) => {
   try {
     const reports = await Report.find();
@@ -53,27 +53,37 @@ exports.deleteUser = async (req, res, next) => {
 
 
 exports.addCarouselImages = async(req,res,next) => {
+  const random = Math.floor(100000000 + Math.random() * 900000000);
   try {
-    const extention = mime.getExtension(req.files.poster_image.mimetype);
+    const extention = mime.getExtension(req.files.c_image.mimetype);
   console.log(extention);
   if (extention != "png" && extention != "jpg" && extention != "jpeg") {
     const err = new HttpError("can't upload this type of image", 401);
     return next(err);
   }
-  const imageURL = `${req.protocol}://${req.hostname}:${process.env.PORT}/photos/carousel_${phone_number}.${extention}`;
+  const imageURL = `${req.protocol}://${req.hostname}:${process.env.PORT}/photos/carousel_${random}.${extention}`;
   if (!req.files || Object.keys(req.files).length === 0) {
     const err = new HttpError("No files were uploaded.", 401);
     return next(err);
   }
-  console.log(req.files.poster_image);
-  const filePath = `images/carousel_${phone_number}.${extention}`;
-  req.files.poster_image.mv(filePath, function (error) {
+  console.log(req.files.c_image);
+  const filePath = `images/carousel_${random}.${extention}`;
+  req.files.c_image.mv(filePath, function (error) {
     if (error) {
       const err = new HttpError(error.message, 401);
       return next(err);
     }
   });
-  const show = await Show.findOne({section:"home"});
+  let show = await Show.findOne({section:"home"});
+  if(!show){
+    const newShow = new Show({
+      section: "home",
+      carousel:[],
+      categories: []
+    })
+    await newShow.save()
+    show = newShow
+  }
   show.carousel.push(imageURL)
   await show.save();
   res.send({status:"sucess",show:show})
@@ -81,7 +91,5 @@ exports.addCarouselImages = async(req,res,next) => {
     const err = new HttpError(error.message, 500);
     return next(err);
   }
-
 }
-
 
