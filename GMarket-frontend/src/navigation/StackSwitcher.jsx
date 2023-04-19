@@ -1,15 +1,14 @@
-import { Text, View } from 'react-native'
-import React, { Component } from 'react'
+import { View, Text } from 'react-native'
+import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
+import { useSelector } from 'react-redux'
 
-export class StackSwitcher extends Component {
-  render() {
-    return (
-      <NavigationContainer>
-        
-      </NavigationContainer>
-    )
-  }
+const StackSwitcher = () => {
+    const authSlice = useSelector(state => state.auth)
+  return (
+    <NavigationContainer>
+    </NavigationContainer>
+  )
 }
 
 export default StackSwitcher
