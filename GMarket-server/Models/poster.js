@@ -8,6 +8,7 @@ const posterSchema = new mongoose.Schema({
     image_url :  { type: String, require: true },
 })
 
+
 const Poster = mongoose.model("Poster",posterSchema);
 
 module.exports = Poster;

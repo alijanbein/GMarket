@@ -94,8 +94,15 @@ exports.addCarouselImages = async(req,res,next) => {
 }
 
 exports.deleteCarousel =async(req,res,next) => {
+try {
   const {image_id} = req.body;
   const show =await Show.findOne({section:"home"});
   const newCarousel = show.carousel.filter(data => data._id != image_id);
-  console.log(newCarousel);
+  show.carousel = newCarousel;
+  show.save();
+  res.send({status:"sucess"})
+} catch (error) {
+  const err = new HttpError(error.message, 500);
+  return next(err);
+}
 }
