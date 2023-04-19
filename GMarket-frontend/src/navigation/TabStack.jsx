@@ -13,7 +13,7 @@ const TabStack = () => {
                     <Text>home</Text>
                 }
             }}
-            name= "test"
+            name= "test1"
             component={Welcome}
         />
         <Tabs.Screen
