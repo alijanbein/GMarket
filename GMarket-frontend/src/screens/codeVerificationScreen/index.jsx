@@ -63,37 +63,6 @@ const CodeVerificationScreen = () => {
             value={data}
           />
         ))}
-
-        {/* <TextInput
-          style={styles.box}
-          maxLength={1}
-          keyboardType="numeric"
-          ref={input2Ref}
-          onKeyPress={(e) => {
-            handleKeyPress(1, e);
-          }}
-          value={code[1]}
-        />
-        <TextInput
-          style={styles.box}
-          maxLength={1}
-          keyboardType="numeric"
-          ref={input3Ref}
-          onKeyPress={(e) => {
-            handleKeyPress(2, e);
-          }}
-          value={code[2]}
-        />
-        <TextInput
-          style={styles.box}
-          maxLength={1}
-          keyboardType="numeric"
-          ref={input4Ref}
-          onKeyPress={(e) => {
-            handleKeyPress(3, e);
-          }}
-          value={code[3]}
-        /> */}
       </View>
     </View>
   );
