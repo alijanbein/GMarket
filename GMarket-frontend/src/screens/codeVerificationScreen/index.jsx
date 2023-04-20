@@ -11,22 +11,36 @@ const CodeVerificationScreen = () => {
   const input4Ref = useRef();
   const inputs = [input1Ref, input2Ref, input3Ref, input4Ref];
   const [code, setCode] = useState(["", "", "", ""]);
-
-  useEffect(()=>{
+  const [focus, setFocus] = useState([false, false, false, false]);
+  useEffect(() => {
     let finished = true;
-    code.map(num => {
-      if (num == ""){
-        finished = false
+    code.map((num) => {
+      if (num == "") {
+        finished = false;
       }
-    })
-    if(finished){
-      setCode(["","","",""]);
+    });
+    if (finished) {
+      setCode(["", "", "", ""]);
     }
-  },[code])
+  }, [code]);
+
+  const onFocusHandler = (index) => {
+    const newFocus = focus;
+    focus[index] = true;
+    setFocus(newFocus);
+  };
+
+  const onLoseFocusHandler = (index) => {
+    const newFocus = focus;
+    focus[index] = false;
+    setFocus(newFocus);
+  };
 
   const handleKeyPress = (index, event) => {
     if (event.nativeEvent.key === "Backspace" && index > 0) {
       inputs[index - 1].current?.focus();
+      onLoseFocusHandler(index)
+      onFocusHandler(index - 1);
       setCode((prev) => (prev[index] = ""));
       const newCode = [...code];
       newCode[index] = "";
@@ -39,6 +53,8 @@ const CodeVerificationScreen = () => {
       const newCode = [...code];
       newCode[index] = event.nativeEvent.key;
       setCode(newCode);
+      onLoseFocusHandler(index)
+      onFocusHandler(index + 1);
     } else if (
       event.nativeEvent.key !== "Backspace" &&
       index == inputs.length - 1
@@ -46,12 +62,17 @@ const CodeVerificationScreen = () => {
       const newCode = [...code];
       newCode[index] = event.nativeEvent.key;
       setCode(newCode);
+      onLoseFocusHandler(index)
+
     } else if (event.nativeEvent.key === "Backspace" && index == 0) {
       const newCode = [...code];
       newCode[index] = "";
       setCode(newCode);
+      onLoseFocusHandler(index)
+
     }
   };
+
   return (
     <View style={styles.container}>
       <Text
@@ -60,9 +81,12 @@ const CodeVerificationScreen = () => {
       <View style={styles.inputContainer}>
         {code.map((data, index) => (
           <TextInput
-          caretHidden={true}
+            onBlur={() => {
+              onLoseFocusHandler(index);
+            }}
+            caretHidden={true}
             key={index}
-            style={styles.box}
+            style={[styles.box, focus[index] && styles.focus]}
             maxLength={1}
             keyboardType="numeric"
             ref={inputs[index]}

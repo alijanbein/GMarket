@@ -24,12 +24,16 @@ export const styles = StyleSheet.create({
   box: {
     width: 55,
     backgroundColor: COLORS.second,
-    height: 55,
-    borderRadius: 10,
+    height: 65,
+    borderRadius: 7,
     marginHorizontal: 8,
     textAlign: "center",
     fontSize: 25,
     fontWeight: "600",
     color: COLORS.textColor,
   },
+  focus: {
+    borderColor: COLORS.main,
+    borderWidth: 2
+  }
 });
