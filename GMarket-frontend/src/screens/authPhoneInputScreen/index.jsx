@@ -3,17 +3,20 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles";
 import PassButton from "../../components/passButton";
 import { useNavigation } from "@react-navigation/native";
-
+import { useDispatch } from "react-redux";
+import { setPhoneNumberSlice } from "../../redux/slices/authSlice";
 const AuthPhoneInputScreen = () => {
   const [phoneNumber,setPhoneNumber] = useState('');
   const [isActive,setIsActive] = useState(false);
   const navigation = useNavigation()
+  const dispatch = useDispatch()
   const textChangeHandler = (text) => {
       setPhoneNumber(text)
   }
 
   const clickHandler = () => {
-    navigation.navigate("Code Verification")
+    dispatch(setPhoneNumberSlice(phoneNumber))
+    navigation.navigate("Code Verification");
   }
 
   useEffect(()=>{

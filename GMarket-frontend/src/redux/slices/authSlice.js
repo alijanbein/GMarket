@@ -17,12 +17,12 @@ const authSlice = createSlice({
     logout: (state) => {
       state.isLoggedin = false;
     },
-    setPhoneNumber : (state,action) => {
-      state.phoneNumber = action.payload.phoneNumber
+    setPhoneNumberSlice : (state,action) => {
+      state.phoneNumber = action.payload
     }
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout,setPhoneNumberSlice } = authSlice.actions;
 
 export default authSlice.reducer;
