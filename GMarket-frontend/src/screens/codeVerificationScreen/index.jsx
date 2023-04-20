@@ -51,6 +51,7 @@ const CodeVerificationScreen = () => {
       <View style={styles.inputContainer}>
         {code.map((data, index) => (
           <TextInput
+          caretHidden={true}
             key={index}
             style={styles.box}
             maxLength={1}
