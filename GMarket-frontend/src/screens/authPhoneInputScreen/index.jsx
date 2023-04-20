@@ -5,7 +5,7 @@ import styles from './styles'
 const AuthPhoneInputScreen = () => {
   return (
     <View style = {styles.container}>
-        <Text style = {styles.header}>Green Market</Text>
+        <Text style = {styles.header}><Text style={styles.span}>Green</Text> Market</Text>
     </View>
   )
 }

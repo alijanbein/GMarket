@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { COLORS } from "../../contansts/colors";
+import { FONTS } from "../../contansts/fonts";
 
 export default styles = StyleSheet.create({
     container : {
@@ -10,5 +11,11 @@ export default styles = StyleSheet.create({
     header: {
         textAlign: "center",
         fontSize: 40,
+        color:COLORS.textColor,
+        fontFamily:FONTS.NotoSerifTamil.name,
+        fontWeight: "bold"
+    },
+    span: {
+        color: COLORS.main
     }
 })
