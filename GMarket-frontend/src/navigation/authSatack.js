@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import AuthPhoneInputScreen from '../screens/authPhoneInputScreen'
 import Welcome from '../screens/welcome'
 
-const authSatack = () => {
+const AuthSatack = () => {
     const stack  = createStackNavigator()
   return (
    <stack.Navigator>
@@ -14,4 +14,4 @@ const authSatack = () => {
   )
 }
 
-export default authSatack
+export default AuthSatack
