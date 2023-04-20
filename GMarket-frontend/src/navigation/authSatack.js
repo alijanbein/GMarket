@@ -10,12 +10,14 @@ const AuthSatack = () => {
   const stack = createStackNavigator();
   return (
     <stack.Navigator>
+     
       <stack.Screen
         options={{
           headerShown: false,
         }}
         name="welcome"
         component={Welcome}
+
       />
       <stack.Screen
         options={{
@@ -24,10 +26,10 @@ const AuthSatack = () => {
         name="auth_phone_input"
         component={AuthPhoneInputScreen}
       />
-      <stack.Screen 
-       options={{
-          headerTitleAlign:"center",
-          headerTitleStyle:style.headerTitle
+       <stack.Screen
+        options={{
+          headerTitleAlign: "center",
+          headerTitleStyle: style.headerTitle,
         }}
         name="Code Verification"
         component={CodeVerificationScreen}
