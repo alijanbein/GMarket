@@ -1,9 +1,26 @@
 import { View, Text, TextInput } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles";
 import PassButton from "../../components/passButton";
 
 const AuthPhoneInputScreen = () => {
+  const [phoneNumber,setPhoneNumber] = useState('');
+  const [isActive,setIsActive] = useState(false);
+
+  const textChangeHandler = (text) => {
+      setPhoneNumber(text)
+  }
+
+  useEffect(()=>{
+      if(phoneNumber.length == 6){
+        setIsActive(true)
+      }
+      else{
+        setIsActive(false)
+
+      }
+  },[phoneNumber])
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>
@@ -13,10 +30,10 @@ const AuthPhoneInputScreen = () => {
         <View style={styles.phone}>
           <Text style={styles.label}>+961 </Text>
         </View>
-        <TextInput keyboardType='numeric' style={[styles.phone,styles.input]} placeholder="Phone Number" />
+        <TextInput onChangeText={textChangeHandler} value={phoneNumber} keyboardType='numeric' style={[styles.phone,styles.input]} placeholder="Phone Number" />
       </View>
       <View>
-      <PassButton acitve = {true} title= "Continue"/>
+      <PassButton acitve = {isActive} title= "Continue"/>
       </View>
     </View>
   );
