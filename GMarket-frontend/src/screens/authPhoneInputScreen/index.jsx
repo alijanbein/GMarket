@@ -16,7 +16,7 @@ const AuthPhoneInputScreen = () => {
         <TextInput keyboardType='numeric' style={[styles.phone,styles.input]} placeholder="Phone Number" />
       </View>
       <View>
-      <PassButton title= "Continue"/>
+      <PassButton acitve = {true} title= "Continue"/>
       </View>
     </View>
   );

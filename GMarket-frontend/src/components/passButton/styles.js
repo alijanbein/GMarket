@@ -10,8 +10,15 @@ export const style = StyleSheet.create({
     height: 50,
     borderRadius: 30,
   },
-  textButton: {
+  textButtonActive: {
     fontSize: 25,
-    color: COLORS.white
+    color: COLORS.white,
+  },
+  textButtonDisabled: {
+    color: "#bbbcc6",
+    fontSize: 25,
+  },
+  btnInactive: {
+    backgroundColor: COLORS.second,
   },
 });
