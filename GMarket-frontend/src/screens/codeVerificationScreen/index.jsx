@@ -11,18 +11,27 @@ const CodeVerificationScreen = () => {
     const input4Ref = useRef()
     const inputs = [input1Ref,input2Ref,input3Ref,input4Ref];
     const [code,setCode] = useState(["1","2","3","4"])
+
+
+
     const handleKeyPress = (index, event) => {
+
       console.log(event.nativeEvent.key);
       if (event.nativeEvent.key === 'Backspace' && index > 0) {
         inputs[index - 1].current?.focus();
-        // setCode(prev => prev[index] = "")
+        setCode(prev => prev[index] = "")
+        const newCode = [...code];
+        newCode[index] = "";
+        setCode(newCode)
       }
       else if( event.nativeEvent.key !== 'Backspace' && index < inputs.length -1) {
         inputs[index + 1].current?.focus();
-        // setCode(prev => prev[index] = event.nativeEvent.key)
+        const newCode = [...code];
+        newCode[index] = event.nativeEvent.key;
+        setCode(newCode)
       }
     };
-    // console.log(code);
+    console.log(code);
     return (
     <View style = {styles.container}>
         <Text style = {styles.title}>{`Enter the code send to +961 ${auth.phoneNumber}`}</Text>
