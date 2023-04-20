@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import { COLORS } from "../../contansts/colors";
 import { FONTS } from "../../contansts/fonts";
+import { SPACING } from "../../contansts/spacing";
 
 export default styles = StyleSheet.create({
   container: {
@@ -35,10 +36,11 @@ export default styles = StyleSheet.create({
   },
   input : {
     width: 200,
-    marginLeft: 9
+    marginLeft: 9,
+    fontSize: SPACING.NumberFontSize
   },
   label: {
-    fontSize: 20,
+    fontSize: SPACING.NumberFontSize,
     color: COLORS.textColor,
   },
 });
