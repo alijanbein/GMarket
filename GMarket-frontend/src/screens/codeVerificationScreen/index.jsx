@@ -1,83 +1,101 @@
-import { View, Text, StyleSheet, TextInput } from 'react-native'
-import React, { useRef, useState } from 'react'
-import { styles } from './style'
-import { useSelector } from 'react-redux'
+import { View, Text, StyleSheet, TextInput } from "react-native";
+import React, { useRef, useState } from "react";
+import { styles } from "./style";
+import { useSelector } from "react-redux";
 
 const CodeVerificationScreen = () => {
-    const auth = useSelector(state => state.auth)
-    const input1Ref = useRef()
-    const input2Ref = useRef()
-    const input3Ref = useRef()
-    const input4Ref = useRef()
-    const inputs = [input1Ref,input2Ref,input3Ref,input4Ref];
-    const [code,setCode] = useState(["1","2","3","4"])
+  const auth = useSelector((state) => state.auth);
+  const input1Ref = useRef();
+  const input2Ref = useRef();
+  const input3Ref = useRef();
+  const input4Ref = useRef();
+  const inputs = [input1Ref, input2Ref, input3Ref, input4Ref];
+  const [code, setCode] = useState(["", "", "", ""]);
 
+  const handleKeyPress = (index, event) => {
+    console.log("code:", code);
+    if (event.nativeEvent.key === "Backspace" && index > 0) {
+      inputs[index - 1].current?.focus();
+      setCode((prev) => (prev[index] = ""));
+      const newCode = [...code];
+      newCode[index] = "";
+      setCode(newCode);
+    } else if (
+      event.nativeEvent.key !== "Backspace" &&
+      index < inputs.length - 1
+    ) {
+      inputs[index + 1].current?.focus();
+      console.log("index", index);
+      const newCode = [...code];
+      newCode[index] = event.nativeEvent.key;
+      setCode(newCode);
+    } else if (
+      event.nativeEvent.key !== "Backspace" &&
+      index == inputs.length - 1
+    ) {
+      const newCode = [...code];
+      newCode[index] = event.nativeEvent.key;
+      setCode(newCode);
+    } else if (event.nativeEvent.key === "Backspace" && index == 0) {
+      const newCode = [...code];
+      newCode[index] = "";
+      setCode(newCode);
+    }
+  };
+  console.log("code:", code);
+  return (
+    <View style={styles.container}>
+      <Text
+        style={styles.title}
+      >{`Enter the code send to +961 ${auth.phoneNumber}`}</Text>
+      <View style={styles.inputContainer}>
+        {code.map((data, index) => (
+          <TextInput
+            key={index}
+            style={styles.box}
+            maxLength={1}
+            keyboardType="numeric"
+            ref={inputs[index]}
+            onKeyPress={(e) => {
+              handleKeyPress(index, e);
+            }}
+            value={data}
+          />
+        ))}
 
-
-    const handleKeyPress = (index, event) => {
-
-      console.log(event.nativeEvent.key);
-      if (event.nativeEvent.key === 'Backspace' && index > 0) {
-        inputs[index - 1].current?.focus();
-        setCode(prev => prev[index] = "")
-        const newCode = [...code];
-        newCode[index] = "";
-        setCode(newCode)
-      }
-      else if( event.nativeEvent.key !== 'Backspace' && index < inputs.length -1) {
-        inputs[index + 1].current?.focus();
-        const newCode = [...code];
-        newCode[index] = event.nativeEvent.key;
-        setCode(newCode)
-      }
-    };
-    console.log(code);
-    return (
-    <View style = {styles.container}>
-        <Text style = {styles.title}>{`Enter the code send to +961 ${auth.phoneNumber}`}</Text>
-        <View style = {styles.inputContainer}>
-        <TextInput
-  
-          style={styles.box}
-          maxLength={1}
-          keyboardType="numeric"
-          ref={input1Ref}
-          onKeyPress={(e)=>{
-            handleKeyPress(0,e)
-          }}
-        />
-             <TextInput
+        {/* <TextInput
           style={styles.box}
           maxLength={1}
           keyboardType="numeric"
           ref={input2Ref}
-          onKeyPress={(e)=>{
-            handleKeyPress(1,e)
+          onKeyPress={(e) => {
+            handleKeyPress(1, e);
           }}
-          
+          value={code[1]}
         />
-             <TextInput
+        <TextInput
           style={styles.box}
           maxLength={1}
           keyboardType="numeric"
           ref={input3Ref}
-          onKeyPress={(e)=>{
-            handleKeyPress(2,e)
+          onKeyPress={(e) => {
+            handleKeyPress(2, e);
           }}
+          value={code[2]}
         />
-             <TextInput
+        <TextInput
           style={styles.box}
           maxLength={1}
           keyboardType="numeric"
           ref={input4Ref}
-          onKeyPress={(e)=>{
-            handleKeyPress(3,e)
+          onKeyPress={(e) => {
+            handleKeyPress(3, e);
           }}
-        />
-        </View>
+          value={code[3]}
+        /> */}
+      </View>
     </View>
-  )
-}
+  );
+};
 
-
-export default CodeVerificationScreen
+export default CodeVerificationScreen;
