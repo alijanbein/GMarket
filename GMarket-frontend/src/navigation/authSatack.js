@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import AuthPhoneInputScreen from "../screens/authPhoneInputScreen";
 import Welcome from "../screens/welcome";
 import CodeVerificationScreen from "../screens/codeVerificationScreen";
+import { style } from "./styles";
 
 const AuthSatack = () => {
   const stack = createStackNavigator();
@@ -24,6 +25,10 @@ const AuthSatack = () => {
         component={AuthPhoneInputScreen}
       />
       <stack.Screen 
+       options={{
+          headerTitleAlign:"center",
+          headerTitleStyle:style.headerTitle
+        }}
         name="Code Verification"
         component={CodeVerificationScreen}
       />

@@ -14,6 +14,7 @@ const loadFonts = async () => {
   });
 };
 
+
 const Welcome = () => {
   const authSlice = useSelector(state => state.auth);
   const navigation = useNavigation()

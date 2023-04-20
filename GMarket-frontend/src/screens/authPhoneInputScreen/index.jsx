@@ -2,13 +2,18 @@ import { View, Text, TextInput } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./styles";
 import PassButton from "../../components/passButton";
+import { useNavigation } from "@react-navigation/native";
 
 const AuthPhoneInputScreen = () => {
   const [phoneNumber,setPhoneNumber] = useState('');
   const [isActive,setIsActive] = useState(false);
-
+  const navigation = useNavigation()
   const textChangeHandler = (text) => {
       setPhoneNumber(text)
+  }
+
+  const clickHandler = () => {
+    navigation.navigate("Code Verification")
   }
 
   useEffect(()=>{
@@ -33,7 +38,7 @@ const AuthPhoneInputScreen = () => {
         <TextInput onChangeText={textChangeHandler} value={phoneNumber} keyboardType='numeric' style={[styles.phone,styles.input]} placeholder="Phone Number" />
       </View>
       <View>
-      <PassButton acitve = {isActive} title= "Continue"/>
+      <PassButton onPress ={clickHandler} acitve = {isActive} title= "Continue"/>
       </View>
     </View>
   );
