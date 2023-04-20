@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TextInput } from "react-native";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { styles } from "./style";
 import { useSelector } from "react-redux";
 
@@ -12,8 +12,19 @@ const CodeVerificationScreen = () => {
   const inputs = [input1Ref, input2Ref, input3Ref, input4Ref];
   const [code, setCode] = useState(["", "", "", ""]);
 
+  useEffect(()=>{
+    let finished = true;
+    code.map(num => {
+      if (num == ""){
+        finished = false
+      }
+    })
+    if(finished){
+      setCode(["","","",""]);
+    }
+  },[code])
+
   const handleKeyPress = (index, event) => {
-    console.log("code:", code);
     if (event.nativeEvent.key === "Backspace" && index > 0) {
       inputs[index - 1].current?.focus();
       setCode((prev) => (prev[index] = ""));
@@ -25,7 +36,6 @@ const CodeVerificationScreen = () => {
       index < inputs.length - 1
     ) {
       inputs[index + 1].current?.focus();
-      console.log("index", index);
       const newCode = [...code];
       newCode[index] = event.nativeEvent.key;
       setCode(newCode);
@@ -42,7 +52,6 @@ const CodeVerificationScreen = () => {
       setCode(newCode);
     }
   };
-  console.log("code:", code);
   return (
     <View style={styles.container}>
       <Text
