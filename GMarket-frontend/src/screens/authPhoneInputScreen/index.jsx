@@ -15,6 +15,7 @@ const AuthPhoneInputScreen = () => {
   }
 
   const clickHandler = () => {
+    console.log(phoneNumber);
     dispatch(setPhoneNumberSlice(phoneNumber))
     navigation.navigate("Code Verification");
   }
