@@ -1,6 +1,7 @@
 import { View, Text, TextInput } from "react-native";
 import React from "react";
 import styles from "./styles";
+import PassButton from "../../components/passButton";
 
 const AuthPhoneInputScreen = () => {
   return (
@@ -15,7 +16,7 @@ const AuthPhoneInputScreen = () => {
         <TextInput keyboardType='numeric' style={[styles.phone,styles.input]} placeholder="Phone Number" />
       </View>
       <View>
-        <Text>961</Text>
+      <PassButton title= "Continue"/>
       </View>
     </View>
   );
