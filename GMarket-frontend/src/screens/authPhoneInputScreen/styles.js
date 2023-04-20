@@ -4,6 +4,11 @@ import { COLORS } from "../../contansts/colors";
 export default styles = StyleSheet.create({
     container : {
         flex: 1,
-        backgroundColor: COLORS.white
+        backgroundColor: COLORS.white,
+        padding: 20
+    },
+    header: {
+        textAlign: "center",
+        fontSize: 40,
     }
 })
