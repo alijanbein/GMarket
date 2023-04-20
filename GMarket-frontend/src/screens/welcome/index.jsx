@@ -12,7 +12,7 @@ const Welcome = () => {
   useEffect(()=> {
       if(!authSlice.isLoggedin){
           setTimeout(()=>{
-
+            
           },2000)
       }
 
