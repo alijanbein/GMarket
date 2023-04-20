@@ -12,7 +12,7 @@ const Welcome = () => {
   useEffect(()=> {
       if(!authSlice.isLoggedin){
           setTimeout(()=>{
-            
+            navigation.navigate("auth_phone_input")
           },2000)
       }
 
