@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLoggedin: false,
   token: "",
+  phoneNumber: "",
   userData: {},
 };
 
@@ -16,6 +17,9 @@ const authSlice = createSlice({
     logout: (state) => {
       state.isLoggedin = false;
     },
+    setPhoneNumber : (state,action) => {
+      state.phoneNumber = action.payload.phoneNumber
+    }
   },
 });
 
