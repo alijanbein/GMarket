@@ -10,9 +10,9 @@ const AuthPhoneInputScreen = () => {
       </Text>
       <View style={styles.phone_input}>
         <View style={styles.phone}>
-          <Text style={styles.label}>961</Text>
+          <Text style={styles.label}>+961 </Text>
         </View>
-        <TextInput style={styles.phone} placeholder="alinj sama" />
+        <TextInput keyboardType='numeric' style={[styles.phone,styles.input]} placeholder="Phone Number" />
       </View>
       <View>
         <Text>961</Text>

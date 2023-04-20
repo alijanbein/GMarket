@@ -21,21 +21,24 @@ export default styles = StyleSheet.create({
   },
   phone_input: {
     flexDirection: "row",
-    justifyContent : "center",
-    alignItems:"center"
+    justifyContent: "center",
+    alignItems: "center",
   },
   phone: {
-    backgroundColor:COLORS.second,
+    backgroundColor: COLORS.second,
     width: 120,
     justifyContent: "center",
     alignItems: "center",
-    height:60,
-    borderRadius:10,
-    padding: 10
+    height: 60,
+    borderRadius: 10,
+    padding: 10,
   },
-
-  label : {
-    fontSize: 25,
-
-  }
+  input : {
+    width: 200,
+    marginLeft: 9
+  },
+  label: {
+    fontSize: 20,
+    color: COLORS.textColor,
+  },
 });
