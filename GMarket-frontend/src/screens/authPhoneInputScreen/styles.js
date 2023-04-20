@@ -5,7 +5,7 @@ import { FONTS } from "../../contansts/fonts";
 export default styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    backgroundColor: "#fff",
     padding: 20,
     flexDirection: "column",
     justifyContent: "space-between",
@@ -21,9 +21,21 @@ export default styles = StyleSheet.create({
   },
   phone_input: {
     flexDirection: "row",
-    justifyContent : "space-around"
+    justifyContent : "center",
+    alignItems:"center"
   },
-  input: {
-    backgroundColor:COLORS.second
+  phone: {
+    backgroundColor:COLORS.second,
+    width: 120,
+    justifyContent: "center",
+    alignItems: "center",
+    height:60,
+    borderRadius:10,
+    padding: 10
+  },
+
+  label : {
+    fontSize: 25,
+
   }
 });
