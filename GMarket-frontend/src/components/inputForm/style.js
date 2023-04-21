@@ -20,5 +20,9 @@ export const styles = StyleSheet.create( {
             borderRadius: 10,
             color: COLORS.textColor,
             fontSize: 20
+    },
+    invalid:{
+        borderColor: COLORS.error,
+        borderWidth:2
     }
 })
