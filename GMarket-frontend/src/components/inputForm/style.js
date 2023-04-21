@@ -1,13 +1,21 @@
-export const styles = {
+import { StyleSheet } from "react-native";
+import { COLORS } from "../../contansts/colors";
+import { FONTS } from "../../contansts/fonts";
+
+export const styles = StyleSheet.create( {
     container: {
-        flex: 1,
-        backgroud: "yellow"
+        marginTop:20,
     }
 ,
     label :{
-           color: "red" 
+           color: COLORS.textColor,
+           fontSize:15,
+           fontWeight:"bold"           
     },
     input : {
-        backgroud: "purple"
+            marginTop: 8,
+            padding: 15,
+            backgroundColor:"purple",
+            borderRadius: 20
     }
-}
+})

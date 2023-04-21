@@ -12,7 +12,6 @@ export const Tstyles = StyleSheet.create({
       container: {
         flex: 1,
         backgroundColor: "#fff",
-        padding: 50,
-        paddingTop: 50,
+        paddingHorizontal: 50
       },
 }) 
