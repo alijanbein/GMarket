@@ -9,13 +9,16 @@ export const styles = StyleSheet.create( {
 ,
     label :{
            color: COLORS.textColor,
-           fontSize:15,
-           fontWeight:"bold"           
+           fontSize:13,
+           fontWeight:"bold",
+           marginLeft:2     
     },
     input : {
             marginTop: 8,
             padding: 15,
-            backgroundColor:"purple",
-            borderRadius: 20
+            backgroundColor:COLORS.second,
+            borderRadius: 10,
+            color: COLORS.textColor,
+            fontSize: 20
     }
 })
