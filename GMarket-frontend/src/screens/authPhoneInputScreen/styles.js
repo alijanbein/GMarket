@@ -54,4 +54,5 @@ export default styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: COLORS.error,
   },
+
 });

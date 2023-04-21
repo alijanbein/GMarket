@@ -1,18 +1,20 @@
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, ActivityIndicator } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./styles";
 import PassButton from "../../components/passButton";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import { setPhoneNumberSlice } from "../../redux/slices/authSlice";
+import { COLORS } from "../../contansts/colors";
+import LoadingOverlay from "../../components/loadingOverlay";
 const AuthPhoneInputScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isActive, setIsActive] = useState(false);
-  const [isValid, setIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(true);
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const textChangeHandler = (text) => {
-    setIsValid(true)
+    setIsValid(true);
     setPhoneNumber(text);
   };
 
@@ -32,6 +34,7 @@ const AuthPhoneInputScreen = () => {
 
   return (
     <View style={styles.container}>
+      {false && <LoadingOverlay/>}
       <Text style={styles.header}>
         <Text style={styles.span}>Green</Text> Market
       </Text>
@@ -45,7 +48,11 @@ const AuthPhoneInputScreen = () => {
             onChangeText={textChangeHandler}
             value={phoneNumber}
             keyboardType="numeric"
-            style={[styles.phone, styles.input,!isValid && styles.invalid_input]}
+            style={[
+              styles.phone,
+              styles.input,
+              !isValid && styles.invalid_input,
+            ]}
             placeholder="Phone Number"
           />
           {!isValid && (
