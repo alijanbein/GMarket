@@ -7,12 +7,16 @@ export const styles = StyleSheet.create({
         paddingVertical: 50,
         paddingHorizontal: 20,
         backgroundColor: "#fff",
-        alignItems: "center"
+        alignItems: "center",
+        justifyContent: "space-between"
     },
     image : {
         width: 200,
         height: 200,
         borderRadius:150,
+        backgroundColor:"red",
+        marginLeft:"auto" ,
+        marginRight:"auto"       
     },
     button: {
         marginTop: 30,

@@ -12,7 +12,7 @@ export const styles = StyleSheet.create( {
            color: COLORS.textColor,
            fontSize:13,
            fontWeight:"bold",
-           marginLeft:2     
+           marginLeft:2 ,
     },
     input : {
             marginTop: 8,
