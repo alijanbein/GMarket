@@ -8,7 +8,6 @@ import { FONTS } from "../../contansts/fonts";
 const logo = require("../../../assets/logo.png");
 
 const loadFonts = async () => {
-  console.log("test");
   await Font.loadAsync({
     [FONTS.NotoSerifTamil.name]: { uri: FONTS.NotoSerifTamil.url },
   });

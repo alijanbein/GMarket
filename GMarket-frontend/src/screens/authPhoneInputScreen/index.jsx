@@ -21,7 +21,7 @@ const AuthPhoneInputScreen = () => {
   }
 
   useEffect(()=>{
-      if(phoneNumber.length == 6){
+      if(phoneNumber.length == 8){
         setIsActive(true)
       }
       else{
