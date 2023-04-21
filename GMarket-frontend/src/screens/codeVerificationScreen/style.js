@@ -3,18 +3,8 @@ import { Colors } from "react-native/Libraries/NewAppScreen";
 import { COLORS } from "../../contansts/colors";
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    padding: 50,
-    paddingTop: 50,
-  },
-  title: {
-    textAlign: "center",
-    fontSize: 25,
-    fontWeight: "bold",
-    color: COLORS.textColor,
-  },
+ 
+ 
   inputContainer: {
     marginTop: 70,
     flexDirection: "row",

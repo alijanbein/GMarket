@@ -4,6 +4,7 @@ import { styles } from "./style";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import LoadingOverlay from "../../components/loadingOverlay";
+import { Tstyles } from "../../contansts/styles";
 
 const CodeVerificationScreen = () => {
   const auth = useSelector((state) => state.auth);
@@ -82,11 +83,11 @@ const CodeVerificationScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={Tstyles.container}>
     {false && <LoadingOverlay/>}
       <Text
-        style={styles.title}
-      >{`Enter the code send to +961 ${auth.phoneNumber}`}</Text>
+        style={Tstyles.title}
+      >{`Enter the code sent to +961 ${auth.phoneNumber}`}</Text>
       <View style={styles.inputContainer}>
         {code.map((data, index) => (
           <TextInput
