@@ -12,6 +12,7 @@ const ProfileInfoScreen = () => {
     email: "",
     type : ""
   })
+  const [typeActive,setTypeActive] = useState(true)
   return (
     <View style={Tstyles.container}>
       <Text style ={Tstyles.title}>Enter your personal info to complete your profile</Text>
@@ -20,8 +21,8 @@ const ProfileInfoScreen = () => {
         <InputForm label = "Last name" placeHolder = 'lname'/>
         <InputForm label = "Email" placeHolder = 'email@gmail.com'/>
         <View style ={styles.type}>
-          <TypeChoise/>
-          <TypeChoise/>
+          <TypeChoise isActive = {typeActive} text = "Farmer"/>
+          <TypeChoise isActive = {!typeActive} text = "customer"/>
         </View>
       </View>
     </View>

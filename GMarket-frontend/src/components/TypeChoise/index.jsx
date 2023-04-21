@@ -1,12 +1,12 @@
-import { View, Text } from 'react-native'
+import { View, Text, TouchableHighlight } from 'react-native'
 import React from 'react'
 import { styles } from './style'
 
-const TypeChoise = () => {
+const TypeChoise = (props) => {
   return (
-    <View style = {[styles.container,porps.isActive && styles.activeContainer]}>
-    <Text style = {[styles.text,porps.isActive && styles.activeText]}> Farmer</Text>
-    </View>
+    <TouchableHighlight onPress={props.onPress}  style = {[styles.container,props.isActive && styles.activeContainer]}>
+    <Text style = {[styles.text,props.isActive && styles.activeText]}> Farmer</Text>
+    </TouchableHighlight>
   )
 }
 
