@@ -13,6 +13,12 @@ const ProfileInfoScreen = () => {
     type : ""
   })
   const [typeActive,setTypeActive] = useState(true)
+
+  const typePressHandler = (type) => {
+      setTypeActive(!typeActive),
+      // setData(...data,data.type)
+  }
+
   return (
     <View style={Tstyles.container}>
       <Text style ={Tstyles.title}>Enter your personal info to complete your profile</Text>
@@ -21,8 +27,8 @@ const ProfileInfoScreen = () => {
         <InputForm label = "Last name" placeHolder = 'lname'/>
         <InputForm label = "Email" placeHolder = 'email@gmail.com'/>
         <View style ={styles.type}>
-          <TypeChoise isActive = {typeActive} text = "Farmer"/>
-          <TypeChoise isActive = {!typeActive} text = "customer"/>
+          <TypeChoise onPress ={typePressHandler} isActive = {typeActive} text = "Farmer"/>
+          <TypeChoise onPress ={typePressHandler} isActive = {!typeActive} text = "customer"/>
         </View>
       </View>
     </View>
