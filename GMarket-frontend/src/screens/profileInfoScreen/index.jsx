@@ -7,8 +7,10 @@ import TypeChoise from "../../components/TypeChoise";
 import PassButton from "../../components/passButton";
 import { style } from "../../components/passButton/styles";
 import { SPACING, emailRegex } from "../../contansts/spacing";
+import { useNavigation } from "@react-navigation/native";
 
 const ProfileInfoScreen = () => {
+  const navigation = useNavigation()
   const [data, setData] = useState({
     first_name: "",
     last_name: "",
@@ -58,7 +60,7 @@ const ProfileInfoScreen = () => {
       setDataVAlid({ ...dataValid, email: false });
     }
     if(valid){
-      console.log(data);
+      navigation.navigate("Complete Profile Info")
     }
   };
 
