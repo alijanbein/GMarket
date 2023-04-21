@@ -12,8 +12,8 @@ export const Tstyles = StyleSheet.create({
       container: {
         flex: 1,
         backgroundColor: "#fff",
-        paddingHorizontal: 50,
+        paddingHorizontal: 20,
         paddingBottom: 10,
-        justifyContent: "space-between"
+        alignItems:"center"
       },
 }) 

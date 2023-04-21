@@ -5,6 +5,7 @@ import { Tstyles } from "../../contansts/styles";
 import InputForm from "../../components/inputForm";
 import TypeChoise from "../../components/TypeChoise";
 import PassButton from "../../components/passButton";
+import { style } from "../../components/passButton/styles";
 
 const ProfileInfoScreen = () => {
   const [data,setData] = useState({
@@ -12,6 +13,12 @@ const ProfileInfoScreen = () => {
     last_name: "",
     email: "",
     type : ""
+  })
+  const [dataValid,setDataVAlid] = useState({
+    first_name: true,
+    last_name: true,
+    email: true,
+    type : true
   })
   const [typeActive,setTypeActive] = useState(true)
 
@@ -40,9 +47,31 @@ const ProfileInfoScreen = () => {
         email: text}
      )
    }
-   console.log(data);
-  return (
-    <View style={Tstyles.container}>
+
+   const sendData = async() => {
+    if (data.first_name.length < 1) {
+      setDataVAlid(
+        { ...dataValid,
+          first_name: false}
+       )
+     }
+    if (data.last_name.length < 1) {
+      setDataVAlid(
+        { ...dataValid,
+          last_name: false}
+       )
+     }
+    if (data.email.length < 1) {
+      setDataVAlid(
+        { ...dataValid,
+          email: false}
+       )
+     }
+     console.log(dataValid);
+    };
+   
+   return (
+    <View style={styles.container} >
       <View>
       <Text style ={Tstyles.title}>Enter your personal info to complete your profile</Text>
       <View style ={styles.inputs}>
@@ -55,7 +84,7 @@ const ProfileInfoScreen = () => {
         </View>
       </View>
       </View>
-      <PassButton title = "continue" />
+      <PassButton onPress = {sendData} acitve ={true}  title = "continue" />
     </View>
   );
 };
