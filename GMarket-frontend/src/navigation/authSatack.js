@@ -6,6 +6,7 @@ import Welcome from "../screens/welcome";
 import CodeVerificationScreen from "../screens/codeVerificationScreen";
 import { style } from "./styles";
 import ProfileInfoScreen from "../screens/profileInfoScreen";
+import CompleteProfileScren from "../screens/CompleteProfileScreen";
 
 const AuthSatack = () => {
   const stack = createStackNavigator();
@@ -38,6 +39,11 @@ const AuthSatack = () => {
         options={authOption}
         name="Profile Info"
         component={ProfileInfoScreen}
+      />
+      <stack.Screen
+        options={authOption}
+        name="Complete Profile Info"
+        component={CompleteProfileScren}
       />
     </stack.Navigator>
   );

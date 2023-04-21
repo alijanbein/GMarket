@@ -2,7 +2,7 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { styles } from './style'
 
-const CompleteProfileScrenn = () => {
+const CompleteProfileScren= () => {
   return (
     <View style = {styles.container}>
       <Text>CompleteProfileScrenn</Text>
@@ -10,4 +10,4 @@ const CompleteProfileScrenn = () => {
   )
 }
 
-export default CompleteProfileScrenn
+export default CompleteProfileScren
