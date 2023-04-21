@@ -1,7 +1,10 @@
-import { View, Text, Button, Image } from 'react-native'
+import { View, Text, Button, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
-import { styles } from './style'
+import { styles } from './style';
+import { AntDesign } from '@expo/vector-icons';
+
 import * as ImagePicker from 'expo-image-picker';
+import { COLORS } from '../../contansts/colors';
 const CompleteProfileScren= () => {
     const [imageURI,setImageUri] = useState('');
     let openImagePickerAsync = async () => {
@@ -29,8 +32,12 @@ const CompleteProfileScren= () => {
 
   return (
     <View style = {styles.container}>
-      <Button title='test'  onPress={openImagePickerAsync}/>
-      <Image style ={styles.image} source={{uri : imageURI}} />
+      <Image style ={styles.image} source={{uri : `${!!imageURI ? imageURI : "https://www.w3schools.com/howto/img_avatar.png"}`}} />
+
+      <TouchableOpacity style={styles.button} onPress={openImagePickerAsync}>
+      <AntDesign name="plus" size={24} color={COLORS.white} />
+      <Text style={styles.buttonText}>Upload Image</Text>
+        </TouchableOpacity>
     </View>
   )
 }
