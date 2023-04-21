@@ -7,5 +7,9 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 20,
         backgroundColor: "#fff",
         alignItems: "center"
+    },
+    image : {
+        width: 300,
+        height: 300
     }
 })
