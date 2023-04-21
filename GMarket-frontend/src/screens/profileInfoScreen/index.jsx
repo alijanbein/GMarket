@@ -8,7 +8,7 @@ import TypeChoise from "../../components/TypeChoise";
 const ProfileInfoScreen = () => {
   const [data,setData] = useState({
     first_name: "",
-    lastt_name: "",
+    last_name: "",
     email: "",
     type : ""
   })
@@ -21,14 +21,32 @@ const ProfileInfoScreen = () => {
         type: type}
       )
     }
-    console.log(data);
+   const fnameHandler = (text) => {
+    setData(
+      { ...data,
+        first_name: text}
+     )
+   }
+   const lnameHandler = (text) => {
+    setData(
+      { ...data,
+        last_name: text}
+     )
+   }
+   const emailHandler = (text) => {
+    setData(
+      { ...data,
+        email: text}
+     )
+   }
+   console.log(data);
   return (
     <View style={Tstyles.container}>
       <Text style ={Tstyles.title}>Enter your personal info to complete your profile</Text>
       <View style ={styles.inputs}>
-        <InputForm label = "First name" placeHolder = 'fname'/>
-        <InputForm label = "Last name" placeHolder = 'lname'/>
-        <InputForm label = "Email" placeHolder = 'email@gmail.com'/>
+        <InputForm onTextChange = {fnameHandler}  label = "First name" placeHolder = 'fname'/>
+        <InputForm onTextChange = {lnameHandler} label = "Last name" placeHolder = 'lname'/>
+        <InputForm onTextChange = {emailHandler} label = "Email" placeHolder = 'email@gmail.com'/>
         <View style ={styles.type}>
           <TypeChoise onPress ={typePressHandler} isActive = {typeActive} text = "Farmer"/>
           <TypeChoise onPress ={typePressHandler} isActive = {!typeActive} text = "customer"/>
