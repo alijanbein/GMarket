@@ -2,9 +2,11 @@ import { View, Text, StyleSheet, TextInput } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import { styles } from "./style";
 import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 const CodeVerificationScreen = () => {
   const auth = useSelector((state) => state.auth);
+  const navigation = useNavigation()
   const input1Ref = useRef();
   const input2Ref = useRef();
   const input3Ref = useRef();
@@ -21,6 +23,9 @@ const CodeVerificationScreen = () => {
     });
     if (finished) {
       setCode(["", "", "", ""]);
+      if(true) {
+
+      }
       inputs[0].current.focus();
 
     }

@@ -2,12 +2,12 @@ import { View, Text } from "react-native";
 import React from "react";
 import { styles } from "./style";
 
-const index = () => {
+const ProfileInfoScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>UserInfoScreen</Text>
+      <Text>ProfileInfoScreen</Text>
     </View>
   );
 };
 
-export default index;
+export default ProfileInfoScreen;
