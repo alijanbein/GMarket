@@ -24,7 +24,7 @@ const CodeVerificationScreen = () => {
     if (finished) {
       setCode(["", "", "", ""]);
       if(true) {
-
+        navigation.navigate("Profile Info")
       }
       inputs[0].current.focus();
 

@@ -23,7 +23,6 @@ export default styles = StyleSheet.create({
   phone_input: {
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center",
   },
   phone: {
     backgroundColor: COLORS.second,
@@ -33,6 +32,8 @@ export default styles = StyleSheet.create({
     height: 60,
     borderRadius: 10,
     padding: 10,
+    
+
   },
   input : {
     width: 200,
@@ -43,4 +44,12 @@ export default styles = StyleSheet.create({
     fontSize: SPACING.NumberFontSize,
     color: COLORS.textColor,
   },
+  invalid_text: {
+      marginLeft: 15
+  },
+
+  invalid_input : {
+    borderWidth:2,
+    borderColor: COLORS.error
+  }
 });

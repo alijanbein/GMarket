@@ -6,29 +6,27 @@ import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import { setPhoneNumberSlice } from "../../redux/slices/authSlice";
 const AuthPhoneInputScreen = () => {
-  const [phoneNumber,setPhoneNumber] = useState('');
-  const [isActive,setIsActive] = useState(false);
-  const navigation = useNavigation()
-  const dispatch = useDispatch()
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [isActive, setIsActive] = useState(false);
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
   const textChangeHandler = (text) => {
-      setPhoneNumber(text)
-  }
+    setPhoneNumber(text);
+  };
 
   const clickHandler = () => {
     console.log(phoneNumber);
-    dispatch(setPhoneNumberSlice(phoneNumber))
+    dispatch(setPhoneNumberSlice(phoneNumber));
     navigation.navigate("Code Verification");
-  }
+  };
 
-  useEffect(()=>{
-      if(phoneNumber.length == 8){
-        setIsActive(true)
-      }
-      else{
-        setIsActive(false)
-
-      }
-  },[phoneNumber])
+  useEffect(() => {
+    if (phoneNumber.length == 8) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }, [phoneNumber]);
 
   return (
     <View style={styles.container}>
@@ -39,10 +37,21 @@ const AuthPhoneInputScreen = () => {
         <View style={styles.phone}>
           <Text style={styles.label}>+961 </Text>
         </View>
-        <TextInput onChangeText={textChangeHandler} value={phoneNumber} keyboardType='numeric' style={[styles.phone,styles.input]} placeholder="Phone Number" />
+
+        <View style={styles.invalid_container}>
+          <TextInput
+            onChangeText={textChangeHandler}
+            value={phoneNumber}
+            keyboardType="numeric"
+            style={[styles.phone, styles.input]}
+            placeholder="Phone Number"
+          />
+          <Text style = {styles.invalid_text}>Invalid phone Number</Text>
+        </View>
       </View>
+
       <View>
-      <PassButton onPress ={clickHandler} acitve = {isActive} title= "Continue"/>
+        <PassButton onPress={clickHandler} acitve={isActive} title="Continue" />
       </View>
     </View>
   );
