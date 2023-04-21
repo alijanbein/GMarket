@@ -21,6 +21,8 @@ const CodeVerificationScreen = () => {
     });
     if (finished) {
       setCode(["", "", "", ""]);
+      inputs[0].current.focus();
+
     }
   }, [code]);
 
