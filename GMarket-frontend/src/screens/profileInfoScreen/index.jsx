@@ -15,10 +15,13 @@ const ProfileInfoScreen = () => {
   const [typeActive,setTypeActive] = useState(true)
 
   const typePressHandler = (type) => {
-      setTypeActive(!typeActive),
-      // setData(...data,data.type)
-  }
-
+      setTypeActive(!typeActive)
+      setData(
+       { ...data,
+        type: type}
+      )
+    }
+    console.log(data);
   return (
     <View style={Tstyles.container}>
       <Text style ={Tstyles.title}>Enter your personal info to complete your profile</Text>
