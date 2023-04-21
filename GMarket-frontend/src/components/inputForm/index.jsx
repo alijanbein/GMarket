@@ -6,7 +6,7 @@ const InputForm = (props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{props.label}:</Text>
-      <TextInput onChangeText={props.onTextChange} value ={props.value} placeholder={props.placeholder} style={styles.input} />
+      <TextInput keyboardType={props.keyboardType || "default"} onChangeText={props.onTextChange} value ={props.value} placeholder={props.placeholder} style={styles.input} />
     </View>
   );
 };

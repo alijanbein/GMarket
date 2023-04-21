@@ -4,6 +4,7 @@ import { styles } from "./style";
 import { Tstyles } from "../../contansts/styles";
 import InputForm from "../../components/inputForm";
 import TypeChoise from "../../components/TypeChoise";
+import PassButton from "../../components/passButton";
 
 const ProfileInfoScreen = () => {
   const [data,setData] = useState({
@@ -42,16 +43,19 @@ const ProfileInfoScreen = () => {
    console.log(data);
   return (
     <View style={Tstyles.container}>
+      <View>
       <Text style ={Tstyles.title}>Enter your personal info to complete your profile</Text>
       <View style ={styles.inputs}>
         <InputForm onTextChange = {fnameHandler}  label = "First name" placeHolder = 'fname'/>
         <InputForm onTextChange = {lnameHandler} label = "Last name" placeHolder = 'lname'/>
-        <InputForm onTextChange = {emailHandler} label = "Email" placeHolder = 'email@gmail.com'/>
+        <InputForm keyboardType = "email-address" onTextChange = {emailHandler} label = "Email" placeHolder = 'email@gmail.com'/>
         <View style ={styles.type}>
           <TypeChoise onPress ={typePressHandler} isActive = {typeActive} text = "Farmer"/>
           <TypeChoise onPress ={typePressHandler} isActive = {!typeActive} text = "customer"/>
         </View>
       </View>
+      </View>
+      <PassButton title = "continue" />
     </View>
   );
 };
