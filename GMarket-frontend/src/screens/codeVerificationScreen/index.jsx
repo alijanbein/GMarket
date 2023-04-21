@@ -16,7 +16,14 @@ const CodeVerificationScreen = () => {
   const inputs = [input1Ref, input2Ref, input3Ref, input4Ref];
   const [code, setCode] = useState(["", "", "", ""]);
   const [focus, setFocus] = useState([false, false, false, false]);
+  useEffect(()=>{
+    if(input1Ref.current){
+      input1Ref.current.focus();
+      onFocusHandler(0)
+    }
+  },[])
   useEffect(() => {
+ 
     let finished = true;
     code.map((num) => {
       if (num == "") {
@@ -32,6 +39,7 @@ const CodeVerificationScreen = () => {
 
     }
   }, [code]);
+
 
   const onFocusHandler = (index) => {
     const newFocus = focus;
@@ -81,6 +89,7 @@ const CodeVerificationScreen = () => {
 
     }
   };
+  console.log(focus);
 
   return (
     <View style={Tstyles.container}>
