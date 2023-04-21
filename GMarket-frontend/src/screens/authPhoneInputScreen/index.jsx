@@ -8,9 +8,11 @@ import { setPhoneNumberSlice } from "../../redux/slices/authSlice";
 const AuthPhoneInputScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isActive, setIsActive] = useState(false);
+  const [isValid, setIsValid] = useState(false);
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const textChangeHandler = (text) => {
+    setIsValid(true)
     setPhoneNumber(text);
   };
 
@@ -43,10 +45,14 @@ const AuthPhoneInputScreen = () => {
             onChangeText={textChangeHandler}
             value={phoneNumber}
             keyboardType="numeric"
-            style={[styles.phone, styles.input]}
+            style={[styles.phone, styles.input,!isValid && styles.invalid_input]}
             placeholder="Phone Number"
           />
-          <Text style = {styles.invalid_text}>Invalid phone Number</Text>
+          {!isValid && (
+            <Text style={styles.invalid_text}>
+              Please enter a valid phone number{" "}
+            </Text>
+          )}
         </View>
       </View>
 

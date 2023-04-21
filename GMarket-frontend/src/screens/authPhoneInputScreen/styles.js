@@ -32,24 +32,26 @@ export default styles = StyleSheet.create({
     height: 60,
     borderRadius: 10,
     padding: 10,
-    
-
   },
-  input : {
+  input: {
     width: 200,
     marginLeft: 9,
-    fontSize: SPACING.NumberFontSize
+    fontSize: SPACING.NumberFontSize,
   },
   label: {
     fontSize: SPACING.NumberFontSize,
     color: COLORS.textColor,
   },
   invalid_text: {
-      marginLeft: 15
+    width: 200,
+    marginTop: 5,
+    marginLeft: 15,
+    fontSize: 15,
+    color:COLORS.error
   },
 
-  invalid_input : {
-    borderWidth:2,
-    borderColor: COLORS.error
-  }
+  invalid_input: {
+    borderWidth: 2,
+    borderColor: COLORS.error,
+  },
 });
