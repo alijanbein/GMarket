@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { styles } from "./style";
 import { Tstyles } from "../../contansts/styles";
 import InputForm from "../../components/inputForm";
+import TypeChoise from "../../components/TypeChoise";
 
 const ProfileInfoScreen = () => {
   const [data,setData] = useState({
@@ -18,7 +19,10 @@ const ProfileInfoScreen = () => {
         <InputForm label = "First name" placeHolder = 'fname'/>
         <InputForm label = "Last name" placeHolder = 'lname'/>
         <InputForm label = "Email" placeHolder = 'email@gmail.com'/>
-        
+        <View style ={styles.type}>
+          <TypeChoise/>
+          <TypeChoise/>
+        </View>
       </View>
     </View>
   );
