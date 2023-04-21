@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { styles } from "./style";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+import LoadingOverlay from "../../components/loadingOverlay";
 
 const CodeVerificationScreen = () => {
   const auth = useSelector((state) => state.auth);
@@ -82,6 +83,7 @@ const CodeVerificationScreen = () => {
 
   return (
     <View style={styles.container}>
+    {false && <LoadingOverlay/>}
       <Text
         style={styles.title}
       >{`Enter the code send to +961 ${auth.phoneNumber}`}</Text>
