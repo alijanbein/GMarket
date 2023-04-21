@@ -42,7 +42,7 @@ const AuthSatack = () => {
       />
       <stack.Screen
         options={authOption}
-        name="Complete Profile Info"
+        name="Complete Profile"
         component={CompleteProfileScren}
       />
     </stack.Navigator>

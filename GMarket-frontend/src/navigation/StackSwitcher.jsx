@@ -4,12 +4,13 @@ import { NavigationContainer } from '@react-navigation/native'
 import { useSelector } from 'react-redux'
 import AppStack from './AppStack'
 import AuthSatack from './authSatack'
+import CompleteProfileScren from '../screens/CompleteProfileScreen'
 
 const StackSwitcher = () => {
     const authSlice = useSelector(state => state.auth)
   return (
     <NavigationContainer>
-        {authSlice.isLoggedin ? <AppStack/> : <AuthSatack/>}
+        {authSlice.isLoggedin ? <AppStack/> : <CompleteProfileScren/>}
     </NavigationContainer>
   )
 }

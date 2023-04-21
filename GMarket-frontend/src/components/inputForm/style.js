@@ -5,6 +5,7 @@ import { FONTS } from "../../contansts/fonts";
 export const styles = StyleSheet.create( {
     container: {
         marginTop:20,
+        width: "100%"
     }
 ,
     label :{
