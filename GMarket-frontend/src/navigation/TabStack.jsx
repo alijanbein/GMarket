@@ -18,6 +18,46 @@ const TabStack = () => {
         name="Profile"
         component={ProfileScreen}
       />
+         <Tabs.Screen
+        options={{
+          tabBarLabel: "Search",
+          tabBarIcon: () => 
+            <Icon name="user" size={30} color="#000" />
+          
+        }}
+        name="Search"
+        component={ProfileScreen}
+      />
+      <Tabs.Screen
+        options={{
+          tabBarLabel: "Profile",
+          tabBarIcon: () => 
+            <Icon name="user" size={30} color="#000" />
+          
+        }}
+        name="Auction"
+        component={ProfileScreen}
+      />
+         <Tabs.Screen
+        options={{
+          tabBarLabel: "Profile",
+          tabBarIcon: () => 
+            <Icon name="user" size={30} color="#000" />
+          
+        }}
+        name="Home"
+        component={ProfileScreen}
+      />
+         <Tabs.Screen
+        options={{
+          tabBarLabel: "Profile",
+          tabBarIcon: () => 
+            <Icon name="user" size={30} color="#000" />
+          
+        }}
+        name="Messages"
+        component={ProfileScreen}
+      />
    
     </Tabs.Navigator>
   );
