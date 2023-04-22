@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ProfileScreen from "../screens/pofileScreen";
 import Icon from "react-native-vector-icons/FontAwesome5";
@@ -9,38 +9,62 @@ import { COLORS } from "../contansts/colors";
 import Welcome from "../screens/welcome";
 import { useNavigation } from "@react-navigation/native";
 
-    const defaultState = {
-        Home: 30,
-        Auction : 30,
-        Add: 30,
-        Message:30,
-        Profile:30
-      }
+const defaultState = {
+  Home: 30,
+  Auction: 30,
+  Add: 30,
+  Message: 30,
+  Profile: 30,
+};
+
+const defaultStyle = {
+  width: "100%",
+  height: "100%",
+  textAlign: "center",
+  flex: 1,
+  verticalAlign: "middle",
+};
 
 const TabStack = () => {
-    const navigation = useNavigation()
+  const navigation = useNavigation();
   const Tabs = createBottomTabNavigator();
-  const [iconSize,setIconSize] = useState(defaultState)
+  const [iconSize, setIconSize] = useState(defaultState);
 
-  const activeIcon = (icon) =>{
+  useEffect(() => {
+    navigation.navigate("Home");
     setIconSize({
-        ...defaultState,
-        [icon]: 40
-    })
-    navigation.navigate(icon)
-  } 
+      ...defaultState,
+      Home: 40,
+    });
+  }, []);
+
+  const activeIcon = (icon) => {
+    setIconSize({
+      ...defaultState,
+      [icon]: 40,
+    });
+    navigation.navigate(icon);
+  };
 
   return (
     <Tabs.Navigator
       screenOptions={{
         tabBarShowLabel: false,
       }}
+      d
     >
       <Tabs.Screen
-        
         options={{
           tabBarIcon: () => (
-            <IconI onPress = {()=>{activeIcon("Home")}} name="home-outline" size={iconSize.Home} color={COLORS.textColor} />
+            <IconI
+              style={defaultStyle}
+              onPress={() => {
+                activeIcon("Home");
+              }}
+              name="home-outline"
+              size={iconSize.Home}
+              color={COLORS.textColor}
+            />
           ),
         }}
         name="Home"
@@ -50,18 +74,34 @@ const TabStack = () => {
       <Tabs.Screen
         options={{
           tabBarIcon: () => (
-            <IconA onPress = {()=>{activeIcon("Auction")}} name="gavel" size={iconSize.Auction} color={COLORS.textColor} />
+            <IconA
+              style={defaultStyle}
+              onPress={() => {
+                activeIcon("Auction");
+              }}
+              name="gavel"
+              size={iconSize.Auction}
+              color={COLORS.textColor}
+            />
           ),
         }}
         name="Auction"
         component={ProfileScreen}
       />
       <Tabs.Screen
-    
         options={{
           tabBarIcon: () => (
-            <Icon name="edit" onPress = {()=>{activeIcon("Add")}} size={iconSize.Add} color={COLORS.textColor} />
+            <Icon
+              style={defaultStyle}
+              name="edit"
+              onPress={() => {
+                activeIcon("Add");
+              }}
+              size={iconSize.Add}
+              color={COLORS.textColor}
+            />
           ),
+          tabBarIconStyle: {},
         }}
         name="Add"
         component={ProfileScreen}
@@ -70,7 +110,15 @@ const TabStack = () => {
         options={{
           tabBarLabel: "Messages",
           tabBarIcon: () => (
-            <Icon name="envelope" onPress = {()=>{activeIcon("Message")}} size={iconSize.Message} color={COLORS.textColor} />
+            <Icon
+              style={defaultStyle}
+              name="envelope"
+              onPress={() => {
+                activeIcon("Message");
+              }}
+              size={iconSize.Message}
+              color={COLORS.textColor}
+            />
           ),
         }}
         name="Message"
@@ -80,7 +128,15 @@ const TabStack = () => {
         options={{
           tabBarLabel: "Profile",
           tabBarIcon: () => (
-            <Icon  name="user" onPress = {()=>{activeIcon("Profile")}} size={iconSize.Profile} color={COLORS.textColor} />
+            <Icon
+              style={defaultStyle}
+              name="user"
+              onPress={() => {
+                activeIcon("Profile");
+              }}
+              size={iconSize.Profile}
+              color={COLORS.textColor}
+            />
           ),
         }}
         name="Profile"
