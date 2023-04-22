@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ProfileScreen from "../screens/pofileScreen";
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from "react-native-vector-icons/FontAwesome5";
 
 const TabStack = () => {
   const Tabs = createBottomTabNavigator();
@@ -10,55 +10,45 @@ const TabStack = () => {
     <Tabs.Navigator>
       <Tabs.Screen
         options={{
-          tabBarLabel: "Profile",
-          tabBarIcon: () => 
-            <Icon name="user" size={30} color="#000" />
-          
+          tabBarLabel: "Home",
+          tabBarIcon: () => <Icon name="user" size={30} color="#000" />,
         }}
-        name="Profile"
+        name="Home"
         component={ProfileScreen}
       />
-         <Tabs.Screen
+
+      <Tabs.Screen
         options={{
-          tabBarLabel: "Search",
-          tabBarIcon: () => 
-            <Icon name="user" size={30} color="#000" />
-          
+          tabBarLabel: "Add",
+          tabBarIcon: () => <Icon name="user" size={30} color="#000" />,
         }}
-        name="Search"
+        name="Add Post"
+        component={ProfileScreen}
+      />
+      <Tabs.Screen
+        options={{
+          tabBarLabel: "Auction",
+          tabBarIcon: () => <Icon name="user" size={30} color="#000" />,
+        }}
+        name="Auction"
+        component={ProfileScreen}
+      />
+      <Tabs.Screen
+        options={{
+          tabBarLabel: "Messages",
+          tabBarIcon: () => <Icon name="user" size={30} color="#000" />,
+        }}
+        name="Messages"
         component={ProfileScreen}
       />
       <Tabs.Screen
         options={{
           tabBarLabel: "Profile",
-          tabBarIcon: () => 
-            <Icon name="user" size={30} color="#000" />
-          
+          tabBarIcon: () => <Icon name="user" size={30} color="#000" />,
         }}
-        name="Auction"
+        name="Profile"
         component={ProfileScreen}
       />
-         <Tabs.Screen
-        options={{
-          tabBarLabel: "Profile",
-          tabBarIcon: () => 
-            <Icon name="user" size={30} color="#000" />
-          
-        }}
-        name="Home"
-        component={ProfileScreen}
-      />
-         <Tabs.Screen
-        options={{
-          tabBarLabel: "Profile",
-          tabBarIcon: () => 
-            <Icon name="user" size={30} color="#000" />
-          
-        }}
-        name="Messages"
-        component={ProfileScreen}
-      />
-   
     </Tabs.Navigator>
   );
 };
