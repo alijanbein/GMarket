@@ -6,22 +6,28 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import IconI from "react-native-vector-icons/Ionicons";
 import IconA from "react-native-vector-icons/MaterialCommunityIcons";
 import { COLORS } from "../contansts/colors";
+import Welcome from "../screens/welcome";
+import { useNavigation } from "@react-navigation/native";
+
+    const defaultState = {
+        Home: 30,
+        Auction : 30,
+        Add: 30,
+        Message:30,
+        Profile:30
+      }
 
 const TabStack = () => {
+    const navigation = useNavigation()
   const Tabs = createBottomTabNavigator();
-  const [iconSize,setIconSize] = useState({
-    home: 30,
-    auction : 30,
-    add: 30,
-    message:30,
-    profile:30
-  })
+  const [iconSize,setIconSize] = useState(defaultState)
 
   const activeIcon = (icon) =>{
     setIconSize({
-        ...iconSize,
+        ...defaultState,
         [icon]: 40
     })
+    navigation.navigate(icon)
   } 
 
   return (
@@ -31,9 +37,10 @@ const TabStack = () => {
       }}
     >
       <Tabs.Screen
+        
         options={{
           tabBarIcon: () => (
-            <IconI onPress = {()=>{activeIcon("home")}} name="home-outline" size={iconSize.home} color={COLORS.textColor} />
+            <IconI onPress = {()=>{activeIcon("Home")}} name="home-outline" size={iconSize.Home} color={COLORS.textColor} />
           ),
         }}
         name="Home"
@@ -43,37 +50,37 @@ const TabStack = () => {
       <Tabs.Screen
         options={{
           tabBarIcon: () => (
-            <IconA onPress = {()=>{activeIcon("auction")}} name="gavel" size={iconSize.auction} color={COLORS.textColor} />
-          ),
-        }}
-        name="Add Post"
-        component={ProfileScreen}
-      />
-      <Tabs.Screen
-    
-        options={{
-          tabBarIcon: () => (
-            <Icon name="edit" onPress = {()=>{activeIcon("add")}} size={iconSize.add} color={COLORS.textColor} />
+            <IconA onPress = {()=>{activeIcon("Auction")}} name="gavel" size={iconSize.Auction} color={COLORS.textColor} />
           ),
         }}
         name="Auction"
         component={ProfileScreen}
       />
       <Tabs.Screen
+    
+        options={{
+          tabBarIcon: () => (
+            <Icon name="edit" onPress = {()=>{activeIcon("Add")}} size={iconSize.Add} color={COLORS.textColor} />
+          ),
+        }}
+        name="Add"
+        component={ProfileScreen}
+      />
+      <Tabs.Screen
         options={{
           tabBarLabel: "Messages",
           tabBarIcon: () => (
-            <Icon name="envelope" onPress = {()=>{activeIcon("message")}} size={iconSize.message} color={COLORS.textColor} />
+            <Icon name="envelope" onPress = {()=>{activeIcon("Message")}} size={iconSize.Message} color={COLORS.textColor} />
           ),
         }}
-        name="Messages"
-        component={ProfileScreen}
+        name="Message"
+        component={Welcome}
       />
       <Tabs.Screen
         options={{
           tabBarLabel: "Profile",
           tabBarIcon: () => (
-            <Icon  name="user" onPress = {()=>{activeIcon("profile")}} size={iconSize.profile} color={COLORS.textColor} />
+            <Icon  name="user" onPress = {()=>{activeIcon("Profile")}} size={iconSize.Profile} color={COLORS.textColor} />
           ),
         }}
         name="Profile"
