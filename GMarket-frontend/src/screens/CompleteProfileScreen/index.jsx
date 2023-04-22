@@ -1,5 +1,5 @@
 import { View, Text, Button, Image, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styles } from "./style";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -10,6 +10,7 @@ import PassButton from "../../components/passButton";
 const CompleteProfileScren = () => {
   const [imageURI, setImageUri] = useState("");
   const [bio,setBio] = useState();
+  const [saveAble,setSaveAble] = useState(false)
   let openImagePickerAsync = async () => {
     let permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -26,7 +27,18 @@ const CompleteProfileScren = () => {
     }
   };
 
-    const 
+    const bioHandler = (text) => {
+        console.log(text);
+        setBio(text)
+    }
+
+    useEffect(()=>{
+        if(!!bio || !!imageURI){
+            console.log("yse");
+            setSaveAble(true)
+        }
+        
+    },[bio, imageURI])
 
   // // const sendHandler = async () => {
 
@@ -53,13 +65,13 @@ const CompleteProfileScren = () => {
           <Text style={styles.buttonText}>Upload Image</Text>
         </TouchableOpacity>
         <View>
-          <InputForm onChangeText ={bioHandler}  label="Bio" bio invalid={true} />
+          <InputForm onTextChange ={bioHandler}  label="Bio" bio invalid={true} />
         </View>
       </View>
       <View style={{ width: "100%" }}>
         <PassButton acitve={true} title={"skip"} />
         <Text></Text>
-        <PassButton acitve={false} title="finish" />
+        <PassButton acitve={saveAble} title="finish" />
       </View>
     </View>
   );
