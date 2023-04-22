@@ -2,20 +2,13 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Welcome from '../screens/welcome'
+import ProfileScreen from '../screens/pofileScreen'
 
 const TabStack = () => {
     const Tabs = createBottomTabNavigator()
   return (
    <Tabs.Navigator>
-        <Tabs.Screen
-            options={{
-                tabBarIcon: () => {
-                    <Text>home</Text>
-                }
-            }}
-            name= "test1"
-            component={Welcome}
-        />
+       
         <Tabs.Screen
             options={{
                 tabBarIcon: () => {
@@ -23,7 +16,7 @@ const TabStack = () => {
                 }
             }}
             name= "test"
-            component={Welcome}
+            component={ProfileScreen}
         />
 
    </Tabs.Navigator>
