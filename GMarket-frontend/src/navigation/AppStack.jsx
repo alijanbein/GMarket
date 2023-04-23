@@ -7,6 +7,7 @@ import ReportScreen from "../screens/PofileScreen/profileFeatureScreens/Reportsc
 import EmptyScreen from "../screens/EmptyScren";
 import { Tstyles } from "../contansts/styles";
 import Welcome from "../screens/welcome";
+import SearchScreen from "../screens/searchScreen";
 
 const AppStack = () => {
   const stack = createStackNavigator();
@@ -51,6 +52,11 @@ const AppStack = () => {
         options={Tstyles.authOption}
         name="Empty Screen"
         component={EmptyScreen}
+      />
+      <stack.Screen
+        options={Tstyles.authOption}
+        name ="Search Screen"
+        component={SearchScreen}
       />
     </stack.Navigator>
   );
