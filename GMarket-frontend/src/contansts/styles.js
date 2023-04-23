@@ -17,4 +17,13 @@ export const Tstyles = StyleSheet.create({
         paddingBottom: 10,
         alignItems:"center"
       },
+     
+       authOption : {
+        headerTitleAlign: "center",
+        headerTitleStyle:  {
+          fontWeight: "bold",
+          color:COLORS.textColor
+      },
+      }
+      
 }) 

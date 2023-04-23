@@ -7,13 +7,11 @@ import CodeVerificationScreen from "../screens/codeVerificationScreen";
 import { style } from "./styles";
 import ProfileInfoScreen from "../screens/profileInfoScreen";
 import CompleteProfileScren from "../screens/CompleteProfileScreen";
+import { Tstyles } from "../contansts/styles";
 
 const AuthSatack = () => {
   const stack = createStackNavigator();
-  const authOption = {
-    headerTitleAlign: "center",
-    headerTitleStyle: style.headerTitle,
-  };
+
   return (
     <stack.Navigator>
       <stack.Screen
@@ -31,17 +29,17 @@ const AuthSatack = () => {
         component={AuthPhoneInputScreen}
       />
       <stack.Screen
-        options={authOption}
+        options={Tstyles.authOption}
         name="Code Verification"
         component={CodeVerificationScreen}
       />
       <stack.Screen
-        options={authOption}
+        options={Tstyles.authOption}
         name="Profile Info"
         component={ProfileInfoScreen}
       />
       <stack.Screen
-        options={authOption}
+        options={Tstyles.authOption}
         name="Complete Profile"
         component={CompleteProfileScren}
       />
