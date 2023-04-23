@@ -17,10 +17,9 @@ const CodeVerificationScreen = () => {
   const [code, setCode] = useState(["", "", "", ""]);
   const [focus, setFocus] = useState([false, false, false, false]);
   useEffect(()=>{
-    if(input1Ref.current){
-      input1Ref.current.focus();
+ 
       onFocusHandler(0)
-    }
+    
   },[])
   useEffect(() => {
  
@@ -100,6 +99,7 @@ const CodeVerificationScreen = () => {
       <View style={styles.inputContainer}>
         {code.map((data, index) => (
           <TextInput
+            autoFocus ={true}
             onBlur={() => {
               onLoseFocusHandler(index);
             }}
