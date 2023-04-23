@@ -4,6 +4,7 @@ import { styles } from "./style";
 import { useNavigation } from "@react-navigation/native";
 import InputForm from "../../../../components/inputForm";
 import PassButton from "../../../../components/passButton";
+import { emailRegex } from "../../../../contansts/spacing";
 
 const EditProfileScreen = () => {
   const navigation = useNavigation();
@@ -55,8 +56,9 @@ const EditProfileScreen = () => {
       setDataVAlid({ ...dataValid, email: false });
     }
     if (valid) {
-      navigation.navigate("Complete Profile Info");
+      navigation.navigate("Profile");
     }
+    console.log("haa");
   };
   return (
     <View style={styles.container}>
@@ -93,7 +95,7 @@ const EditProfileScreen = () => {
           phone
         />
       </View>
-      <PassButton title= "save" active= {true} />
+      <PassButton onPress ={sendData}  title= "save" active= {true} />
     </View>
   );
 };
