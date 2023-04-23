@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     paddingVertical:40,
     paddingHorizontal:SPACING.paddingHorizontal,
-    paddingVertical:20
+    paddingVertical:20,
+    justifyContent:"space-between"
   
 }});

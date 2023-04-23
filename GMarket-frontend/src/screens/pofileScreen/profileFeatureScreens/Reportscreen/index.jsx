@@ -1,52 +1,59 @@
-import { View, Text } from 'react-native'
-import React, { useState } from 'react'
-import { styles } from './style'
-import InputForm from '../../../../components/inputForm'
-import PassButton from '../../../../components/passButton'
+import { View, Text } from "react-native";
+import React, { useState } from "react";
+import { styles } from "./style";
+import InputForm from "../../../../components/inputForm";
+import PassButton from "../../../../components/passButton";
 
 const ReportScreen = () => {
-  const [data,setData] = useState({
-    phone_number:"",
-    message: ""
-  })
+  const [data, setData] = useState({
+    phone_number: "",
+    message: "",
+  });
   const [dataValid, setDataVAlid] = useState({
     phone_number: true,
-    message:true
+    message: true,
   });
 
-  const phoneNumberHandler = (text) =>{
-    setData(
-      {
-        ...data,
-        phone_number:text
-      }
-    )
-  }
-  const MessageHandler = (text) =>{
-    setData(
-      {
-        ...data,
-        message:text
-      }
-    )
-  }
+  const phoneNumberHandler = (text) => {
+    setDataVAlid({
+      phone_number: true,
+      message: true,
+    });
+    setData({
+      ...data,
+      phone_number: text,
+    });
+  };
+  const MessageHandler = (text) => {
+    setDataVAlid({
+      phone_number: true,
+      message: true,
+    });
+    setData({
+      ...data,
+      message: text,
+    });
+  };
 
-  const sendReport = async() => {
+  const sendReport = async () => {
     let valid = true;
     if (data.message.length < 1) {
       setDataVAlid({ ...dataValid, message: false });
       valid = false;
     }
-    if (data.phone_number.length != 11) {
+    if (data.phone_number.length != 11 || data.phone_number) {
       setDataVAlid({ ...dataValid, phone_number: false });
       valid = false;
     }
-    if(valid){console.log("valid");}
-  }
+    if (valid) {
+      console.log("valid");
+    }
+  };
   return (
-    <View style ={styles.container}>
-        <View>
+    <View style={styles.container}>
+      <View>
         <InputForm
+          keyboardType = "number-pad"
           value={data.phone_number}
           onTextChange={phoneNumberHandler}
           label="phone Number"
@@ -61,10 +68,10 @@ const ReportScreen = () => {
           bio
           invalid={dataValid.message}
         />
-        </View>
-        <PassButton active= {true} title={'Report'} onPress ={sendReport}  />
+      </View>
+      <PassButton active={true} title={"Report"} onPress={sendReport} />
     </View>
-  )
-}
+  );
+};
 
 export default ReportScreen;
