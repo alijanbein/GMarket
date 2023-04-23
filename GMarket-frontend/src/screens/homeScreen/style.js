@@ -15,7 +15,9 @@ export const styles = StyleSheet.create({
     height:40,
     borderRadius:60,
     paddingHorizontal:15,
-    justifyContent:"center"
-  }
+    flexDirection:"row",
+    alignItems:"center"
+    
+}
 
 });
