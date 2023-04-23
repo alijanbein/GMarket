@@ -17,7 +17,20 @@ export const styles = StyleSheet.create({
     paddingHorizontal:15,
     flexDirection:"row",
     alignItems:"center"
-    
+},
+categories : {
+  marginTop:10,
+},
+cat_title: {
+  fontSize:20,
+  fontWeight:"bold",
+  color : COLORS.textColor
+}
+,
+cat_container:{
+  marginTop:10,
+  backgroundColor:COLORS.second,
+  height: 90,
 }
 
 });

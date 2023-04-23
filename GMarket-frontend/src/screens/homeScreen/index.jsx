@@ -27,7 +27,12 @@ const HomeScreen = () => {
        <AntDesign name="search1" size={20} color="black" />
         <Text style={{marginLeft:5}}>Search Product</Text>
        </TouchableOpacity>
-       <CarouselScreen/>
+       <CarouselScreen data ={[]}/>
+       <View style ={styles.categories}>
+          <Text style ={styles.cat_title}>Categories</Text>
+          <View style={styles.cat_container}>
+          </View>
+       </View>
     </View>
   )
 }
