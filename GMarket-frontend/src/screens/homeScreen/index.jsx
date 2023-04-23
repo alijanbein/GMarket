@@ -4,6 +4,7 @@ import { styles } from './style'
 import SearchBar from '../../components/searchBar'
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
+import CarouselScreen from '../../components/Carousel';
 
 const HomeScreen = () => {
     const navigation = useNavigation()
@@ -26,6 +27,7 @@ const HomeScreen = () => {
        <AntDesign name="search1" size={20} color="black" />
         <Text style={{marginLeft:5}}>Search Product</Text>
        </TouchableOpacity>
+       <CarouselScreen/>
     </View>
   )
 }

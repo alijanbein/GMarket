@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isLoggedin: false,
+  isLoggedin: true,
   token: "",
   phoneNumber: "",
   userData: {},
