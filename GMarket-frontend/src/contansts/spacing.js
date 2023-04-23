@@ -4,4 +4,5 @@ export const SPACING = {
 };
 
 export const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+export const numberRegex = /^\d+$/;
 

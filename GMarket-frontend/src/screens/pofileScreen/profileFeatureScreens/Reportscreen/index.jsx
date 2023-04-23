@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { styles } from "./style";
 import InputForm from "../../../../components/inputForm";
 import PassButton from "../../../../components/passButton";
+import { numberRegex } from "../../../../contansts/spacing";
 
 const ReportScreen = () => {
   const [data, setData] = useState({
@@ -41,7 +42,7 @@ const ReportScreen = () => {
       setDataVAlid({ ...dataValid, message: false });
       valid = false;
     }
-    if (data.phone_number.length != 11 || data.phone_number) {
+    if (data.phone_number.length != 11 || !numberRegex.test(data.phone_number)) {
       setDataVAlid({ ...dataValid, phone_number: false });
       valid = false;
     }
