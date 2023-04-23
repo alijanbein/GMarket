@@ -20,7 +20,6 @@ const Welcome = () => {
   useEffect(()=> {
     loadFonts()
       setTimeout(()=>{
-        navigation.popToTop();
         navigation.navigate("Second")
         
       },2000)
