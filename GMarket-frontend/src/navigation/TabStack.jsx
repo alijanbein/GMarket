@@ -49,6 +49,7 @@ const TabStack = () => {
   return (
     <Tabs.Navigator
       screenOptions={{
+        headerShown:false,
         tabBarShowLabel: false,
       }}
       d
