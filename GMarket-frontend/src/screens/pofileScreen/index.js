@@ -3,8 +3,11 @@ import React from "react";
 import { styles } from "./style";
 import ProfileFeature from "../../components/profileFeature";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/slices/authSlice";
 const ProfileScreen = () => {
   const navigation = useNavigation()
+  const dispatch = useDispatch()
   return (
     <View style={styles.container}>
       <View>
@@ -15,7 +18,7 @@ const ProfileScreen = () => {
       <ProfileFeature onPress ={() =>{navigation.navigate("Edit Profile")}} title = "Profile" icon = "user-o"/>
       <ProfileFeature onPress ={() =>{navigation.navigate("Report User")}} title = "Report" icon = "exclamation-triangle"/>
       <ProfileFeature onPress = {() =>{navigation.navigate("Empty Screen")}} title = "Info" icon = "info"/>
-      <ProfileFeature onPress = {() =>{navigation.navigate("Empty Screen")}} title = "Log out" icon = "sign-out"/>
+      <ProfileFeature onPress = {() =>{dispatch(logout())}} title = "Log out" icon = "sign-out"/>
       <ProfileFeature />
     </View>
   );
