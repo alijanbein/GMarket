@@ -54,7 +54,9 @@ const AppStack = () => {
         component={EmptyScreen}
       />
       <stack.Screen
-        options={Tstyles.authOption}
+        options={{
+          headerTitle:""
+        }}
         name ="Search Screen"
         component={SearchScreen}
       />

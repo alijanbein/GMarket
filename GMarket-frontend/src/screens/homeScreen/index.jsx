@@ -17,8 +17,8 @@ const HomeScreen = () => {
     }
 
     const fakeSeachhandler = () => {
-
-    }
+        navigation.navigate("Search Screen")
+    }       
 
   return (
     <View style ={styles.container}>
