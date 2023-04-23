@@ -34,9 +34,19 @@ const EditProfileScreen = () => {
     setData({ ...data, first_name: text });
   };
   const lnameHandler = (text) => {
+    setDataVAlid({
+        first_name: true,
+        last_name: true,
+        email: true,
+      });
     setData({ ...data, last_name: text });
   };
   const emailHandler = (text) => {
+    setDataVAlid({
+        first_name: true,
+        last_name: true,
+        email: true,
+      });
     setData({ ...data, email: text });
   };
 

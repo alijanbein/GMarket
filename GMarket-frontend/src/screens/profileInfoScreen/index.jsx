@@ -10,7 +10,7 @@ import { SPACING, emailRegex } from "../../contansts/spacing";
 import { useNavigation } from "@react-navigation/native";
 
 const ProfileInfoScreen = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   const [data, setData] = useState({
     first_name: "",
     last_name: "",
@@ -37,9 +37,19 @@ const ProfileInfoScreen = () => {
     setData({ ...data, first_name: text });
   };
   const lnameHandler = (text) => {
+    setDataVAlid({
+      first_name: true,
+      last_name: true,
+      email: true,
+    });
     setData({ ...data, last_name: text });
   };
   const emailHandler = (text) => {
+    setDataVAlid({
+      first_name: true,
+      last_name: true,
+      email: true,
+    });
     setData({ ...data, email: text });
   };
 
@@ -47,20 +57,19 @@ const ProfileInfoScreen = () => {
     let valid = true;
     if (data.last_name.length < 1) {
       setDataVAlid({ ...dataValid, last_name: false });
-      valid = false
+      valid = false;
     }
     if (data.first_name.length < 1) {
       setDataVAlid({ ...dataValid, first_name: false });
-      valid = false
-
+      valid = false;
     }
 
     if (!emailRegex.test(data.email)) {
-      valid = false
+      valid = false;
       setDataVAlid({ ...dataValid, email: false });
     }
-    if(valid){
-      navigation.navigate("Complete Profile Info")
+    if (valid) {
+      navigation.navigate("Complete Profile Info");
     }
   };
 
@@ -76,15 +85,14 @@ const ProfileInfoScreen = () => {
             onTextChange={fnameHandler}
             label="First name"
             placeHolder="fname"
-            invalid = {dataValid.first_name}
+            invalid={dataValid.first_name}
           />
           <InputForm
             value={data.last_name}
             onTextChange={lnameHandler}
             label="Last name"
             placeHolder="lname"
-            invalid = {dataValid.last_name}
-
+            invalid={dataValid.last_name}
           />
           <InputForm
             value={data.email}
@@ -92,8 +100,7 @@ const ProfileInfoScreen = () => {
             onTextChange={emailHandler}
             label="Email"
             placeHolder="email@gmail.com"
-            invalid = {dataValid.email}
-
+            invalid={dataValid.email}
           />
           <View style={styles.type}>
             <TypeChoise

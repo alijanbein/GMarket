@@ -8,6 +8,10 @@ const ReportScreen = () => {
     phone_number:"",
     message: ""
   })
+  const [dataValid, setDataVAlid] = useState({
+    phone_number: true,
+    message:true
+  });
 
   const phoneNumberHandler = (text) =>{
     setData(
@@ -25,6 +29,19 @@ const ReportScreen = () => {
       }
     )
   }
+
+  const sendReport = async() => {
+    let valid = true;
+    if (data.message.length < 1) {
+      setDataVAlid({ ...dataValid, message: false });
+      valid = false;
+    }
+    if (data.phone_number.length != 11) {
+      setDataVAlid({ ...dataValid, phone_number: false });
+      valid = false;
+    }
+    if(valid){console.log("valid");}
+  }
   return (
     <View style ={styles.container}>
         <InputForm
@@ -32,7 +49,7 @@ const ReportScreen = () => {
           onTextChange={phoneNumberHandler}
           label="phone Number"
           placeHolder="phone Number"
-          // invalid={dataValid.first_name}
+          invalid={dataValid.phone_number}
         />
         <InputForm
           value={data.message}
@@ -40,7 +57,7 @@ const ReportScreen = () => {
           label="Report message"
           placeHolder="message"
           bio
-          // invalid={dataValid.last_name}
+          invalid={dataValid.message}
         />
     </View>
   )
