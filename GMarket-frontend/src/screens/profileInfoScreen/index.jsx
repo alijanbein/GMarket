@@ -116,7 +116,7 @@ const ProfileInfoScreen = () => {
           </View>
         </View>
       </View>
-      <PassButton onPress={sendData} acitve={true} title="continue" />
+      <PassButton onPress={sendData} active={true} title="continue" />
     </View>
   );
 };

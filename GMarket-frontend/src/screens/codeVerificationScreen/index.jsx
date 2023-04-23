@@ -93,7 +93,7 @@ const CodeVerificationScreen = () => {
 
   return (
     <View style={Tstyles.container}>
-    {false && <LoadingOverlay/>}
+    {true && <LoadingOverlay/>}
       <Text
         style={Tstyles.title}
       >{`Enter the code sent to +961 ${auth.phoneNumber}`}</Text>

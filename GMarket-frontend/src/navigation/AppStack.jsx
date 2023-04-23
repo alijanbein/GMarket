@@ -1,5 +1,5 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { View, Text, BackHandler, Alert } from "react-native";
+import React, { useEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import TabStack from "./TabStack";
 import EditProfileScreen from "../screens/PofileScreen/profileFeatureScreens/EditPorileScreen";
@@ -10,6 +10,26 @@ import Welcome from "../screens/welcome";
 
 const AppStack = () => {
   const stack = createStackNavigator();
+  useEffect(() => {
+    const backAction = () => {
+      Alert.alert("Confirm exit", "Are you sure you want to exit?", [
+        {
+          text: "Cancel",
+          onPress: () => null,
+          style: "cancel",
+        },
+        { text: "Exit", onPress: () => BackHandler.exitApp() },
+      ]);
+      return true;
+    };
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
   return (
     <stack.Navigator>
       <stack.Screen
