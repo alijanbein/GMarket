@@ -10,8 +10,8 @@ const AppStack = () => {
     return (
             <stack.Navigator>
                 <stack.Screen name = "Tabs" options={{headerShown: false}} component={TabStack}/>
-                <stack.Screen name = "Edit Profile"  component={EditProfileScreen}/>
                 <stack.Screen name = "Report User"  component={ReportScreen}/>
+                <stack.Screen name = "Edit Profile"  component={EditProfileScreen}/>
             </stack.Navigator>
   )
 }

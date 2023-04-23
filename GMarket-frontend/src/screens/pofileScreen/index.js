@@ -13,7 +13,7 @@ const ProfileScreen = () => {
       </View>
       <ProfileFeature title = "Payment" icon ="credit-card" />
       <ProfileFeature onPress ={() =>{navigation.navigate("Edit Profile")}} title = "Profile" icon = "user-o"/>
-      <ProfileFeature title = "Report" icon = "exclamation-triangle"/>
+      <ProfileFeature onPress ={() =>{navigation.navigate("Report User")}} title = "Report" icon = "exclamation-triangle"/>
       <ProfileFeature title = "Info" icon = "info"/>
       <ProfileFeature title = "Log out" icon = "sign-out"/>
       <ProfileFeature />

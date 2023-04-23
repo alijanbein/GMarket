@@ -5,7 +5,7 @@ import { styles } from './style'
 const ReportScreen = () => {
   return (
     <View style ={styles.container}>
-      <Text>ReportScreen</Text>
+      <Text>ReportScreend</Text>
     </View>
   )
 }
