@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { SPACING } from "../../contansts/spacing";
+import { SPACING } from "../../../../contansts/spacing";
 
 export const styles = StyleSheet.create({
   container: {
