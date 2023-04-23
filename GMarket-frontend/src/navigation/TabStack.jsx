@@ -1,13 +1,13 @@
 import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import ProfileScreen from "../screens/pofileScreen";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import IconI from "react-native-vector-icons/Ionicons";
 import IconA from "react-native-vector-icons/MaterialCommunityIcons";
 import { COLORS } from "../contansts/colors";
 import Welcome from "../screens/welcome";
 import { useNavigation } from "@react-navigation/native";
+import ProfileScreen from "../screens/PofileScreen";
 
 const defaultState = {
   Home: 30,
