@@ -10,6 +10,11 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: 15,
-    marginLeft: 10
+    marginLeft: 10,
+    fontWeight:"500"
+  },
+  icon: {
+    width:35,
+    textAlign:"center"
   }
 });
