@@ -11,11 +11,11 @@ const ProfileScreen = () => {
         <Text style={styles.name}>ALi Janbein</Text>
         <Text style={styles.number}>+961999000</Text>
       </View>
-      <ProfileFeature title = "Payment" icon ="credit-card" />
+      <ProfileFeature onPress = {() =>{navigation.navigate("Empty Screen")}} title = "Payment" icon ="credit-card" />
       <ProfileFeature onPress ={() =>{navigation.navigate("Edit Profile")}} title = "Profile" icon = "user-o"/>
       <ProfileFeature onPress ={() =>{navigation.navigate("Report User")}} title = "Report" icon = "exclamation-triangle"/>
-      <ProfileFeature title = "Info" icon = "info"/>
-      <ProfileFeature title = "Log out" icon = "sign-out"/>
+      <ProfileFeature onPress = {() =>{navigation.navigate("Empty Screen")}} title = "Info" icon = "info"/>
+      <ProfileFeature onPress = {() =>{navigation.navigate("Empty Screen")}} title = "Log out" icon = "sign-out"/>
       <ProfileFeature />
     </View>
   );

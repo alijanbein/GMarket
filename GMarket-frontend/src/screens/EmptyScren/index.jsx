@@ -5,7 +5,7 @@ import { styles } from './style'
 const EmptyScreen = (props) => {
   return (
     <View style ={styles.container}>
-      <Text>EmptyScreen</Text>
+      <Text>This feature is not set yet </Text>
     </View>
   )
 }
