@@ -20,7 +20,8 @@ export const styles = StyleSheet.create( {
             backgroundColor:COLORS.second,
             borderRadius: 10,
             color: COLORS.textColor,
-            fontSize: 20
+            fontSize: 20,
+            textAlignVertical: 'top'
     },
     invalid:{
         borderColor: COLORS.error,

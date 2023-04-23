@@ -40,7 +40,7 @@ const AuthSatack = () => {
       />
       <stack.Screen
         options={Tstyles.authOption}
-        name="Complete Profile"
+        name="Complete Profile Info"
         component={CompleteProfileScren}
       />
     </stack.Navigator>

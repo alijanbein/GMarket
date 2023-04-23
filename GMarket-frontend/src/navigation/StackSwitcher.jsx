@@ -10,7 +10,7 @@ const StackSwitcher = () => {
     const authSlice = useSelector(state => state.auth)
   return (
     <NavigationContainer>
-        {authSlice.isLoggedin ? <AppStack/> : <CompleteProfileScren/>}
+        {authSlice.isLoggedin ? <AppStack/> : <AuthSatack/>}
     </NavigationContainer>
   )
 }

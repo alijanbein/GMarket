@@ -1,6 +1,7 @@
 import { View, Text, TextInput } from "react-native";
 import React from "react";
 import { styles } from "./style";
+import { COLORS } from "../../contansts/colors";
 
 const InputForm = (props) => {
   return (
@@ -13,7 +14,8 @@ const InputForm = (props) => {
         onChangeText={props.onTextChange}
         value={props.value}
         placeholder={props.placeHolder}
-        style={[styles.input, !props.invalid && styles.invalid]}
+        editable ={props.phone ? false : true}
+        style={[styles.input, !props.invalid && styles.invalid,props.phone && {backgroundColor: COLORS.main,color:COLORS.white}]}
       />
     </View>
   );

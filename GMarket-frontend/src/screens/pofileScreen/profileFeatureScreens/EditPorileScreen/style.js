@@ -4,8 +4,13 @@ import { SPACING } from "../../../../contansts/spacing";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "red",
-    paddingHorizontal:SPACING.paddingHorizontal,
-    paddingVertical:20
-  
-}});
+    backgroundColor: "#fff",
+    paddingHorizontal: SPACING.paddingHorizontal,
+    paddingBottom: 10,
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  inputs : {
+    width: "100%"
+  }
+});
