@@ -7,12 +7,12 @@ const PosterCard = () => {
     <TouchableOpacity style={styles.container}>
       <Image
         source={{ uri: "https://picsum.photos/id/1004/500/500" }}
-        style={styles.Image}
+        style={styles.image}
       />
       <View style={styles.info}>
-        <Text>Product Name </Text>
-        <Text>9000 LBP</Text>
-        <Text>decription goes here lorem upsum deuirun lorm upsum deurum</Text>
+        <Text style ={styles.name}>Product Name </Text>
+        <Text style ={styles.price}>9000 LBP</Text>
+        <Text style ={styles.desc}>decription goes her fsefefsefsfsef fsefsd eesf se lorem upsum deuirun lorm upsum deurum</Text>
       </View>
     </TouchableOpacity>
   );

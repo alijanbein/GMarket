@@ -6,6 +6,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
 import CarouselScreen from '../../components/Carousel';
 import CategorieFeature from '../../components/categorieFeature';
+import PosterCard from '../../components/PosterCard';
 
 const HomeScreen = () => {
     const navigation = useNavigation()
@@ -44,7 +45,7 @@ const HomeScreen = () => {
        </View>
        <View style ={styles.categories}>
           <Text style ={styles.cat_title}>Recommended</Text>
-          
+            <PosterCard/>
        </View>
     </View>
   )
