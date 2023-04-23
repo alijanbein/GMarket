@@ -1,11 +1,12 @@
 import { StyleSheet } from "react-native";
 import { COLORS } from "../../contansts/colors";
+import { SPACING } from "../../contansts/spacing";
 
 export const styles = StyleSheet.create({
     container : {
         flex: 1,
         paddingVertical: 50,
-        paddingHorizontal: 20,
+        paddingHorizontal: SPACING.paddingHorizontal,
         backgroundColor: "#fff",
         alignItems: "center",
         justifyContent: "space-between"

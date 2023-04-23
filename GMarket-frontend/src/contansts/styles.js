@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { COLORS } from "./colors";
+import { SPACING } from "./spacing";
 
 export const Tstyles = StyleSheet.create({
     title: {
@@ -12,7 +13,7 @@ export const Tstyles = StyleSheet.create({
       container: {
         flex: 1,
         backgroundColor: "#fff",
-        paddingHorizontal: 20,
+        paddingHorizontal: SPACING.paddingHorizontal,
         paddingBottom: 10,
         alignItems:"center"
       },
