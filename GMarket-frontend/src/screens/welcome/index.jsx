@@ -19,11 +19,10 @@ const Welcome = () => {
   const navigation = useNavigation()
   useEffect(()=> {
     loadFonts()
-      if(!authSlice.isLoggedin){
-          setTimeout(()=>{
-            navigation.navigate("auth_phone_input")
-          },2000)
-      }
+      setTimeout(()=>{
+        navigation.navigate("Second")
+      },2000)
+    
 
   },[])
   return (

@@ -11,16 +11,14 @@ import { Tstyles } from "../contansts/styles";
 
 const AuthSatack = () => {
   const stack = createStackNavigator();
-
+  console.log("yes");
   return (
     <stack.Navigator>
-      <stack.Screen
-        options={{
-          headerShown: false,
-        }}
+      {/* <stack.Screen
+       
         name="welcome"
         component={Welcome}
-      />
+      /> */}
       <stack.Screen
         options={{
           headerShown: false,
