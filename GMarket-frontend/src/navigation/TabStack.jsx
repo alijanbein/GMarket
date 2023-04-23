@@ -8,6 +8,7 @@ import { COLORS } from "../contansts/colors";
 import Welcome from "../screens/welcome";
 import { useNavigation } from "@react-navigation/native";
 import ProfileScreen from "../screens/PofileScreen";
+import HomeScreen from "../screens/homeScreen";
 
 const defaultState = {
   Home: 30,
@@ -69,7 +70,7 @@ const TabStack = () => {
           ),
         }}
         name="Home"
-        component={ProfileScreen}
+        component={HomeScreen}
       />
 
       <Tabs.Screen
