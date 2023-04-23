@@ -22,7 +22,9 @@ const HomeScreen = () => {
         navigation.navigate("Search Screen")
     }       
 
-    
+    const categoriesPressHandler = async(cat) => {
+        console.log(cat);
+    }
 
   return (
     <View style ={styles.container}>
@@ -34,11 +36,15 @@ const HomeScreen = () => {
        <View style ={styles.categories}>
           <Text style ={styles.cat_title}>Categories</Text>
           <View style={styles.cat_container}>
-            <CategorieFeature text = "Fruit"/>
-            <CategorieFeature text = "Lemons"/>
-            <CategorieFeature text= "New f" />
-            <CategorieFeature text = "IDK"/>
+            <CategorieFeature onPress ={categoriesPressHandler} text = "Fruit"/>
+            <CategorieFeature onPress ={categoriesPressHandler} text = "Lemons"/>
+            <CategorieFeature onPress ={categoriesPressHandler} text= "New f" />
+            <CategorieFeature onPress ={categoriesPressHandler} text = "IDK"/>
           </View>
+       </View>
+       <View style ={styles.categories}>
+          <Text style ={styles.cat_title}>Recommended</Text>
+          
        </View>
     </View>
   )
