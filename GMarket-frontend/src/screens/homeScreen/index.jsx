@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { styles } from './style'
 import SearchBar from '../../components/searchBar'
@@ -15,7 +15,9 @@ const HomeScreen = () => {
     }
   return (
     <View style ={styles.container}>
-        <SearchBar textChange ={serchTextHandler}  onPress = {serchHandler}/>
+       <TouchableOpacity style ={styles.fakeSearch}>
+        <Text>Search Product</Text>
+       </TouchableOpacity>
     </View>
   )
 }
