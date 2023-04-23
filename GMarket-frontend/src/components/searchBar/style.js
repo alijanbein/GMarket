@@ -18,6 +18,7 @@ export const styles = StyleSheet.create({
     fontSize:15,
     width:'85%',
     height: 50,
+    color:COLORS.textColor
   },
   serach_btn:{
     width:'10%',

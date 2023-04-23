@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     paddingHorizontal:SPACING.paddingHorizontal,
-    paddingVertical:20
+    paddingVertical:20,
   },
 
 });
