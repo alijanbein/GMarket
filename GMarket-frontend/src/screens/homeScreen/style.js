@@ -28,9 +28,10 @@ cat_title: {
 }
 ,
 cat_container:{
+  flexDirection:"row",
   marginTop:10,
-  backgroundColor:COLORS.second,
   height: 90,
+  justifyContent:"space-around"
 }
 
 });

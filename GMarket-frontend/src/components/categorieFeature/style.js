@@ -1,13 +1,25 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../../contansts/colors";
 
 
 export const styles = StyleSheet.create( {
     container: {
-     width:"150"
+        justifyContent:"center",
+        alignItems:"center",
+        height:"100%",
+        width:70,
+        // marginHorizontal:10,
+
     },
     img : {
-        borderRadius:"50%",
-        width: "100%",
+        borderRadius:100,
+        width: 70,
+        height:70
+    },
+    text: {
+        color:COLORS.textColor,
+        fontSize:10,
+        marginTop:5
     }
 
 })

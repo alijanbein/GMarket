@@ -5,6 +5,7 @@ import SearchBar from '../../components/searchBar'
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
 import CarouselScreen from '../../components/Carousel';
+import CategorieFeature from '../../components/categorieFeature';
 
 const HomeScreen = () => {
     const navigation = useNavigation()
@@ -21,6 +22,8 @@ const HomeScreen = () => {
         navigation.navigate("Search Screen")
     }       
 
+    
+
   return (
     <View style ={styles.container}>
        <TouchableOpacity onPress={fakeSeachhandler} style ={styles.fakeSearch}>
@@ -31,6 +34,10 @@ const HomeScreen = () => {
        <View style ={styles.categories}>
           <Text style ={styles.cat_title}>Categories</Text>
           <View style={styles.cat_container}>
+            <CategorieFeature text = "Fruit"/>
+            <CategorieFeature text = "Lemons"/>
+            <CategorieFeature text= "New f" />
+            <CategorieFeature text = "IDK"/>
           </View>
        </View>
     </View>
