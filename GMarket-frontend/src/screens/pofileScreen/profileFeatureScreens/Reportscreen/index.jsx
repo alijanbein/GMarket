@@ -2,6 +2,7 @@ import { View, Text } from 'react-native'
 import React, { useState } from 'react'
 import { styles } from './style'
 import InputForm from '../../../../components/inputForm'
+import PassButton from '../../../../components/passButton'
 
 const ReportScreen = () => {
   const [data,setData] = useState({
@@ -44,6 +45,7 @@ const ReportScreen = () => {
   }
   return (
     <View style ={styles.container}>
+        <View>
         <InputForm
           value={data.phone_number}
           onTextChange={phoneNumberHandler}
@@ -59,6 +61,8 @@ const ReportScreen = () => {
           bio
           invalid={dataValid.message}
         />
+        </View>
+        <PassButton active= {true} title={'Report'} onPress ={sendReport}  />
     </View>
   )
 }
