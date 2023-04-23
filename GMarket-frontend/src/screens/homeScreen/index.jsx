@@ -6,8 +6,8 @@ import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
-    const[searchText,setSeachText] = useState('')
     const navigation = useNavigation()
+    const[searchText,setSeachText] = useState('')
     const serchTextHandler = (text) => {
         setSeachText(text)
     }
