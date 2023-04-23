@@ -93,7 +93,7 @@ const EditProfileScreen = () => {
           phone
         />
       </View>
-      <PassButton title= "save" active= {false} />
+      <PassButton title= "save" active= {true} />
     </View>
   );
 };
