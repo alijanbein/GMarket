@@ -92,14 +92,14 @@ const CodeVerificationScreen = () => {
 
   return (
     <View style={Tstyles.container}>
-    {true && <LoadingOverlay/>}
+    {false && <LoadingOverlay/>}
       <Text
         style={Tstyles.title}
       >{`Enter the code sent to +961 ${auth.phoneNumber}`}</Text>
       <View style={styles.inputContainer}>
         {code.map((data, index) => (
           <TextInput
-            autoFocus ={true}
+            autoFocus ={index == 0 ? true : false}
             onBlur={() => {
               onLoseFocusHandler(index);
             }}
