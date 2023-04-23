@@ -69,9 +69,9 @@ const CompleteProfileScren = () => {
         </View>
       </View>
       <View style={{ width: "100%" }}>
-        <PassButton acitve={true} title={"skip"} />
+        <PassButton active={true} title={"skip"} />
         <Text></Text>
-        <PassButton acitve={saveAble} title="finish" />
+        <PassButton active={saveAble} title="finish" />
       </View>
     </View>
   );

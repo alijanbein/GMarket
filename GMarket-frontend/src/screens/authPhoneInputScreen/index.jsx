@@ -64,7 +64,7 @@ const AuthPhoneInputScreen = () => {
       </View>
 
       <View>
-        <PassButton onPress={clickHandler} acitve={isActive} title="Continue" />
+        <PassButton onPress={clickHandler} active={isActive} title="Continue" />
       </View>
     </View>
   );
