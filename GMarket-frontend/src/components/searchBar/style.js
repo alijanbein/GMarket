@@ -4,7 +4,7 @@ import { COLORS } from "../../contansts/colors";
 export const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 60,
+    height: 50,
     marginTop: 15,
     alignItems: "center",
     flexDirection: "row",
@@ -16,8 +16,14 @@ export const styles = StyleSheet.create({
   },
   search_input: {
     fontSize:15,
-    width:'80%',
+    width:'85%',
     height: 50,
-    backgroundColor:"red"
+  },
+  serach_btn:{
+    width:'10%',
+    marginLeft:5,
+    height:"100%",
+    justifyContent:"center",
+    verticalAlign:"middle",
   }
 });
