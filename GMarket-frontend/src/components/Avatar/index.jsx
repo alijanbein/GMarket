@@ -5,6 +5,7 @@ const Avatar = (props) => {
     console.log("props");
   return (
     <Image source={{uri:props.uri}} style = {style.container} />
+    
   )
 }
 
