@@ -6,8 +6,22 @@ export const styles = StyleSheet.create({
     width: "100%",
     height: 30,
     marginTop: 15,
-    justifyContent:"center",
+    justifyContent: "space-between",
     flexDirection: "row",
   },
-
+  key_title: {
+    color: COLORS.textColor,
+    fontSize: 18,
+    fontWeight: "500",
+  },
+  active: {
+    color: COLORS.main,
+  },
+  description: {
+    flexDirection:"column"
+  },
+  desc_text:{
+    marginTop:15,
+    height:150,
+  }
 });
