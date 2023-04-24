@@ -9,6 +9,7 @@ import Welcome from "../screens/welcome";
 import { useNavigation } from "@react-navigation/native";
 import ProfileScreen from "../screens/PofileScreen";
 import HomeScreen from "../screens/homeScreen";
+import MessagesScreen from "../screens/messagesScreen";
 
 const defaultState = {
   Home: 30,
@@ -124,7 +125,7 @@ const TabStack = () => {
           ),
         }}
         name="Message"
-        component={Welcome}
+        component={MessagesScreen}
       />
       <Tabs.Screen
         options={{
