@@ -33,10 +33,13 @@ const HomeScreen = () => {
     console.log(cat);
   };
 
-  const data =[1,2,3,4,5,6]
+  const data = [1, 2, 3, 4, 5, 6];
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle ={{paddingBottom:50}}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={{ paddingBottom: 50 }}
+    >
       <TouchableOpacity onPress={fakeSeachhandler} style={styles.fakeSearch}>
         <AntDesign name="search1" size={20} color="black" />
         <Text style={{ marginLeft: 5 }}>Search Product</Text>
@@ -53,10 +56,10 @@ const HomeScreen = () => {
       </View>
       <View style={styles.categories}>
         <Text style={styles.cat_title}>Recommended</Text>
-      
-          {data.map((element,index) =>
-            <PosterCard key={index} data = {element}/>
-          )}
+
+        {data.map((element, index) => (
+          <PosterCard key={index} data={element} />
+        ))}
       </View>
     </ScrollView>
   );
