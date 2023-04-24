@@ -4,7 +4,6 @@ import { COLORS } from "../../contansts/colors";
 export const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 30,
     marginTop: 15,
     justifyContent: "space-between",
     flexDirection: "row",
@@ -21,7 +20,7 @@ export const styles = StyleSheet.create({
     flexDirection:"column"
   },
   desc_text:{
-    marginTop:15,
+    marginTop:10,
     height:150,
   }
 });

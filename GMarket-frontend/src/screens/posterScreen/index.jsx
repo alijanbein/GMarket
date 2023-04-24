@@ -2,6 +2,7 @@ import { View, Text, Image } from "react-native";
 import React from "react";
 import { styles } from "./style";
 import PosterInfo from "../../components/PosterInfo";
+import PassButton from "../../components/passButton";
 
 const PosterScreen = () => {
   return (
@@ -19,6 +20,7 @@ const PosterScreen = () => {
         desc
         val="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galle"
       />
+      <PassButton active ={true} title="Conatct" />
     </View>
   );
 };
