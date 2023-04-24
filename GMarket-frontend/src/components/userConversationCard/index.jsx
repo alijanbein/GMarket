@@ -3,11 +3,15 @@ import React from "react";
 import { styles } from "./style";
 import Avatar from "../Avatar";
 import { width } from "deprecated-react-native-prop-types/DeprecatedImagePropType";
+import { useNavigation } from "@react-navigation/native";
 
 const UserCoversationCard = (props) => {
+  const navigation = useNavigation()
   return (
     <TouchableOpacity
-      onPress={()=>{}}
+      onPress={()=>{
+        navigation.navigate("Conversation Screen")
+      }}
       style={[styles.container, props.bot && styles.botContainer]}
     >
       <View style={{ width: 50, height: 50 }}>
