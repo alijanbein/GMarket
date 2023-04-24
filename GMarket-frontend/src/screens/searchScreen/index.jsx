@@ -1,11 +1,13 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import SearchBar from '../../components/searchBar'
 import styles from './style'
+import PosterCard from '../../components/PosterCard'
 
 const SearchScreen = () => {
     const[searchText,setSeachText] = useState('');
-    
+    const data =[1,2,3,4,5,6]
+
 
     const serchTextHandler = (text) => {
         setSeachText(text)
@@ -15,9 +17,12 @@ const SearchScreen = () => {
         console.log(searchText);
     }
   return (
-    <View style = {styles.container}>
+    <ScrollView style = {styles.container}  contentContainerStyle ={{paddingBottom:50}}>
         <SearchBar  onPress ={serchHandler}  textChange = {serchTextHandler} />
-    </View>
+        {data.map((element,index) =>
+            <PosterCard key={index} data = {element}/>
+          )}
+    </ScrollView>
   )
 }
 

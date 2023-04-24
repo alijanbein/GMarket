@@ -55,7 +55,7 @@ const HomeScreen = () => {
         <Text style={styles.cat_title}>Recommended</Text>
       
           {data.map((element,index) =>
-            <PosterCard/>
+            <PosterCard key={index} data = {element}/>
           )}
       </View>
     </ScrollView>
