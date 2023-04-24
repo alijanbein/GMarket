@@ -1,10 +1,12 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { styles } from "./style";
+import { useNavigation } from "@react-navigation/native";
 
 const PosterCard = () => {
+  const navigation = useNavigation()
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity onPress={()=>{navigation.navigate("Poster Screen")}} style={styles.container}>
       <Image
         source={{ uri: "https://picsum.photos/id/1004/500/500" }}
         style={styles.image}
