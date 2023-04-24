@@ -9,6 +9,7 @@ import { Tstyles } from "../contansts/styles";
 import Welcome from "../screens/welcome";
 import SearchScreen from "../screens/searchScreen";
 import PosterScreen from "../screens/posterScreen";
+import ConversationScreen from "../screens/conversationScreen";
 
 const AppStack = () => {
   const stack = createStackNavigator();
@@ -67,6 +68,13 @@ const AppStack = () => {
         }}
         name ="Poster Screen"
         component={PosterScreen}
+      />
+      <stack.Screen
+        options={{
+          headerTitle:""
+        }}
+        name ="Conversation Screen"
+        component={ConversationScreen}
       />
       
     </stack.Navigator>
