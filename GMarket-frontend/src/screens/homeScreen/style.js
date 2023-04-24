@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingHorizontal:SPACING.paddingHorizontal,
     paddingVertical:20,
+    
   },
   fakeSearch: {
     backgroundColor:COLORS.second,
@@ -24,7 +25,8 @@ categories : {
 cat_title: {
   fontSize:20,
   fontWeight:"bold",
-  color : COLORS.textColor
+  color : COLORS.textColor,
+  overflow:"scroll"
 }
 ,
 cat_container:{
@@ -32,6 +34,9 @@ cat_container:{
   marginTop:10,
   height: 90,
   justifyContent:"space-around"
+},
+ScrollView:{
+  height:500
 }
 
 });
