@@ -6,7 +6,9 @@ export const styles = StyleSheet.create({
         width: "100%",
         height: 70,
         marginTop:10,
-        borderRadius: 20
+        borderRadius: 20,
+        justifyContent:"center",
+        paddingHorizontal:10
     },
     botContainer: {
         backgroundColor:COLORS.main
