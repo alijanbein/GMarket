@@ -2,15 +2,19 @@ import { View, Text, Button, Image, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 import { styles } from "./style";
 import { AntDesign } from "@expo/vector-icons";
+import { useDispatch } from "react-redux";
 
 import * as ImagePicker from "expo-image-picker";
 import { COLORS } from "../../contansts/colors";
 import InputForm from "../../components/inputForm";
 import PassButton from "../../components/passButton";
+import { login } from "../../redux/slices/authSlice";
+
 const CompleteProfileScren = () => {
   const [imageURI, setImageUri] = useState("");
   const [bio,setBio] = useState();
   const [saveAble,setSaveAble] = useState(false)
+  const dispatch = useDispatch();
   let openImagePickerAsync = async () => {
     let permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -47,6 +51,10 @@ const CompleteProfileScren = () => {
   //         console.log(fileType);
   // // }
 
+  const finishHandler = () =>{
+      dispatch(login())
+  }
+
   return (
     <View style={styles.container}>
       <View style = {{width: "100%"}}>
@@ -69,9 +77,9 @@ const CompleteProfileScren = () => {
         </View>
       </View>
       <View style={{ width: "100%" }}>
-        <PassButton active={true} title={"skip"} />
+        <PassButton onPress = {finishHandler} active={true} title={"skip"} />
         <Text></Text>
-        <PassButton active={saveAble} title="finish" />
+        <PassButton onPress = {finishHandler} active={saveAble} title="finish" />
       </View>
     </View>
   );
