@@ -43,7 +43,7 @@ const CarouselScreen = () => {
         autoplayInterval={4000}
         renderItem={renderImageItem}
         sliderWidth={screenWidth}
-        itemWidth={screenWidth - 50}
+        itemWidth={screenWidth - 30}
         loop={true}
       />
     </View>

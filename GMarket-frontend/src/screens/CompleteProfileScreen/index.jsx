@@ -77,7 +77,7 @@ const CompleteProfileScren = () => {
         </View>
       </View>
       <View style={{ width: "100%" }}>
-        <PassButton onPress = {finishHandler} active={true} title={"skip"} />
+        <PassButton onPress = {finishHandler} active={!saveAble} title={"skip"} />
         <Text></Text>
         <PassButton onPress = {finishHandler} active={saveAble} title="finish" />
       </View>
