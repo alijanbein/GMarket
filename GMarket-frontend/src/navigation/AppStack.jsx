@@ -8,6 +8,7 @@ import EmptyScreen from "../screens/EmptyScren";
 import { Tstyles } from "../contansts/styles";
 import Welcome from "../screens/welcome";
 import SearchScreen from "../screens/searchScreen";
+import PosterScreen from "../screens/posterScreen";
 
 const AppStack = () => {
   const stack = createStackNavigator();
@@ -60,6 +61,14 @@ const AppStack = () => {
         name ="Search Screen"
         component={SearchScreen}
       />
+      <stack.Screen
+        options={{
+          headerTitle:""
+        }}
+        name ="Poster Screen"
+        component={PosterScreen}
+      />
+      
     </stack.Navigator>
   );
 };
