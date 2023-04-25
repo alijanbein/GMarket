@@ -11,6 +11,25 @@ export default styles = StyleSheet.create({
     paddingVertical:20,
     flexDirection: "column",
   },
-  
+  imageContainer: {
+        height:200,
+        width:"100%",
+        backgroundColor:COLORS.second,
+        borderRadius:10,
+        justifyContent:"center",
+        alignItems:"center",
+        
+  }
+,
+  textImage:{
+        fontSize:20
+  },
+  image:{
+    width:"100%",
+    height:"100%"
+  },
+  contentContainerStyle:{
+    paddingBottom:30
+  }
 
 });
