@@ -71,7 +71,7 @@ const AppStack = () => {
       />
       <stack.Screen
         options={{
-          headerTitle:"",
+          headerShown:false,
           
         }}
         name ="Conversation Screen"

@@ -8,9 +8,9 @@ const ConversationScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Icon name="arrow-back" size={24} color="#000" />
+        <Icon style={styles.icon}  name="arrow-back" size={24} color="#000" />
 
-        <View style={{ width: 60, height: 60 }}>
+        <View style={{ width: 60, height: 60 ,marginLeft:15}}>
           <Avatar uri="https://picsum.photos/id/1004/500/500" />
         </View>
         <Text style={styles.name}>Ali Janbein</Text>
