@@ -10,7 +10,6 @@ export default styles = StyleSheet.create({
     paddingHorizontal:SPACING.paddingHorizontal,
     paddingVertical:20,
     flexDirection: "column",
-    justifyContent: "space-between",
   },
   
 

@@ -1,9 +1,10 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import style from './style'
 import InputForm from '../../components/inputForm'
 import { useNavigation } from '@react-navigation/native'
 import { numberRegex } from '../../contansts/spacing'
+import PassButton from '../../components/passButton'
 
 const AddPostScreen = () => {
 
@@ -66,29 +67,29 @@ const AddPostScreen = () => {
   const sendData = async () => {
     let valid = true;
     if (data.operation.length < 1) {
-      setDataVAlid({ ...dataValid, last_name: false });
+      setDataVAlid({ ...dataValid, operation: false });
       valid = false;
     }
     if (data.product_title.length < 1) {
-      setDataVAlid({ ...dataValid, last_name: false });
+      setDataVAlid({ ...dataValid, product_title: false });
       valid = false;
     }
     if (data.description.length < 1) {
-      setDataVAlid({ ...dataValid, first_name: false });
+      setDataVAlid({ ...dataValid, description: false });
       valid = false;
     }
 
     if (!numberRegex.test(data.price)) {
       valid = false;
-      setDataVAlid({ ...dataValid, email: false });
+      setDataVAlid({ ...dataValid, price: false });
     }
     if (valid) {
-      navigation.navigate("Profile");
+        console.log("haa");
     }
-    console.log("haa");
   };
+  console.log(dataValid);
   return (
-    <View style = {style.container}>
+    <ScrollView style = {style.container}>
      <InputForm
           value={data.product_title}
           onTextChange={productTitlehandler}
@@ -119,7 +120,8 @@ const AddPostScreen = () => {
           bio
           invalid={dataValid.operation}
         />
-    </View>
+        <PassButton style ={{marginTop:20}} active = {true} title = "post" onPress = {sendData}/>
+    </ScrollView>
   )
 }
 
