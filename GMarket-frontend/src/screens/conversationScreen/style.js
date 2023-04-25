@@ -16,6 +16,9 @@ export const styles = StyleSheet.create({
     paddingHorizontal: SPACING.paddingHorizontal,
     paddingVertical: SPACING.paddingHorizontal,
   },
+  contentContainerStyle:{
+    paddingBottom:120
+  },
   name: {
     marginLeft: 10,
     height: "100%",
@@ -27,7 +30,7 @@ export const styles = StyleSheet.create({
     verticalAlign: "middle",
   },
   ScrollView:{
-    marginVertical: 20,
+    padding:20
     
   },
 });

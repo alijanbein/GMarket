@@ -37,9 +37,21 @@ const ConversationScreen = () => {
 
         <Text style={styles.name}>Ali Janbein</Text>
       </View>
-      {/* <ScrollView style ={styles.ScrollView}> */}
-        <MessageText/>
-      {/* </ScrollView> */}
+      <ScrollView style ={styles.ScrollView} contentContainerStyle ={styles.contentContainerStyle}>
+        <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+      </ScrollView>
       <ConversationTextInput showButton = {showSendButton} onTextChange = {changeTextHandler} onPress ={sendTextHandler} />
     </View>
   );

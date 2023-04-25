@@ -10,20 +10,25 @@ export const style = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     width: "auto",
+    marginTop: 25,
+  },
+  userContainer: {
+    justifyContent: "flex-end",
   },
   text: {
     color: COLORS.white,
     backgroundColor: COLORS.main,
-    fontSize:20,
+    fontSize: 20,
     paddingHorizontal: 20,
-    paddingVertical:10,
-    height:60,
-    verticalAlign:"middle",
-    borderRadius:15,
-    borderBottomLeftRadius:0
+    paddingVertical: 10,
+    height: 60,
+    verticalAlign: "middle",
+    borderRadius: 20,
+    borderBottomLeftRadius: 0,
   },
-  user:{
-    borderRadius:15,
-    borderBottomRightRadius:0
-  }
+  user: {
+    borderBottomLeftRadius: 20,
+
+    borderBottomRightRadius: 0,
+  },
 });
