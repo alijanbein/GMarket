@@ -5,8 +5,10 @@ import Avatar from "../../components/Avatar";
 import Icon from "react-native-vector-icons/Ionicons";
 import ConversationTextInput from "../../components/conversationTextInput";
 import MessageText from "../../components/messageText";
+import { useNavigation } from "@react-navigation/native";
 
 const ConversationScreen = () => {
+  const navigation = useNavigation()
   const [message,setMessage] = useState("");
   const [showSendButton,setShouSendButton] = useState(false);
   const changeTextHandler = (text) => {
@@ -29,7 +31,7 @@ const ConversationScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Icon style={styles.icon} name="arrow-back" size={24} color="#000" />
+        <Icon  onPress={()=>{navigation.goBack()}} style={styles.icon} name="arrow-back" size={24} color="#000" />
 
         <View style={{ width: 60, height: 60, marginLeft: 15 }}>
           <Avatar uri="https://picsum.photos/id/1004/500/500" />
