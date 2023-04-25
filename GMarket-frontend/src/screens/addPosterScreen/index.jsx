@@ -1,9 +1,10 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import style from './style'
 
 const AddPostScreen = () => {
   return (
-    <View>
+    <View style = {style.container}>
       <Text>AddPostScreen</Text>
     </View>
   )
