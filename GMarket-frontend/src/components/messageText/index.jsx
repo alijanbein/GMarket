@@ -5,7 +5,7 @@ import { style } from './style'
 const MessageText = () => {
   return (
     <View style={style.container}>
-      <Text>MessageText</Text>
+      <Text style ={style.text}>MessvrgegrdgdrgageText</Text>
     </View>
   )
 }

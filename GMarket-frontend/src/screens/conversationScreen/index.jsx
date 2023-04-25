@@ -37,9 +37,9 @@ const ConversationScreen = () => {
 
         <Text style={styles.name}>Ali Janbein</Text>
       </View>
-      <ScrollView>
+      {/* <ScrollView style ={styles.ScrollView}> */}
         <MessageText/>
-      </ScrollView>
+      {/* </ScrollView> */}
       <ConversationTextInput showButton = {showSendButton} onTextChange = {changeTextHandler} onPress ={sendTextHandler} />
     </View>
   );

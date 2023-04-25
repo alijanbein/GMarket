@@ -26,4 +26,8 @@ export const styles = StyleSheet.create({
   icon: {
     verticalAlign: "middle",
   },
+  ScrollView:{
+    marginVertical: 20,
+    
+  },
 });
