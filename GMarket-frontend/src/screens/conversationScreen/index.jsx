@@ -14,6 +14,7 @@ const ConversationScreen = () => {
           <Avatar uri="https://picsum.photos/id/1004/500/500" />
         </View>
         <Text style={styles.name}>Ali Janbein</Text>
+        
       </View>
     </View>
   );
