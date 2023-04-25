@@ -3,6 +3,7 @@ import React from "react";
 import { styles } from "./style";
 import Avatar from "../../components/Avatar";
 import Icon from "react-native-vector-icons/Ionicons";
+import ConversationTextInput from "../../components/conversationTextInput";
 
 const ConversationScreen = () => {
   return (
@@ -14,8 +15,8 @@ const ConversationScreen = () => {
           <Avatar uri="https://picsum.photos/id/1004/500/500" />
         </View>
         <Text style={styles.name}>Ali Janbein</Text>
-        
       </View>
+          <ConversationTextInput/>
     </View>
   );
 };

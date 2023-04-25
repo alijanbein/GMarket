@@ -1,9 +1,10 @@
 import { View, Text, TextInput } from 'react-native'
 import React from 'react'
+import style from './style'
 
 const ConversationTextInput = () => {
   return (
-    <TextInput/>
+    <TextInput style= {style.container} placeholder='enter your text'/>
   )
 }
 

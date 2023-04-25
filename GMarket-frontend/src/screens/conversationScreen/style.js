@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     // paddingHorizontal:SPACING.paddingHorizontal,
     backgroundColor: "#fff",
+    
   },
   header: {
     flexDirection: "row",
