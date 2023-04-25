@@ -1,12 +1,20 @@
-import { View, Text, TextInput } from 'react-native'
-import React from 'react'
-import style from './style'
+import { View, Text, TextInput } from "react-native";
+import React from "react";
+import style from "./style";
+import SendeButton from "../sendButton";
+import { styles } from "../sendButton/style";
 
-const ConversationTextInput = () => {
+const ConversationTextInput = (props) => {
   return (
-    <TextInput style= {style.container} placeholder='Enter your Text Here'/>
-    
-  )
-}
+    <View style={style.container}>
+      <TextInput
+        onChangeText={props.onTextChange}
+        style={style.text}
+        placeholder="Enter your Text Here"
+      />
+      {props.showButton && <SendeButton onPress={props.onPress} />}
+    </View>
+  );
+};
 
-export default ConversationTextInput
+export default ConversationTextInput;
