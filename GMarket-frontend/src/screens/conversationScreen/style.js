@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.second,
     headerShown: false,
     paddingHorizontal: SPACING.paddingHorizontal,
-    paddingVertical: SPACING.paddingHorizontal,
+    paddingVertical: 10,
   },
   contentContainerStyle:{
     paddingBottom:120

@@ -19,7 +19,9 @@ export default styles = StyleSheet.create({
       alignItems:"center"
     },
     text:{
-          fontSize:20 
+          fontSize:20 ,
+          width:"90%",
+          paddingVertical:10
 
     }
   });

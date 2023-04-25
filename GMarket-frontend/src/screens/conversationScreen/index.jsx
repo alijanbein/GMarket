@@ -41,16 +41,46 @@ const ConversationScreen = () => {
         <MessageText message ="hello baby"/>
         <MessageText user message ="hello baby"/>
         <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
         <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
         <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
         <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
         <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
         <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
         <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
         <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
         <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
         <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
         <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
+        <MessageText message ="hello baby"/>
+        <MessageText user message ="hello baby"/>
+       
       </ScrollView>
       <ConversationTextInput showButton = {showSendButton} onTextChange = {changeTextHandler} onPress ={sendTextHandler} />
     </View>
