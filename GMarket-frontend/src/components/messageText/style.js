@@ -21,6 +21,9 @@ export const style = StyleSheet.create({
     verticalAlign:"middle",
     borderRadius:15,
     borderBottomLeftRadius:0
-    
   },
+  user:{
+    borderRadius:15,
+    borderBottomRightRadius:0
+  }
 });

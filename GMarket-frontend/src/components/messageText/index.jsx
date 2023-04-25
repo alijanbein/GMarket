@@ -2,10 +2,10 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { style } from './style'
 
-const MessageText = () => {
+const MessageText = (props) => {
   return (
     <View style={style.container}>
-      <Text style ={style.text}>MessvrgegrdgdrgageText</Text>
+      <Text style ={[style.text,props.user && style.user]}>{props.message}</Text>
     </View>
   )
 }
