@@ -4,7 +4,8 @@ import style from './style'
 
 const ConversationTextInput = () => {
   return (
-    <TextInput style= {style.container} placeholder='enter your text'/>
+    <TextInput style= {style.container} placeholder='Enter your Text Here'/>
+    
   )
 }
 
