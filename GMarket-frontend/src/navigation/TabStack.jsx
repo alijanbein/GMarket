@@ -10,6 +10,7 @@ import { useNavigation } from "@react-navigation/native";
 import ProfileScreen from "../screens/PofileScreen";
 import HomeScreen from "../screens/homeScreen";
 import MessagesScreen from "../screens/messagesScreen";
+import AddPostScreen from "../screens/addPosterScreen";
 
 const defaultState = {
   Home: 30,
@@ -107,7 +108,7 @@ const TabStack = () => {
           tabBarIconStyle: {},
         }}
         name="Add"
-        component={ProfileScreen}
+        component={AddPostScreen}
       />
       <Tabs.Screen
         options={{
