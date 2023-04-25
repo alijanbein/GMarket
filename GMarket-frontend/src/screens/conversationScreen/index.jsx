@@ -1,9 +1,10 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { styles } from "./style";
 import Avatar from "../../components/Avatar";
 import Icon from "react-native-vector-icons/Ionicons";
 import ConversationTextInput from "../../components/conversationTextInput";
+import MessageText from "../../components/messageText";
 
 const ConversationScreen = () => {
   const [message,setMessage] = useState("");
@@ -36,6 +37,9 @@ const ConversationScreen = () => {
 
         <Text style={styles.name}>Ali Janbein</Text>
       </View>
+      <ScrollView>
+        <MessageText/>
+      </ScrollView>
       <ConversationTextInput showButton = {showSendButton} onTextChange = {changeTextHandler} onPress ={sendTextHandler} />
     </View>
   );
