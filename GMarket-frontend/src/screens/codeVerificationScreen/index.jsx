@@ -45,7 +45,6 @@ const CodeVerificationScreen = () => {
     if (finished) {
       setCode(["", "", "", ""]);
       const sendCode = code.join("")
-      console.log(sendCode);
       const formData = new FormData();
       formData.append("code",sendCode);
       formData.append('phone_number',"961"+auth.phoneNumber)
@@ -104,7 +103,6 @@ const CodeVerificationScreen = () => {
       onLoseFocusHandler(index)
     }
   };
-  console.log(isLoading);
   return (
     <View style={Tstyles.container}>
     {isLoading && <LoadingOverlay/>}

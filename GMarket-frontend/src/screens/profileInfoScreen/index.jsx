@@ -10,15 +10,17 @@ import { SPACING, emailRegex } from "../../contansts/spacing";
 import { useNavigation } from "@react-navigation/native";
 import UseHttp from "../../hooks/http-hook";
 import LoadingOverlay from "../../components/loadingOverlay";
+import { useSelector } from "react-redux";
 
 const ProfileInfoScreen = () => {
+  const auth = useSelector(state => state.auth)
   const navigation = useNavigation();
   const [isLoading,error,sendRequest] = UseHttp()
   const [data, setData] = useState({
     first_name: "",
     last_name: "",
     email: "",
-    type: "Farmer",
+    type: "farmer",
   });
   const [dataValid, setDataVAlid] = useState({
     first_name: true,
@@ -72,8 +74,19 @@ const ProfileInfoScreen = () => {
       setDataVAlid({ ...dataValid, email: false });
     }
     if (valid) {
-
-      // navigation.navigate("Complete Profile Info");
+      const formData = new FormData()
+      formData.append("first_name",data.first_name);
+      formData.append("email",data.email);
+      formData.append("phone_number","961"+auth.phoneNumber);
+      formData.append("type",data.type);
+      formData.append("last_name",data.last_name);
+      const response  = await sendRequest("auth/register","POST",formData,{});
+      if(response.status == "sucess"){
+        navigation.navigate("Complete Profile Info");
+      }
+      else{
+        console.log("response","can't");
+      }
     }
   };
 
@@ -111,7 +124,7 @@ const ProfileInfoScreen = () => {
             <TypeChoise
               onPress={typePressHandler}
               isActive={typeActive}
-              text="Farmer"
+              text="farmer"
             />
             <TypeChoise
               onPress={typePressHandler}

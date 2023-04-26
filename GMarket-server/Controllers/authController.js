@@ -107,12 +107,18 @@ exports.register = async (req, res, next) => {
   try {
     const { first_name, last_name, email, phone_number, type, image, bio } =
       req.body;
+      console.log(req.body);
     const first_name_valid = inputVerify(first_name, "name");
     const last_name_valid = inputVerify(last_name, "name");
     const email_valid = inputVerify(email, "email");
     const phone_valid = inputVerify(phone_number, "phone");
     const type_valid = inputVerify(type, "type");
-
+    let user = await User.findOne({ phone_number });
+    console.log(first_name_valid);
+    console.log(last_name_valid);
+    console.log(email_valid);
+    console.log(type_valid);
+    console.log(phone_valid);
     if (
       first_name_valid &&
       last_name_valid &&
@@ -120,8 +126,8 @@ exports.register = async (req, res, next) => {
       phone_valid &&
       type_valid
     ) {
-      let user = await User.findOne({ phone_number });
-      console.log(user);
+   
+    
       if (!user) {
         user = new User();
         user.first_name = first_name;
@@ -133,7 +139,7 @@ exports.register = async (req, res, next) => {
       }
       const token = jwt.sign({ user }, process.env.SECRET);
       res.send({
-        status: "succes",
+        status: "sucess",
         user: user,
         token: token,
       });
