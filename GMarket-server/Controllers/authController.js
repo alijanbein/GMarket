@@ -67,7 +67,7 @@ exports.confirmVerificationCode = async (req, res, next) => {
       const err = new HttpError("Invalid Code", 401);
       return next(err);
     }
-    res.send({ status: "succes" });
+    res.send({ status: "sucess" });
   } catch (error) {
     const err = new HttpError("server error", 401);
     return next(err);

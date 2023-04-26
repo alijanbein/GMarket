@@ -17,14 +17,24 @@ const CodeVerificationScreen = () => {
   const inputs = [input1Ref, input2Ref, input3Ref, input4Ref];
   const [code, setCode] = useState(["", "", "", ""]);
   const [focus, setFocus] = useState([false, false, false, false]);
-  const [error,isLoading,sendRequest] = UseHttp
+  const [error,isLoading,sendRequest] = UseHttp()
   useEffect(()=>{
  
       onFocusHandler(0)
     
   },[])
   useEffect(() => {
- 
+    const sendCodeVerification = async (data) => {
+     
+            const response = await sendRequest("auth/confirm_verification_code","POST",data);
+            if(response.status == "sucess"){
+
+              navigation.navigate("Profile Info")
+            }
+            else {
+              console.log("no");
+            }
+    }
     let finished = true;
     code.map((num) => {
       if (num == "") {
@@ -33,10 +43,12 @@ const CodeVerificationScreen = () => {
     });
     if (finished) {
       setCode(["", "", "", ""]);
-      if(true) {
-
-        // navigation.navigate("Profile Info")
-      }
+      const sendCode = code.join("")
+      console.log(sendCode);
+      const formData = new FormData();
+      formData.append("code",sendCode);
+      formData.append('phone_number',"961"+auth.phoneNumber)
+      sendCodeVerification(formData)
       inputs[0].current.focus();
 
     }
@@ -94,7 +106,7 @@ const CodeVerificationScreen = () => {
 
   return (
     <View style={Tstyles.container}>
-    {false && <LoadingOverlay/>}
+    {isLoading && <LoadingOverlay/>}
       <Text
         style={Tstyles.title}
       >{`Enter the code sent to +961 ${auth.phoneNumber}`}</Text>
