@@ -20,9 +20,12 @@ const AuthPhoneInputScreen = () => {
     setPhoneNumber(text);
   };
 
-  const clickHandler = () => {
+  const clickHandler = async () => {
     dispatch(setPhoneNumberSlice(phoneNumber));
-
+    const formData = new FormData()
+    formData.append("phone_number",phoneNumber)
+    const data = await sendRequest("auth/send_verification_code_sms","POST",formData)
+    console.log(data);
     // navigation.navigate("Code Verification");
   };
 

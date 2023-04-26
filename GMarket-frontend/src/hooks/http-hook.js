@@ -21,9 +21,9 @@ const UseHttp = () => {
       }
       setIsLoading(false)
     } catch (err) {
-      console.log(err.message);
+      console.log("erro",err.message);
       setIsLoading(false)
-      setIsError(error.message)
+      setIsError(err.message)
     }
 
     return data;
