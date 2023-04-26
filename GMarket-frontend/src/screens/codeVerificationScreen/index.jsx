@@ -33,6 +33,7 @@ const CodeVerificationScreen = () => {
               navigation.navigate("Profile Info")
             }
             else {
+              console.log(error);
               setInvalid(true)
             }
     }

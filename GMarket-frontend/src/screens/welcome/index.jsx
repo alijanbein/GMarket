@@ -37,7 +37,6 @@ const Welcome = () => {
         dispatch(login())
         dispatch(setUserData(response.user));
       }
-
     }
     setData()
       setTimeout(()=>{

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const initialState = {
   isLoggedin: false,
@@ -16,6 +17,7 @@ const authSlice = createSlice({
       state.isLoggedin = true;
     },
     logout: (state) => {
+      AsyncStorage.clear().catch(err => {console.log(err);})
       state.isLoggedin = false;
     },
     setPhoneNumberSlice: (state, action) => {

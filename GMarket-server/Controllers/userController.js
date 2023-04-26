@@ -207,7 +207,7 @@ exports.getCarouselImages = async (req, res, next) => {
   try {
   
     const carousel = await Show.find();
-    res.send({ status: "sucess", carousel: carousel });
+    res.send({ status: "sucess", show: carousel });
     
   } catch (error) {
     const err = new HttpError("Server Error", 500);

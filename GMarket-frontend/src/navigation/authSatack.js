@@ -19,17 +19,18 @@ const AuthSatack = () => {
         name="welcome"
         component={Welcome}
       /> */}
-      <stack.Screen
-        options={Tstyles.authOption}
-        name="Code Verification"
-        component={CodeVerificationScreen}
-      />
+     
       <stack.Screen
         options={{
           headerShown: false,
         }}
         name="auth_phone_input"
         component={AuthPhoneInputScreen}
+      />
+       <stack.Screen
+        options={Tstyles.authOption}
+        name="Code Verification"
+        component={CodeVerificationScreen}
       />
       
       <stack.Screen
