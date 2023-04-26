@@ -38,13 +38,7 @@ const AuthPhoneInputScreen = () => {
     }
   }, [phoneNumber]);
 
-  useEffect(()=>{
-      const send = async() =>{
-          const data = await sendRequest('http://192.168.0.105:4000/api')
-          console.log(data);
-      }
-      send()
-  },[])
+
 
   return (
     <View style={styles.container}>
