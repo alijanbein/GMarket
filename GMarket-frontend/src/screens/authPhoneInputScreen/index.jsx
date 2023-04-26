@@ -24,10 +24,16 @@ const AuthPhoneInputScreen = () => {
   const clickHandler = async () => {
     dispatch(setPhoneNumberSlice(phoneNumber));
     const formData = new FormData()
-    formData.append("phone_number",phoneNumber)
+    formData.append("phone_number","961"+phoneNumber)
     const data = await sendRequest("auth/send_verification_code_sms","POST",formData)
-    console.log("data",data);
-    // navigation.navigate("Code Verification");
+    console.log(data);
+    if(data.status == "sucess"){
+
+        navigation.navigate("Code Verification");
+    }
+    else {
+      console.log("no");
+    }
   };
 
   useEffect(() => {

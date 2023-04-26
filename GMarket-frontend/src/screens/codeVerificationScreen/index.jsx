@@ -88,7 +88,6 @@ const CodeVerificationScreen = () => {
 
     }
   };
-  console.log(focus);
 
   return (
     <View style={Tstyles.container}>
