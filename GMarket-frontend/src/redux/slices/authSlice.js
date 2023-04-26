@@ -20,9 +20,12 @@ const authSlice = createSlice({
     setPhoneNumberSlice: (state, action) => {
       state.phoneNumber = action.payload;
     },
+    setUserData:(state,action) =>{
+      state.userData = action.payload
+    }
   },
 });
 
-export const { login, logout, setPhoneNumberSlice } = authSlice.actions;
+export const { login, logout, setPhoneNumberSlice,setUserData } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -38,18 +38,12 @@ const CompleteProfileScren = () => {
 
   useEffect(() => {
     if (!!bio && !!imageURI) {
-      console.log("yse");
       setSaveAble(true);
     }
   }, [bio, imageURI]);
 
-  // // const sendHandler = async () => {
-
-  //
-  // // }
 
   const finishHandler = async () => {
-    console.log(auth);
 
     const formData = new FormData();
     formData.append("bio", bio);
@@ -65,6 +59,7 @@ const CompleteProfileScren = () => {
       formData
     );
     if (response.status == "sucess") {
+      dispatch
       console.log(response.user);
       dispatch(login());
     }
