@@ -11,13 +11,20 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between"
     },
+    imageContainer:{
+      width: 200,
+      height: 200,
+      borderRadius:150,
+      backgroundColor:COLORS.second,
+      marginLeft:"auto" ,
+      marginRight:"auto"  ,
+      justifyContent:"center",
+      alignItems:"center"
+    }
+    ,
     image : {
-        width: 200,
-        height: 200,
-        borderRadius:150,
-        backgroundColor:"red",
-        marginLeft:"auto" ,
-        marginRight:"auto"       
+        width:"100%",
+        height:"100%"
     },
     button: {
         marginTop: 30,
@@ -30,8 +37,9 @@ export const styles = StyleSheet.create({
         borderRadius: 5,
       },
       buttonText: {
-        color: COLORS.white,
+        color: COLORS.textColor,
         marginLeft: 5,
-        fontSize: 16,
+        fontSize: 20,
       },
+
 })
