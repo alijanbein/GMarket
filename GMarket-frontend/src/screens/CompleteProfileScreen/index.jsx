@@ -10,6 +10,7 @@ import InputForm from "../../components/inputForm";
 import PassButton from "../../components/passButton";
 import { login } from "../../redux/slices/authSlice";
 import UseHttp from "../../hooks/http-hook";
+import LoadingOverlay from "../../components/loadingOverlay";
 
 const CompleteProfileScren = () => {
   const [imageURI, setImageUri] = useState("");
@@ -58,6 +59,7 @@ const CompleteProfileScren = () => {
 
   return (
     <View style={styles.container}>
+      {isLoading && <LoadingOverlay/>}
       <View style={{ width: "100%" }}>
        <TouchableOpacity onPress={openImagePickerAsync} style ={styles.imageContainer}>
        {!!imageURI && (
