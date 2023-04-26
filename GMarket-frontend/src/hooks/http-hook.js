@@ -28,5 +28,6 @@ const UseHttp = () => {
 
     return data;
   };
+  return [isLoading,error,sendRequest]
 };
 export default UseHttp;
