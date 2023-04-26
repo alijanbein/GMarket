@@ -5,4 +5,4 @@ export const SPACING = {
 
 export const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export const numberRegex = /^\d+$/;
-
+export const BASE_URL = "http://localhost:4000/"
