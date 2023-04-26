@@ -86,6 +86,7 @@ const ProfileInfoScreen = () => {
       const response  = await sendRequest("auth/register","POST",formData,{});
       if(response.status == "sucess"){
         dispatch(setUserData(response.user));
+        dispatch()
         await AsyncStorage.setItem("token",response.token)
         navigation.navigate("Complete Profile Info");
       }

@@ -5,6 +5,7 @@ const initialState = {
   token: "",
   phoneNumber: "70838043",
   userData: {},
+  token:""
 };
 
 const authSlice = createSlice({
@@ -22,6 +23,9 @@ const authSlice = createSlice({
     },
     setUserData:(state,action) =>{
       state.userData = action.payload
+    },
+    setToken :(state,action) =>{
+      state.token = action.payload;
     }
   },
 });
