@@ -2,7 +2,7 @@ import { View, Text, Button, Image, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 import { styles } from "./style";
 import { AntDesign } from "@expo/vector-icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import * as ImagePicker from "expo-image-picker";
 import { COLORS } from "../../contansts/colors";
@@ -13,11 +13,12 @@ import UseHttp from "../../hooks/http-hook";
 import LoadingOverlay from "../../components/loadingOverlay";
 
 const CompleteProfileScren = () => {
+  const auth = useSelector((state) => state.auth);
   const [imageURI, setImageUri] = useState("");
   const [bio, setBio] = useState();
   const [saveAble, setSaveAble] = useState(false);
   const dispatch = useDispatch();
-  const [error,isLoading,sendRequest] = UseHttp()
+  const [error, isLoading, sendRequest] = UseHttp();
   let openImagePickerAsync = async () => {
     let permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -48,32 +49,45 @@ const CompleteProfileScren = () => {
 
   // // const sendHandler = async () => {
 
-  //     let uriParts = imageURI.split('.');
-  //         let fileType = uriParts[uriParts.length - 1];
-  //         console.log(fileType);
+  //
   // // }
 
-  const finishHandler =async () => {
-    const response = await 
+  const finishHandler = async () => {
+    let uriParts = imageURI.split(".");
+    let fileType = uriParts[uriParts.length - 1];
+    const formData = new FormData();
+    formData.append("bio", bio);
+    formData.append("phone_number", "961" + authSlice.phoneNumber);
+    formData.append("image",{
+      uri:imageURI,
+      type:"image/"+fileType,
+      name:"profile"+auth.phoneNumber +fileType
+    });
+    const response = await sendRequest("auth/complet_profile","POST",formData)
+    if(response.status == "sucess"){
+      console.log(response.user);
+      dispatch(login())
+    }
   };
 
   return (
     <View style={styles.container}>
-      {isLoading && <LoadingOverlay/>}
+      {isLoading && <LoadingOverlay />}
       <View style={{ width: "100%" }}>
-       <TouchableOpacity onPress={openImagePickerAsync} style ={styles.imageContainer}>
-       {!!imageURI && (
-          <Image
-            style={styles.image}
-            source={{
-              uri: `${imageURI}`,
-            }}
-          />
-        )}
-        {
-          !!!imageURI && <Text style ={styles.buttonText}>+Add Image</Text>
-        }
-       </TouchableOpacity>
+        <TouchableOpacity
+          onPress={openImagePickerAsync}
+          style={styles.imageContainer}
+        >
+          {!!imageURI && (
+            <Image
+              style={styles.image}
+              source={{
+                uri: `${imageURI}`,
+              }}
+            />
+          )}
+          {!!!imageURI && <Text style={styles.buttonText}>+Add Image</Text>}
+        </TouchableOpacity>
         <View>
           <InputForm onTextChange={bioHandler} label="Bio" bio invalid={true} />
         </View>

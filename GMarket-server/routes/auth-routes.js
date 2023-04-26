@@ -4,6 +4,6 @@ const { store, sendVerificationCodeSMS, confirmVerificationCode, register, store
 router.post("/send_verification_code_sms",sendVerificationCodeSMS);
 router.post("/confirm_verification_code",confirmVerificationCode);
 router.post("/register",register);
-router.post("/image",storeSeconderyUserData);
+router.post("/complet_profile",storeSeconderyUserData);
 
 module.exports = router;

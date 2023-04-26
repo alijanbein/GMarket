@@ -206,7 +206,7 @@ exports.storeSeconderyUserData = async (req, res, next) => {
       const err = new HttpError(error.message, 403);
       return next(err);
     }
-    res.send({ status: "succes", imageURL: imageURL, user: user });
+    res.send({ status: "sucess", imageURL: imageURL, user: user });
   } catch (error) {
     const err = new HttpError("Somthing wen wrong", 500);
     return next(err);
