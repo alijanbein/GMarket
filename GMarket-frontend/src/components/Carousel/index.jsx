@@ -29,16 +29,16 @@ const images = [
 const renderImageItem = ({ item }) => {
   return (
     <View style={styles.imageContainer}>
-      <Image style={styles.image} source={{ uri: item.uri }} />
+      <Image style={styles.image} source={{ uri: item.image_url }} />
     </View>
   );
 };
-const CarouselScreen = () => {
+const CarouselScreen = (props) => {
   return (
     <View style={styles.container}>
       <Carousel
         layout={"default"}
-        data={images}
+        data={props.data}
         autoplay={true}
         autoplayInterval={4000}
         renderItem={renderImageItem}

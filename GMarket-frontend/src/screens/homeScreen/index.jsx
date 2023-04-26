@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
 const HomeScreen = () => {
   const navigation = useNavigation();
   // const auth = useSelector(state => state.auth);
-  const app = useSelector(state => state.app)
+  const app = useSelector((state) => state.app);
   // console.log(auth);
   console.log(app);
   const [searchText, setSeachText] = useState("");
@@ -38,7 +38,6 @@ const HomeScreen = () => {
     console.log(cat);
   };
 
-  const data = [1, 2, 3, 4, 5, 6];
 
   return (
     <ScrollView
@@ -49,20 +48,23 @@ const HomeScreen = () => {
         <AntDesign name="search1" size={20} color="black" />
         <Text style={{ marginLeft: 5 }}>Search Product</Text>
       </TouchableOpacity>
-      <CarouselScreen data={[]} />
+      <CarouselScreen data={app.carouselImages} />
       <View style={styles.categories}>
         <Text style={styles.cat_title}>Categories</Text>
         <View style={styles.cat_container}>
-          <CategorieFeature onPress={categoriesPressHandler} text="Fruit" />
+          {app.categoriesImages.map((data) => (
+            <CategorieFeature onPress={categoriesPressHandler} text={data} />
+          ))}
+          {/* <CategorieFeature onPress={categoriesPressHandler} text="Fruit" />
           <CategorieFeature onPress={categoriesPressHandler} text="Lemons" />
           <CategorieFeature onPress={categoriesPressHandler} text="New f" />
-          <CategorieFeature onPress={categoriesPressHandler} text="IDK" />
+          <CategorieFeature onPress={categoriesPressHandler} text="IDK" /> */}
         </View>
       </View>
       <View style={styles.categories}>
         <Text style={styles.cat_title}>Recommended</Text>
 
-        {data.map((element, index) => (
+        {app.recomendedProduct.map((element, index) => (
           <PosterCard key={index} data={element} />
         ))}
       </View>
