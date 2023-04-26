@@ -53,13 +53,15 @@ const CompleteProfileScren = () => {
       type: "image/jpeg" ,
       name: "profile"  + auth.phoneNumber +"jpeg",
     });
+    console.log(formData);
     const response = await sendRequest(
       "auth/complet_profile",
       "POST",
       formData
     );
+    console.log(response.status);
+      dispatch(setUserData(response.user))
     if (response.status == "sucess") {
-      dispatch(setUserData(response.data))
       dispatch(login());
     }
   };

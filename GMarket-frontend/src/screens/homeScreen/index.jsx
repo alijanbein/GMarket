@@ -13,9 +13,12 @@ import { useNavigation } from "@react-navigation/native";
 import CarouselScreen from "../../components/Carousel";
 import CategorieFeature from "../../components/categorieFeature";
 import PosterCard from "../../components/PosterCard";
+import { useSelector } from "react-redux";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const auth = useSelector(state => state.auth)
+  console.log(auth);
   const [searchText, setSeachText] = useState("");
   const serchTextHandler = (text) => {
     setSeachText(text);
