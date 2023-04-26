@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FONTS } from "../../contansts/fonts";
 import UseHttp from "../../hooks/http-hook";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { login, setUserData } from "../../redux/slices/authSlice";
+import { login, setToken, setUserData } from "../../redux/slices/authSlice";
 import {
   setCarouseImages,
   setCategores,
@@ -43,6 +43,7 @@ const Welcome = () => {
         }
       );
       if (!!token && response.status == "sucess") {
+        dispatch(setToken(token))
         const shows = await sendRequest("user/get_carousel_images", "GET", "", {
           authorization: "Bearer " + token,
         });

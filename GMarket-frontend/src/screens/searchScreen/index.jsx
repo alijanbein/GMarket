@@ -3,18 +3,30 @@ import React, { useEffect, useRef, useState } from 'react'
 import SearchBar from '../../components/searchBar'
 import styles from './style'
 import PosterCard from '../../components/PosterCard'
+import UseHttp from '../../hooks/http-hook'
+import { useSelector } from 'react-redux'
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SearchScreen = () => {
     const[searchText,setSeachText] = useState('');
-    const data =[1,2,3,4,5,6]
-
-
+    const [data,setData] = useState([])
+    const auth = useSelector(state => state.auth)
+    const [error,isLoading,sendRequest] = UseHttp();
+    
     const serchTextHandler = (text) => {
-        setSeachText(text)
+      setSeachText(text)
     }
 
     const serchHandler =async() => {
-        console.log(searchText);
+
+      const formData = new FormData();
+      formData.append("search_text",searchText) 
+      const response = await sendRequest("user/search","Post",formData,{
+        authorization: "Bearer " + auth.token
+      })
+      if (response.status ="sucess") {
+          setData(response.search_response)
+      }
     }
   return (
     <ScrollView style = {styles.container}  contentContainerStyle ={{paddingBottom:50}}>
