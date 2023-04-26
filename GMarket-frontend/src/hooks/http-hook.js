@@ -10,7 +10,7 @@ const UseHttp = () => {
       setIsError('')
       setIsLoading(true)
       const Response =
-        (await fetch(BASE_URL + url, {
+        (await fetch(url, {
           method: method,
           headers: header,
           body: !!body ? JSON.stringify(body) : null,

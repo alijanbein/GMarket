@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { setPhoneNumberSlice } from "../../redux/slices/authSlice";
 import { COLORS } from "../../contansts/colors";
 import LoadingOverlay from "../../components/loadingOverlay";
+import axios from 'axios';
 import UseHttp from "../../hooks/http-hook";
 const AuthPhoneInputScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -25,7 +26,7 @@ const AuthPhoneInputScreen = () => {
     const formData = new FormData()
     formData.append("phone_number",phoneNumber)
     const data = await sendRequest("auth/send_verification_code_sms","POST",formData)
-    console.log(data);
+    console.log("data",data);
     // navigation.navigate("Code Verification");
   };
 
@@ -36,6 +37,14 @@ const AuthPhoneInputScreen = () => {
       setIsActive(false);
     }
   }, [phoneNumber]);
+
+  useEffect(()=>{
+      const send = async() =>{
+          const data = await sendRequest('http://192.168.0.105:4000/api')
+          console.log(data);
+      }
+      send()
+  },[])
 
   return (
     <View style={styles.container}>

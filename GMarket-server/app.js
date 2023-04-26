@@ -9,6 +9,8 @@ const HttpError = require("./support/http-error")
 const fileUpload = require('express-fileupload');
 const { authMiddleware } = require("./middlewares/authMiddleware");
 const { adminMiddleware } = require("./middlewares/adminMiddleware");
+const cors = require('cors');
+app.use(cors());
 
 app.use(fileUpload());
 
