@@ -30,6 +30,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { login, logout, setPhoneNumberSlice,setUserData } = authSlice.actions;
+export const { login, logout, setPhoneNumberSlice,setUserData,setToken } = authSlice.actions;
 
 export default authSlice.reducer;

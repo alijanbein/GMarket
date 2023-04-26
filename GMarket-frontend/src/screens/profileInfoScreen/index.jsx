@@ -11,7 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import UseHttp from "../../hooks/http-hook";
 import LoadingOverlay from "../../components/loadingOverlay";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserData } from "../../redux/slices/authSlice";
+import { setToken, setUserData } from "../../redux/slices/authSlice";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ProfileInfoScreen = () => {
@@ -86,7 +86,7 @@ const ProfileInfoScreen = () => {
       const response  = await sendRequest("auth/register","POST",formData,{});
       if(response.status == "sucess"){
         dispatch(setUserData(response.user));
-        dispatch()
+        dispatch(setToken(response.token))
         await AsyncStorage.setItem("token",response.token)
         navigation.navigate("Complete Profile Info");
       }
