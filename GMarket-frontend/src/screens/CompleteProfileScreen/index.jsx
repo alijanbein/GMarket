@@ -60,7 +60,6 @@ const CompleteProfileScren = () => {
       formData
     );
     console.log(response.status);
-      dispatch(setUserData(response.user))
     if (response.status == "sucess") {
       dispatch(login());
     }

@@ -10,9 +10,12 @@ import { SPACING, emailRegex } from "../../contansts/spacing";
 import { useNavigation } from "@react-navigation/native";
 import UseHttp from "../../hooks/http-hook";
 import LoadingOverlay from "../../components/loadingOverlay";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserData } from "../../redux/slices/authSlice";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ProfileInfoScreen = () => {
+  const dispatch = useDispatch()
   const auth = useSelector(state => state.auth)
   const navigation = useNavigation();
   const [isLoading,error,sendRequest] = UseHttp()
@@ -82,6 +85,8 @@ const ProfileInfoScreen = () => {
       formData.append("last_name",data.last_name);
       const response  = await sendRequest("auth/register","POST",formData,{});
       if(response.status == "sucess"){
+        dispatch(setUserData(response.user));
+        await AsyncStorage.setItem("token",response.token)
         navigation.navigate("Complete Profile Info");
       }
       else{

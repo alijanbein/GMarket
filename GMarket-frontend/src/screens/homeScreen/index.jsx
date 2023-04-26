@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
-  const auth = useSelector(state => state.auth)
+  const auth = useSelector(state => state.auth);
   console.log(auth);
   const [searchText, setSeachText] = useState("");
   const serchTextHandler = (text) => {
