@@ -37,7 +37,7 @@ const CompleteProfileScren = () => {
     }
 
     useEffect(()=>{
-        if(!!bio || !!imageURI){
+        if(!!bio && !!imageURI){
             console.log("yse");
             setSaveAble(true)
         }

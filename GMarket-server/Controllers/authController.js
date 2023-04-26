@@ -127,8 +127,15 @@ exports.register = async (req, res, next) => {
       type_valid
     ) {
    
-    
-      if (!user) {
+      if(user){
+        user.first_name = first_name;
+        user.last_name = last_name;
+        user.email = email;
+        user.type = type;
+        user.phone_number = phone_number;
+        await user.save();
+      }
+      else if (!user) {
         user = new User();
         user.first_name = first_name;
         user.last_name = last_name;
