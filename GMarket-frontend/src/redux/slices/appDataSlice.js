@@ -10,10 +10,10 @@ const appDataSlice = createSlice({
     initialState,
     name: "app",
     reducers: {
-        setCarouseImagesL:(state,action)=>{
+        setCarouseImages:(state,action)=>{
             state.carouselImages = action.payload
         },
-        setCategoresImages:(state,action)=>{
+        setCategores:(state,action)=>{
             state.categoriesImages = action.payload
         },
         setRecomendedProduct:(state,action)=>{
@@ -23,6 +23,6 @@ const appDataSlice = createSlice({
 
 })
 
-export const {setCarouseImagesL,setCategoresImages,setRecomendedProduct} = appDataSlice.actions;
+export const {setCarouseImages,setCategores,setRecomendedProduct} = appDataSlice.actions;
 
 export default appDataSlice.reducer;
