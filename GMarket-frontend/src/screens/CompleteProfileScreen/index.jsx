@@ -1,11 +1,9 @@
 import { View, Text, Button, Image, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 import { styles } from "./style";
-import { AntDesign } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
 
 import * as ImagePicker from "expo-image-picker";
-import { COLORS } from "../../contansts/colors";
 import InputForm from "../../components/inputForm";
 import PassButton from "../../components/passButton";
 import { login } from "../../redux/slices/authSlice";
@@ -31,12 +29,10 @@ const CompleteProfileScren = () => {
     let pickerResult = await ImagePicker.launchImageLibraryAsync();
     if (!pickerResult.canceled) {
       setImageUri(pickerResult.assets[0].uri);
-      console.log(pickerResult.assets[0].uri);
     }
   };
 
   const bioHandler = (text) => {
-    console.log(text);
     setBio(text);
   };
 
@@ -53,20 +49,24 @@ const CompleteProfileScren = () => {
   // // }
 
   const finishHandler = async () => {
-    let uriParts = imageURI.split(".");
-    let fileType = uriParts[uriParts.length - 1];
+    console.log(auth);
+
     const formData = new FormData();
     formData.append("bio", bio);
-    formData.append("phone_number", "961" + authSlice.phoneNumber);
-    formData.append("image",{
-      uri:imageURI,
-      type:"image/"+fileType,
-      name:"profile"+auth.phoneNumber +fileType
+    formData.append("phone_number", "961"+auth.phoneNumber);
+    formData.append("image", {
+      uri: imageURI,
+      type: "image/jpeg" ,
+      name: "profile"  + auth.phoneNumber +"jpeg",
     });
-    const response = await sendRequest("auth/complet_profile","POST",formData)
-    if(response.status == "sucess"){
+    const response = await sendRequest(
+      "auth/complet_profile",
+      "POST",
+      formData
+    );
+    if (response.status == "sucess") {
       console.log(response.user);
-      dispatch(login())
+      dispatch(login());
     }
   };
 
@@ -109,6 +109,3 @@ const CompleteProfileScren = () => {
 
 export default CompleteProfileScren;
 
-// uri: result.uri,
-// name: 'myImage.jpg',
-// type: 'image/jpeg'
