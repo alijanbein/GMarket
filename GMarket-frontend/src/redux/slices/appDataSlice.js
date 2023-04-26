@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
     carouselImages:[],
     categoriesImages:[],
-    recomendedProduct
+    recomendedProduct:[]
 }
 
 const appDataSlice = createSlice({

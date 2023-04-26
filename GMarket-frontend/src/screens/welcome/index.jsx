@@ -6,6 +6,9 @@ import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { FONTS } from "../../contansts/fonts";
 import UseHttp from "../../hooks/http-hook";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { login, setUserData } from "../../redux/slices/authSlice";
+
 const logo = require("../../../assets/logo.png");
 
 const loadFonts = async () => {
@@ -21,12 +24,22 @@ const Welcome = () => {
   const [a,s,sendRequest] = UseHttp()
   const authSlice = useSelector(state => state.auth);
   const navigation = useNavigation()
+  
   useEffect(()=> {
     loadFonts()
 
     const setData = async () =>{
-    }
+      const token = await AsyncStorage.getItem("token");
+      const response = await sendRequest("user/get_user_by_nummber","POST",{},{
+        authorization:"Bearer " +token 
+      })
+      if(!!token && response.status =="sucess"){
+        dispatch(login())
+        dispatch(setUserData(response.user));
+      }
 
+    }
+    setData()
       setTimeout(()=>{
         navigation.navigate("Second")
         
