@@ -15,15 +15,16 @@ const UseHttp = () => {
           headers: header,
           body: !!body ? body : null,
         })) || null;
+        setIsLoading(false)
       data = await Response.json();
+
       if (!Response.ok) {
         throw new Error(data);
       }
-      setIsLoading(false)
     } catch (err) {
-      console.log("erro",err.message);
+      console.log("erro",data.message);
       setIsLoading(false)
-      setIsError(err.message)
+      setIsError(data.message)
     }
 
     return data;

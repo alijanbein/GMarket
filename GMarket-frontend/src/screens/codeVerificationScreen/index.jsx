@@ -17,7 +17,8 @@ const CodeVerificationScreen = () => {
   const inputs = [input1Ref, input2Ref, input3Ref, input4Ref];
   const [code, setCode] = useState(["", "", "", ""]);
   const [focus, setFocus] = useState([false, false, false, false]);
-  const [error,isLoading,sendRequest] = UseHttp()
+  const [invalid,setInvalid] = useState(false)
+  const [isLoading,error,sendRequest] = UseHttp()
   useEffect(()=>{
  
       onFocusHandler(0)
@@ -32,7 +33,7 @@ const CodeVerificationScreen = () => {
               navigation.navigate("Profile Info")
             }
             else {
-              console.log("no");
+              setInvalid(true)
             }
     }
     let finished = true;
@@ -68,6 +69,7 @@ const CodeVerificationScreen = () => {
   };
 
   const handleKeyPress = (index, event) => {
+    setInvalid(false)
     if (event.nativeEvent.key === "Backspace" && index > 0) {
       inputs[index - 1].current?.focus();
       onLoseFocusHandler(index)
@@ -100,10 +102,9 @@ const CodeVerificationScreen = () => {
       newCode[index] = "";
       setCode(newCode);
       onLoseFocusHandler(index)
-
     }
   };
-
+  console.log(isLoading);
   return (
     <View style={Tstyles.container}>
     {isLoading && <LoadingOverlay/>}
@@ -119,7 +120,7 @@ const CodeVerificationScreen = () => {
             }}
             caretHidden={true}
             key={index}
-            style={[styles.box, focus[index] && styles.focus]}
+            style={[styles.box, focus[index] && styles.focus,invalid && styles.invalid]}
             maxLength={1}
             keyboardType="numeric"
             ref={inputs[index]}

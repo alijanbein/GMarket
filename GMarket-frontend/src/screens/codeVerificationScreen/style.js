@@ -25,5 +25,9 @@ export const styles = StyleSheet.create({
   focus: {
     borderColor: COLORS.main,
     borderWidth: 2
+  },
+  invalid:{
+    borderColor:"red",
+    borderWidth:1.5
   }
 });
