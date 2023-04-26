@@ -7,21 +7,23 @@ import { useDispatch } from "react-redux";
 import { setPhoneNumberSlice } from "../../redux/slices/authSlice";
 import { COLORS } from "../../contansts/colors";
 import LoadingOverlay from "../../components/loadingOverlay";
+import UseHttp from "../../hooks/http-hook";
 const AuthPhoneInputScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isActive, setIsActive] = useState(false);
   const [isValid, setIsValid] = useState(true);
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const [isLoading,error,sendRequest] = UseHttp()
   const textChangeHandler = (text) => {
     setIsValid(true);
     setPhoneNumber(text);
   };
 
   const clickHandler = () => {
-    console.log(phoneNumber);
     dispatch(setPhoneNumberSlice(phoneNumber));
-    navigation.navigate("Code Verification");
+
+    // navigation.navigate("Code Verification");
   };
 
   useEffect(() => {
