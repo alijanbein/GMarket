@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as ImagePicker from "expo-image-picker";
 import InputForm from "../../components/inputForm";
 import PassButton from "../../components/passButton";
-import { login } from "../../redux/slices/authSlice";
+import { login, setUserData } from "../../redux/slices/authSlice";
 import UseHttp from "../../hooks/http-hook";
 import LoadingOverlay from "../../components/loadingOverlay";
 
@@ -59,8 +59,7 @@ const CompleteProfileScren = () => {
       formData
     );
     if (response.status == "sucess") {
-      dispatch
-      console.log(response.user);
+      dispatch(setUserData(response.data))
       dispatch(login());
     }
   };
