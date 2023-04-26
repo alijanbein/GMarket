@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import LoadingOverlay from "../../components/loadingOverlay";
 import { Tstyles } from "../../contansts/styles";
+import UseHttp from "../../hooks/http-hook";
 
 const CodeVerificationScreen = () => {
   const auth = useSelector((state) => state.auth);
@@ -16,6 +17,7 @@ const CodeVerificationScreen = () => {
   const inputs = [input1Ref, input2Ref, input3Ref, input4Ref];
   const [code, setCode] = useState(["", "", "", ""]);
   const [focus, setFocus] = useState([false, false, false, false]);
+  const [error,isLoading,sendRequest] = UseHttp
   useEffect(()=>{
  
       onFocusHandler(0)
@@ -32,7 +34,8 @@ const CodeVerificationScreen = () => {
     if (finished) {
       setCode(["", "", "", ""]);
       if(true) {
-        navigation.navigate("Profile Info")
+
+        // navigation.navigate("Profile Info")
       }
       inputs[0].current.focus();
 
