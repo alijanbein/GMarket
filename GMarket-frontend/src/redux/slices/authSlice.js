@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLoggedin: false,
   token: "",
-  phoneNumber: "",
+  phoneNumber: "70838043",
   userData: {},
 };
 
