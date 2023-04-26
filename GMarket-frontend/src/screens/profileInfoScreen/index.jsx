@@ -9,6 +9,7 @@ import { style } from "../../components/passButton/styles";
 import { SPACING, emailRegex } from "../../contansts/spacing";
 import { useNavigation } from "@react-navigation/native";
 import UseHttp from "../../hooks/http-hook";
+import LoadingOverlay from "../../components/loadingOverlay";
 
 const ProfileInfoScreen = () => {
   const navigation = useNavigation();
@@ -78,7 +79,7 @@ const ProfileInfoScreen = () => {
 
   return (
     <View style={styles.container}>
-      
+      {isLoading && <LoadingOverlay/>}
       <View>
         <Text style={Tstyles.title}>
           Enter your personal info to complete your profile
