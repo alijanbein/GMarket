@@ -8,9 +8,11 @@ import PassButton from "../../components/passButton";
 import { style } from "../../components/passButton/styles";
 import { SPACING, emailRegex } from "../../contansts/spacing";
 import { useNavigation } from "@react-navigation/native";
+import UseHttp from "../../hooks/http-hook";
 
 const ProfileInfoScreen = () => {
   const navigation = useNavigation();
+  const [isLoading,error,sendRequest] = UseHttp()
   const [data, setData] = useState({
     first_name: "",
     last_name: "",
@@ -69,12 +71,14 @@ const ProfileInfoScreen = () => {
       setDataVAlid({ ...dataValid, email: false });
     }
     if (valid) {
-      navigation.navigate("Complete Profile Info");
+
+      // navigation.navigate("Complete Profile Info");
     }
   };
 
   return (
     <View style={styles.container}>
+      
       <View>
         <Text style={Tstyles.title}>
           Enter your personal info to complete your profile
