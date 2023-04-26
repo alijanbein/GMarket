@@ -36,7 +36,7 @@ const AuthPhoneInputScreen = () => {
 
   return (
     <View style={styles.container}>
-      {false && <LoadingOverlay/>}
+      {isLoading && <LoadingOverlay/>}
       <Text style={styles.header}>
         <Text style={styles.span}>Green</Text> Market
       </Text>
