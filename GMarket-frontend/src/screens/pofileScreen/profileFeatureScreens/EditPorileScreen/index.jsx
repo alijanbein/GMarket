@@ -70,7 +70,10 @@ const EditProfileScreen = () => {
       setDataVAlid({ ...dataValid, email: false });
     }
     if (valid) {
-
+      const formData = new FormData();
+      formData.append("first_name",data.first_name);
+      formData.append("last_name",data.last_name);
+      formData.append("email",data.email);
       navigation.navigate("Profile");
     }
     console.log("haa");

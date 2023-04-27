@@ -214,3 +214,21 @@ exports.getCarouselImages = async (req, res, next) => {
     return next(err);
   }
 };
+
+exports.updateUserData = async (req,res,next) =>{
+
+  try {
+    const {first_name,last_name,email} = req.body;
+    const user = req.user;
+    const phone_number = user.phone_number;
+
+    const UpdatedUser = await User.findOne({phone_number});
+    if(UpdatedUser){
+      
+    }
+  
+  } catch (error) {
+    const err = new HttpError("Server Error", 500);
+    return next(err);
+  }
+}
