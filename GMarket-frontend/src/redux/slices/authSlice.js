@@ -10,8 +10,8 @@ const initialState = {
 };
 
 const authSlice = createSlice({
-  name: "auth",
   initialState,
+  name: "auth",
   reducers: {
     login: (state) => {
       state.isLoggedin = true;
