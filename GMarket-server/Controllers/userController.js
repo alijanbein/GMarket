@@ -222,9 +222,11 @@ exports.updateUserData = async (req,res,next) =>{
     const user = req.user;
     const phone_number = user.phone_number;
 
-    const UpdatedUser = await User.findOne({phone_number});
-    if(UpdatedUser){
-      
+    const updatedUser = await User.findOne({phone_number});
+    if(updatedUser){
+      updatedUser.first_name = first_name
+      updatedUser.last_name = last_name
+      updatedUser.email = email
     }
   
   } catch (error) {

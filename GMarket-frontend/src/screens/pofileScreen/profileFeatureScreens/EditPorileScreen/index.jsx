@@ -74,6 +74,7 @@ const EditProfileScreen = () => {
       formData.append("first_name",data.first_name);
       formData.append("last_name",data.last_name);
       formData.append("email",data.email);
+      
       navigation.navigate("Profile");
     }
     console.log("haa");
