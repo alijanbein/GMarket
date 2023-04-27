@@ -4,7 +4,7 @@ const Show = require("../Models/Show");
 const User = require("../Models/User.model");
 const Poster = require("../Models/poster");
 const HttpError = require("../support/http-error");
-const inputVerify = require("./authController");
+const { inputVerify } = require("../support/utils");
 
 exports.getUserByNumber = async (req, res, next) => {
   try {
@@ -243,7 +243,7 @@ exports.updateUserData = async (req,res,next) =>{
     }
   
   } catch (error) {
-    const err = new HttpError("Server Error", 500);
+    const err = new HttpError(error.message, 500);
     return next(err);
   }
 }

@@ -23,6 +23,6 @@ router.post("/send_message", sendMessage);
 router.post("/get_one_conversation", getOneConversation);
 router.post("/search", search);
 router.get("/get_carousel_images", getCarouselImages);
-router.get("/update_user_data", updateUserData);
+router.post("/update_user_data", updateUserData);
 
 module.exports = router;

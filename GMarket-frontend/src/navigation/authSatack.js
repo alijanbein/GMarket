@@ -19,11 +19,7 @@ const AuthSatack = () => {
         name="welcome"
         component={Welcome}
       /> */}
-      <stack.Screen
-        options={Tstyles.authOption}
-        name="Code Verification"
-        component={CodeVerificationScreen}
-      />
+  
       <stack.Screen
         options={{
           headerShown: false,
@@ -33,7 +29,11 @@ const AuthSatack = () => {
       />
       
      
-      
+      <stack.Screen
+        options={Tstyles.authOption}
+        name="Code Verification"
+        component={CodeVerificationScreen}
+      />
       <stack.Screen
         options={Tstyles.authOption}
         name="Profile Info"

@@ -74,10 +74,14 @@ const EditProfileScreen = () => {
       formData.append("first_name",data.first_name);
       formData.append("last_name",data.last_name);
       formData.append("email",data.email);
-      
-      navigation.navigate("Profile");
+      const response = await sendRequest("user/update_user_data","POST",formData,{
+        authorization : "Bearer "+ auth.token
+      });
+      console.log(response);
+      if(response.status == "succes"){
+        navigation.navigate("Profile");
+      }
     }
-    console.log("haa");
   };
   return (
     <View style={styles.container}>
