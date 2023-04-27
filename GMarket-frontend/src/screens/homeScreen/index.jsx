@@ -52,8 +52,8 @@ const HomeScreen = () => {
       <View style={styles.categories}>
         <Text style={styles.cat_title}>Categories</Text>
         <View style={styles.cat_container}>
-          {app.categoriesImages.map((data) => (
-            <CategorieFeature onPress={categoriesPressHandler} text={data} />
+          {app.categoriesImages.map((data,index) => (
+            <CategorieFeature key ={index} onPress={categoriesPressHandler} text={data} />
           ))}
           {/* <CategorieFeature onPress={categoriesPressHandler} text="Fruit" />
           <CategorieFeature onPress={categoriesPressHandler} text="Lemons" />
