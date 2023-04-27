@@ -16,12 +16,14 @@ const AddPostScreen = () => {
   const navigation = useNavigation();
   const [data, setData] = useState({
     product_title: "",
+    product_type: "",
     price: "",
     description: "",
     operation: "",
   });
   const [dataValid, setDataVAlid] = useState({
     product_title: true,
+    product_type: true,
     price: true,
     description: true,
     operation: true,
@@ -53,11 +55,22 @@ const AddPostScreen = () => {
   const productTitlehandler = (text) => {
     setDataVAlid({
       product_title: true,
+      product_type: true,
       price: true,
       description: true,
       operation: true,
     });
     setData({ ...data, product_title: text });
+  };
+  const productTypehandler = (text) => {
+    setDataVAlid({
+      product_title: true,
+      product_type: true,
+      price: true,
+      description: true,
+      operation: true,
+    });
+    setData({ ...data, product_type: text });
   };
   const priceHandler = (text) => {
     setDataVAlid({
@@ -113,7 +126,7 @@ const AddPostScreen = () => {
         formData.append("description",data.description);
         formData.append("operation",data.operation);
         formData.append("poster_image",{
-          uri:"image/jpeg",
+          uri:imageURI,
           type: "poster/jpeg",
           name:"poster"+auth.phoneNumber +"/jpeg"
         })
@@ -126,7 +139,6 @@ const AddPostScreen = () => {
         }
     }
   };
-  console.log(dataValid);
   return (
     <ScrollView contentContainerStyle={style.contentContainerStyle} style={style.container}>
     {isLoading && <LoadingOverlay/>}
@@ -138,8 +150,15 @@ const AddPostScreen = () => {
         value={data.product_title}
         onTextChange={productTitlehandler}
         label="Product Title"
-        placeHolder="fname"
+        placeHolder="prouct title"
         invalid={dataValid.product_title}
+      />
+      <InputForm
+        value={data.product_type}
+        onTextChange={productTypehandler}
+        label="Product type"
+        placeHolder="product type"
+        invalid={dataValid.product_type}
       />
       <InputForm
         value={data.price}

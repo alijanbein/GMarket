@@ -3,7 +3,8 @@ const HttpError = require("../support/http-error");
 const mime = require("mime");
 exports.addPoster = async (req, res, next) => {
   try {
-    const { title, product_type, descrtiption,operation } = req.body;
+    console.log(req.bdoy);
+    const { title, product_type,price ,descrtiption,operation } = req.body;
     const user = req.user;
     const userID = user._id;
     const phone_number = user.phone_number;
@@ -33,6 +34,7 @@ exports.addPoster = async (req, res, next) => {
     newPoster.image_url = imageURL;
     newPoster.description = descrtiption;
     newPoster.operation = operation;
+    newPoster.price = price;
     await newPoster.save();
     res.send({ status: "sucess", poster: newPoster });
   } catch (error) {

@@ -6,6 +6,7 @@ const posterSchema = new mongoose.Schema({
     farmer: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     description:  { type: String, require: true },
     operation:  { type: String, require: true },
+    price: { type: Number, require: true },
     image_url :  { type: String, require: true },
 })
 
