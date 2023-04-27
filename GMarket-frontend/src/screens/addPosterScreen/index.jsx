@@ -108,7 +108,22 @@ const AddPostScreen = () => {
     }
     if (valid) {
         const formData = new FormData();
-        formData.append("")
+        formData.append("title",data.product_title);
+        formData.append("price",data.price);
+        formData.append("description",data.description);
+        formData.append("operation",data.operation);\
+        formData.append("poster_image",{
+          uri:"image/jpeg",
+          type: "poster/jpeg",
+          name:"poster"+auth.phoneNumber +"/jpeg"
+        })
+        const response = await sendRequest("posts/add_post","POST",formData,{
+          authorization: "Bearer "+ auth.token
+        })
+
+        if(response.status == "sucess"){
+          
+        }
     }
   };
   console.log(dataValid);

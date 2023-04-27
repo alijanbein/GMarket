@@ -34,7 +34,7 @@ exports.addPoster = async (req, res, next) => {
     newPoster.description = descrtiption;
     newPoster.operation = operation;
     await newPoster.save();
-    res.send({ status: "sucess", poter: newPoster });
+    res.send({ status: "sucess", poster: newPoster });
   } catch (error) {
     const err = new HttpError("server error", 500);
     return next(err);

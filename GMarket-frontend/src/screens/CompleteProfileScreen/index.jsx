@@ -51,7 +51,7 @@ const CompleteProfileScren = () => {
     formData.append("image", {
       uri: imageURI,
       type: "image/jpeg" ,
-      name: "profile"  + auth.phoneNumber +"jpeg",
+      name: "profile"  + auth.phoneNumber +"/jpeg",
     });
     console.log(formData);
     const response = await sendRequest(
