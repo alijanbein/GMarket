@@ -224,13 +224,7 @@ exports.updateUserData = async (req,res,next) =>{
     const phone_number = user.phone_number;
 
     const updatedUser = await User.findOne({phone_number});
-    const first_name_valid = inputVerify(first_name,"name")
-    const last_name_valid = inputVerify(last_name,"name")
-    const email_valid = inputVerify(email,"email")
-    if(!email_valid || !last_name_valid || !first_name_valid){
-      const err = new HttpError("Invalid Input", 500);
-    return next(err);
-    }
+  
     if(updatedUser){
       updatedUser.first_name = first_name
       updatedUser.last_name = last_name

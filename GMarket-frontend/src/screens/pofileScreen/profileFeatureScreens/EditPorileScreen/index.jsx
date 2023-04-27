@@ -78,7 +78,8 @@ const EditProfileScreen = () => {
         authorization : "Bearer "+ auth.token
       });
       console.log(response);
-      if(response.status == "succes"){
+      if(response.status == "sucess"){
+        
         navigation.navigate("Profile");
       }
     }
