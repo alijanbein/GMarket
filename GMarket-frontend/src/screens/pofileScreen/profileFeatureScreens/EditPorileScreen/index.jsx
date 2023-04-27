@@ -8,6 +8,7 @@ import { emailRegex } from "../../../../contansts/spacing";
 import { useDispatch, useSelector } from "react-redux";
 import UseHttp from "../../../../hooks/http-hook";
 import { setUserData } from "../../../../redux/slices/authSlice";
+import LoadingOverlay from "../../../../components/loadingOverlay";
 
 const EditProfileScreen = () => {
   const dispatch = useDispatch()
@@ -88,6 +89,7 @@ const EditProfileScreen = () => {
   };
   return (
     <View style={styles.container}>
+    {isLoading && <LoadingOverlay/>}
       <View style={styles.inputs}>
         <InputForm
           value={data.first_name}
