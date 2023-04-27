@@ -6,11 +6,14 @@ import Icon from "react-native-vector-icons/Ionicons";
 import ConversationTextInput from "../../components/conversationTextInput";
 import MessageText from "../../components/messageText";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 
 const ConversationScreen = () => {
   const navigation = useNavigation()
   const [message,setMessage] = useState("");
   const [showSendButton,setShouSendButton] = useState(false);
+  const current = useSelector(state => state.current);
+  console.log(current);
   const changeTextHandler = (text) => {
     setMessage(text);
     
