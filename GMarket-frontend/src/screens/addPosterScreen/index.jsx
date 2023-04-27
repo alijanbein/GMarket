@@ -107,7 +107,8 @@ const AddPostScreen = () => {
       setDataVAlid({ ...dataValid, price: false });
     }
     if (valid) {
-
+        const formData = new FormData();
+        formData.append("")
     }
   };
   console.log(dataValid);
@@ -159,3 +160,4 @@ const AddPostScreen = () => {
 };
 
 export default AddPostScreen;
+
