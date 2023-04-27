@@ -5,10 +5,12 @@ import { useNavigation } from "@react-navigation/native";
 import InputForm from "../../../../components/inputForm";
 import PassButton from "../../../../components/passButton";
 import { emailRegex } from "../../../../contansts/spacing";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UseHttp from "../../../../hooks/http-hook";
+import { setUserData } from "../../../../redux/slices/authSlice";
 
 const EditProfileScreen = () => {
+  const dispatch = useDispatch()
   const navigation = useNavigation();
   const auth = useSelector(state => state.auth)
   const [error,isLoading, sendRequest] = UseHttp()
@@ -79,7 +81,7 @@ const EditProfileScreen = () => {
       });
       console.log(response);
       if(response.status == "sucess"){
-        
+        dispatch(setUserData(response.data))
         navigation.navigate("Profile");
       }
     }
