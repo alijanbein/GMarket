@@ -42,7 +42,9 @@ const ConversationScreen = () => {
         setConversation(response.conversation.conversation);
       }
     };
-    fetchData();
+      setTimeout(() =>{
+        fetchData()
+      },10000)
   }, []);
   console.log(conversation);
   useEffect(() => {
@@ -79,11 +81,11 @@ const ConversationScreen = () => {
         style={styles.ScrollView}
         contentContainerStyle={styles.contentContainerStyle}
       >
-        <MessageText message="hello baby" />
-        <MessageText user message="hello baby" />
+
         {conversation.map((data, index) => {
           return (
             <MessageText
+              key = {index}
               user={data.sender == current.currentPersonData._id ? false : true}
               message={data.message}
             />
