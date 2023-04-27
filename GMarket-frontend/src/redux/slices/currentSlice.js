@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState ={
     currentConversation : [],
+    currentPersonData :{}
 }
 
 const currentSlice = createSlice({
@@ -10,9 +11,12 @@ const currentSlice = createSlice({
     reducers:{
         setCurrentConversation:(state, action) => {
             state.currentConversation = action.payload
+        },
+        setCurrentPersonData:(state, action) => {
+            state.currentPersonData = action.payload
         }
     }
 })
 
-export const {setCurrentConversation} = currentSlice.actions;
+export const {setCurrentConversation,setCurrentPersonData} = currentSlice.actions;
 export default currentSlice.reducer;
