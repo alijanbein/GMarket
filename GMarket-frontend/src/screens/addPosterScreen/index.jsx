@@ -75,6 +75,7 @@ const AddPostScreen = () => {
   const priceHandler = (text) => {
     setDataVAlid({
       product_title: true,
+      product_type: true,
       price: true,
       description: true,
       operation: true,
@@ -84,6 +85,7 @@ const AddPostScreen = () => {
   const descriptionHandler = (text) => {
     setDataVAlid({
       product_title: true,
+      product_type: true,
       price: true,
       description: true,
       operation: true,
@@ -93,6 +95,7 @@ const AddPostScreen = () => {
   const operationHandler = (text) => {
     setDataVAlid({
       product_title: true,
+      product_type: true,
       price: true,
       description: true,
       operation: true,
@@ -104,6 +107,10 @@ const AddPostScreen = () => {
     let valid = true;
     if (data.operation.length < 1) {
       setDataVAlid({ ...dataValid, operation: false });
+      valid = false;
+    }
+    if (data.product_type.length < 1) {
+      setDataVAlid({ ...dataValid, product_type: false });
       valid = false;
     }
     if (data.product_title.length < 1) {
@@ -122,20 +129,20 @@ const AddPostScreen = () => {
     if (valid) {
         const formData = new FormData();
         formData.append("title",data.product_title);
-        formData.append("price",data.price);
+        formData.append("product_type",data.product_type);
         formData.append("description",data.description);
         formData.append("operation",data.operation);
         formData.append("poster_image",{
           uri:imageURI,
-          type: "poster/jpeg",
+          type: "image/jpeg" ,
           name:"poster"+auth.phoneNumber +"/jpeg"
         })
         const response = await sendRequest("posts/add_post","POST",formData,{
           authorization: "Bearer "+ auth.token
         })
-
+        console.log(response);
         if(response.status == "sucess"){
-            navigation.navigate("Home Screen")
+            navigation.navigate("Home")
         }
     }
   };

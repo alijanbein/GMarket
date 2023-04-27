@@ -3,7 +3,7 @@ const HttpError = require("../support/http-error");
 const mime = require("mime");
 exports.addPoster = async (req, res, next) => {
   try {
-    console.log(req.bdoy);
+    console.log(req.body);
     const { title, product_type,price ,descrtiption,operation } = req.body;
     const user = req.user;
     const userID = user._id;

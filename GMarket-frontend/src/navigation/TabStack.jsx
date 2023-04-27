@@ -7,7 +7,7 @@ import IconA from "react-native-vector-icons/MaterialCommunityIcons";
 import { COLORS } from "../contansts/colors";
 import Welcome from "../screens/welcome";
 import { useNavigation } from "@react-navigation/native";
-import ProfileScreen from "../screens/PofileScreen";
+import ProfileScreen from "../screens/profileInfoScreen";
 import HomeScreen from "../screens/homeScreen";
 import MessagesScreen from "../screens/messagesScreen";
 import AddPostScreen from "../screens/addPosterScreen";
