@@ -37,10 +37,10 @@ const ConversationScreen = () => {
         <Icon  onPress={()=>{navigation.goBack()}} style={styles.icon} name="arrow-back" size={24} color="#000" />
 
         <View style={{ width: 60, height: 60, marginLeft: 15 }}>
-          <Avatar uri="https://picsum.photos/id/1004/500/500" />
+          <Avatar uri={current.currentPersonData.profile_picture} />
         </View>
 
-        <Text style={styles.name}>Ali Janbein</Text>
+        <Text style={styles.name}>{current.currentPersonData.first_name} {current.currentPersonData.last_name}</Text>
       </View>
       <ScrollView style ={styles.ScrollView} contentContainerStyle ={styles.contentContainerStyle}>
         <MessageText message ="hello baby"/>

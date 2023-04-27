@@ -12,7 +12,7 @@ const MessagesScreen = () => {
   console.log("user:",app.messages[0].conversation);
   const enterHandler = (data) => {
       dispatch(setCurrentConversation(data.conversation))
-      dispatch(setCurrentPersonData(data.phone_number != auth.userData.phone_number)[0])
+      dispatch(setCurrentPersonData(data.participants.filter(data => data.phone_number != auth.userData.phone_number)[0]))
   }
 
   return (
