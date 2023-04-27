@@ -235,6 +235,11 @@ exports.updateUserData = async (req,res,next) =>{
       updatedUser.first_name = first_name
       updatedUser.last_name = last_name
       updatedUser.email = email
+      await updatedUser.save();
+      res.send({status: "sucess", data:updatedUser});
+    }
+    else {
+      throw new Error("somthing wen't wrong")
     }
   
   } catch (error) {
