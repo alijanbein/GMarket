@@ -5,13 +5,17 @@ import { useNavigation } from "@react-navigation/native";
 import InputForm from "../../../../components/inputForm";
 import PassButton from "../../../../components/passButton";
 import { emailRegex } from "../../../../contansts/spacing";
+import { useSelector } from "react-redux";
+import UseHttp from "../../../../hooks/http-hook";
 
 const EditProfileScreen = () => {
   const navigation = useNavigation();
+  const auth = useSelector(state => state.auth)
+  const [error,isLoading, sendRequest] = UseHttp()
   const [data, setData] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
+    first_name: auth.userData.first_name,
+    last_name: auth.userData.last_name,
+    email: auth.userData.email,
     type: "Farmer",
   });
   const [dataValid, setDataVAlid] = useState({
@@ -66,6 +70,7 @@ const EditProfileScreen = () => {
       setDataVAlid({ ...dataValid, email: false });
     }
     if (valid) {
+
       navigation.navigate("Profile");
     }
     console.log("haa");
@@ -96,7 +101,7 @@ const EditProfileScreen = () => {
           invalid={dataValid.email}
         />
         <InputForm
-          value="+961 70838043"
+          value={`+${auth.userData.phone_number}`}
           keyboardType="email-address"
           onTextChange={emailHandler}
           label="Phone Number"
