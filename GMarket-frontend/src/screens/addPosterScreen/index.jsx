@@ -6,8 +6,13 @@ import { useNavigation } from "@react-navigation/native";
 import { numberRegex } from "../../contansts/spacing";
 import PassButton from "../../components/passButton";
 import * as ImagePicker from "expo-image-picker";
+import { useSelector } from "react-redux";
+import UseHttp from "../../hooks/http-hook";
+import LoadingOverlay from "../../components/loadingOverlay";
 
 const AddPostScreen = () => {
+  const auth = useSelector(state => state.auth);
+  const [error,isLoading,sendRequest] = UseHttp();
   const navigation = useNavigation();
   const [data, setData] = useState({
     product_title: "",
@@ -102,12 +107,13 @@ const AddPostScreen = () => {
       setDataVAlid({ ...dataValid, price: false });
     }
     if (valid) {
-      console.log("haa");
+
     }
   };
   console.log(dataValid);
   return (
     <ScrollView contentContainerStyle={style.contentContainerStyle} style={style.container}>
+    {isLoading && <LoadingOverlay/>}
       <TouchableOpacity onPress={openImagePickerAsync} style={style.imageContainer}>
         {!!imageURI && <Image style={style.image} source={{ uri: imageURI }} />}
         {!!!imageURI && <Text style={style.textImage}>+ Add Image</Text>}
