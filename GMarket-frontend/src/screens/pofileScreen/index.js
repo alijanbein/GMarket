@@ -3,16 +3,18 @@ import React from "react";
 import { styles } from "./style";
 import ProfileFeature from "../../components/profileFeature";
 import { useNavigation } from "@react-navigation/native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/slices/authSlice";
 const ProfileScreen = () => {
+  const auth = useSelector(state => state.auth)
   const navigation = useNavigation()
   const dispatch = useDispatch()
+  console.log(auth.userData);
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.name}>ALi Janbein</Text>
-        <Text style={styles.number}>+961999000</Text>
+        <Text style={styles.name}>{`${auth.userData.first_name} ${auth.userData.last_name}`}</Text>
+        <Text style={styles.number}>{`+${auth.userData.phone_number}`}</Text>
       </View>
       <ProfileFeature onPress = {() =>{navigation.navigate("Empty Screen")}} title = "Payment" icon ="credit-card" />
       <ProfileFeature onPress ={() =>{navigation.navigate("Edit Profile")}} title = "Profile" icon = "user-o"/>
