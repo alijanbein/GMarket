@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 
 const UserCoversationCard = (props) => {
   const navigation = useNavigation()
+  console.log(props);
   return (
     <TouchableOpacity
       onPress={()=>{
@@ -15,10 +16,10 @@ const UserCoversationCard = (props) => {
       style={[styles.container, props.bot && styles.botContainer]}
     >
       <View style={{ width: 50, height: 50 }}>
-        <Avatar uri="https://picsum.photos/id/1004/500/500" />
+        <Avatar uri={props.profile_picture} />
       </View>
       <View style={styles.info}>
-        <Text style={[styles.name,props.bot && styles.botText]}>Ali Janbein</Text>
+        <Text style={[styles.name,props.bot && styles.botText]}>{props.first_name} {props.last_name}</Text>
         {!props.bot && <Text style={styles.text}>Hello There!</Text>}
       </View>
     </TouchableOpacity>
