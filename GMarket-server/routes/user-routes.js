@@ -18,7 +18,7 @@ router.post("/get_user_by_nummber", getUserByNumber);
 router.post("/get_rate", getRate);
 router.post("/add_rate", addRate);
 router.post("/report_user", reportUser);
-router.post("/get_all_messaging_users", getUsersMessgesdBefore);
+router.get("/get_all_messaging_users", getUsersMessgesdBefore);
 router.post("/send_message", sendMessage);
 router.post("/get_one_conversation", getOneConversation);
 router.post("/search", search);

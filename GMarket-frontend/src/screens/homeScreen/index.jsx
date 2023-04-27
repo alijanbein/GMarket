@@ -19,16 +19,14 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   // const auth = useSelector(state => state.auth);
   const app = useSelector((state) => state.app);
-  // console.log(auth);
-  console.log(app);
   const [searchText, setSeachText] = useState("");
   const serchTextHandler = (text) => {
     setSeachText(text);
   };
 
-  const serchHandler = async () => {
-    console.log(searchText);
-  };
+  // const serchHandler = async () => {
+  //   console.log(searchText);
+  // };
 
   const fakeSeachhandler = () => {
     navigation.navigate("Search Screen");

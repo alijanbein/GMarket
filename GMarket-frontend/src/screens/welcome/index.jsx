@@ -26,7 +26,6 @@ const Welcome = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState();
   const [a, s, sendRequest] = UseHttp();
-  const authSlice = useSelector((state) => state.auth);
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -62,7 +61,10 @@ const Welcome = () => {
         if(recomended.status == "sucess"){
           dispatch(setRecomendedProduct(recomended.posters))
         }
-
+        const messages = await sendRequest("user/get_all_messaging_users","GET","",{
+          authorization: "Bearer " + token,
+        })
+        dispatch(setMessages(messages.messages))
         dispatch(login());
         dispatch(setUserData(response.user));
       }

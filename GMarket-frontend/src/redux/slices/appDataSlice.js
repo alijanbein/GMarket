@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
     carouselImages:[],
     categoriesImages:[],
-    recomendedProduct:[]
+    recomendedProduct:[],
+    messages:[]
 }
 
 const appDataSlice = createSlice({
@@ -19,10 +20,13 @@ const appDataSlice = createSlice({
         setRecomendedProduct:(state,action)=>{
             state.recomendedProduct = action.payload
         },
+        setMessages :(state,action) => {
+            state.messages = action.payload
+        }
     }
 
 })
 
-export const {setCarouseImages,setCategores,setRecomendedProduct} = appDataSlice.actions;
+export const {setCarouseImages,setCategores,setRecomendedProduct,setMessages} = appDataSlice.actions;
 
 export default appDataSlice.reducer;
