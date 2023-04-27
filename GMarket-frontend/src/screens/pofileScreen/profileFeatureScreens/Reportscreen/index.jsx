@@ -4,8 +4,15 @@ import { styles } from "./style";
 import InputForm from "../../../../components/inputForm";
 import PassButton from "../../../../components/passButton";
 import { numberRegex } from "../../../../contansts/spacing";
+import { useSelector } from "react-redux";
+import UseHttp from "../../../../hooks/http-hook";
+import LoadingOverlay from "../../../../components/loadingOverlay";
+import { useNavigation } from "@react-navigation/native";
 
 const ReportScreen = () => {
+  const auth = useSelector(state => state.auth)
+  const [error,isLoading , sendRequest] = UseHttp();
+  const navigator = useNavigation()
   const [data, setData] = useState({
     phone_number: "",
     message: "",
@@ -47,13 +54,24 @@ const ReportScreen = () => {
       valid = false;
     }
     if (valid) {
-      cosnt 
+      const formData = new FormData();
+      formData.append("phone_number",data.phone_number);
+      formData.append("message",data.message);
+      const response = await sendRequest("user/report_user","POST",formData, {
+        authorization : "Bearer " + auth.token
+      })
+
+      if (response.status = "sucess") {
+          navigator.navigate("Profile");
+      }
+      
       console.log("valid");
     }
   };
   return (
     <View style={styles.container}>
       <View>
+        {isLoading && <LoadingOverlay/>}
         <InputForm
           keyboardType = "number-pad"
           value={data.phone_number}
@@ -77,3 +95,4 @@ const ReportScreen = () => {
 };
 
 export default ReportScreen;
+//96179797979

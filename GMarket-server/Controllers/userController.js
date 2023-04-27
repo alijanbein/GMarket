@@ -90,11 +90,8 @@ exports.reportUser = async (req, res, next) => {
       reported: phone_number,
     });
     if (reportedBefore) {
-      const err = new HttpError(
-        "You Reported this user before, waiting for admin",
-        200
-      );
-      return next(err);
+      res.send({ status: "sucess", report: reportedBefore });
+      return;
     }
     const newReport = new Report();
     newReport.sender = user_number;
