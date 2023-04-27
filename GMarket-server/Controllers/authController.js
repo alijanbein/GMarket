@@ -3,6 +3,8 @@ const HttpError = require("../support/http-error");
 const Verification = require("../Models/Verification");
 const jwt = require("jsonwebtoken");
 const fileUpload = require("express-fileupload");
+const globals = require("../support/globals");
+
 var mime = require("mime");
 
 exports.sendVerificationCodeSMS = async (req, res, next) => {
@@ -177,7 +179,7 @@ exports.storeSeconderyUserData = async (req, res, next) => {
       const err = new HttpError("can't upload this type of image", 401);
       return next(err);
     }
-    const imageURL = `${req.protocol}://${req.hostname}:${process.env.PORT}/photos/${phone_number}.${extention}`;
+    const imageURL = `${globals.getIpAddress()}:${process.env.PORT}/photos/${phone_number}.${extention}`;
     if (!req.files || Object.keys(req.files).length === 0) {
       const err = new HttpError("No files were uploaded.", 401);
       return next(err);

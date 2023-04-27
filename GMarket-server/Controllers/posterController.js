@@ -1,6 +1,8 @@
 const Poster = require("../Models/poster");
 const HttpError = require("../support/http-error");
 const mime = require("mime");
+const globals = require("../support/globals")
+
 exports.addPoster = async (req, res, next) => {
   try {
     console.log(req.body);
@@ -9,12 +11,11 @@ exports.addPoster = async (req, res, next) => {
     const userID = user._id;
     const phone_number = user.phone_number;
     const extention = mime.getExtension(req.files.poster_image.mimetype);
-    console.log(extention);
     if (extention != "png" && extention != "jpg" && extention != "jpeg") {
       const err = new HttpError("can't upload this type of image", 401);
       return next(err);
     }
-    const imageURL = `${req.protocol}://${req.hostname}:${process.env.PORT}/photos/post_${phone_number}.${extention}`;
+    const imageURL = `${globals.getIpAddress()}:${process.env.PORT}/photos/post_${phone_number}.${extention}`;
     if (!req.files || Object.keys(req.files).length === 0) {
       const err = new HttpError("No files were uploaded.", 401);
       return next(err);

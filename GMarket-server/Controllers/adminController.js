@@ -2,7 +2,9 @@ const Report = require("../Models/Reports");
 const Show = require("../Models/Show");
 const User = require("../Models/User.model");
 const HttpError = require("../support/http-error");
-const mime = require("mime")
+const mime = require("mime");
+const globals = require("../support/globals")
+
 exports.getReports = async (req, res, next) => {
   try {
     const reports = await Report.find();
@@ -61,7 +63,7 @@ exports.addCarouselImages = async(req,res,next) => {
     const err = new HttpError("can't upload this type of image", 401);
     return next(err);
   }
-  const imageURL = `${req.protocol}://${req.hostname}:${process.env.PORT}/photos/carousel_${random}.${extention}`;
+  const imageURL = `${globals.getIpAddress()}:${process.env.PORT}/photos/carousel_${random}.${extention}`;
   if (!req.files || Object.keys(req.files).length === 0) {
     const err = new HttpError("No files were uploaded.", 401);
     return next(err);
