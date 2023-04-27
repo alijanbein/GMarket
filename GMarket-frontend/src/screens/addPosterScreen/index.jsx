@@ -111,7 +111,7 @@ const AddPostScreen = () => {
         formData.append("title",data.product_title);
         formData.append("price",data.price);
         formData.append("description",data.description);
-        formData.append("operation",data.operation);\
+        formData.append("operation",data.operation);
         formData.append("poster_image",{
           uri:"image/jpeg",
           type: "poster/jpeg",
@@ -122,7 +122,7 @@ const AddPostScreen = () => {
         })
 
         if(response.status == "sucess"){
-          
+            navigation.navigate("Home Screen")
         }
     }
   };
