@@ -11,6 +11,7 @@ import { login, setToken, setUserData } from "../../redux/slices/authSlice";
 import {
   setCarouseImages,
   setCategores,
+  setMessages,
   setRecomendedProduct,
 } from "../../redux/slices/appDataSlice";
 
@@ -74,6 +75,7 @@ const Welcome = () => {
       navigation.navigate("Second");
     }, 2000);
   }, []);
+  
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={logo} />
