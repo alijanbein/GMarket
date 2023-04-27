@@ -28,5 +28,6 @@ const inputVerify = (input, type) => {
       }
     } else return false;
   };
-  
+
+
 module.exports = inputVerify;
