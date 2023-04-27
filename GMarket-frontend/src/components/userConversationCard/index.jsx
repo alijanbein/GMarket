@@ -10,6 +10,7 @@ const UserCoversationCard = (props) => {
   return (
     <TouchableOpacity
       onPress={()=>{
+        props.onPress
         navigation.navigate("Conversation Screen")
       }}
       style={[styles.container, props.bot && styles.botContainer]}
