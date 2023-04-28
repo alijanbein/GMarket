@@ -16,6 +16,24 @@ export default styles = StyleSheet.create({
     height:screenWidth - 40,
     borderRadius:10,
     marginTop:10
+  },
+  join: {
+    position:"absolute",
+    height:40,
+    justifyContent:"space-between",
+    flexDirection:"row",
+    paddingHorizontal:20,
+    alignItems:"center",
+    backgroundColor:COLORS.main,
+    bottom:20,
+    right:20,
+    borderRadius:30,
+  },
+  join_text:{
+    color:COLORS.white,
+    fontSize:20,
+    marginLeft:10,
+
   }
 
 });

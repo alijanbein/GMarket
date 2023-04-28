@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import style from "./style";
 import PosterInfo from "../../components/PosterInfo";
 import ChatModal from "../../components/chatModal";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const AuctionScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -35,8 +36,15 @@ const AuctionScreen = () => {
           "orem ipsum dolor gna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip "
         }
       />
-      <TouchableHighlight onPress={()=>{setModalVisible(true)}}>
-        <Text>press</Text>
+      <TouchableHighlight
+        onPress={() => {
+          setModalVisible(true);
+        }}
+      >
+        <View style={style.join}>
+        <MaterialIcons name="chat" size={30} color="#fff" />
+        <Text style = {style.join_text}>Join</Text>
+        </View>
       </TouchableHighlight>
       <Modal
         animationType="slide"
@@ -44,7 +52,7 @@ const AuctionScreen = () => {
         visible={modalVisible}
         onRequestClose={toggleModal}
       >
-        <ChatModal onCancel = {toggleModal}/>
+        <ChatModal onCancel={toggleModal} />
       </Modal>
     </ScrollView>
   );
