@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../../contansts/colors";
 
 export const styles = StyleSheet.create({
   overlay: {
@@ -12,20 +13,24 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     textAlign: "center",
     paddingBottom:150,
-    paddingTop:45
+    paddingTop:45,
   },
   container: {
     borderRadius: 10,
-    backgroundColor: "red",
+    backgroundColor: "#fff",
     width: "95%",
     height: "100%",
-    zIndex:6
+    zIndex:6,
+    elevation: 4,
+
   },
   bakcdrop: {
-    width: "100%",
-    height: "100%",
+    width: 1000,
+    height: 1000,
     backgroundColor: "rgba(0.3, 0.3, 0.3, 0)",
     position:"absolute",
     zIndex: 5,
+    // backgroundColor:"yellow"
+
   },
 });

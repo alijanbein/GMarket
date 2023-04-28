@@ -6,6 +6,7 @@ import {
   TouchableHighlight,
   Button,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
 import style from "./style";
@@ -18,6 +19,7 @@ const AuctionScreen = () => {
   const toggleModal = () => {
     setModalVisible(!modalVisible);
   };
+  console.log(modalVisible);
   return (
     <ScrollView style={style.container}>
       <PosterInfo keyname="Remaining Time:" val="02:25" />
@@ -36,18 +38,13 @@ const AuctionScreen = () => {
           "orem ipsum dolor gna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip "
         }
       />
-      <TouchableHighlight
-        onPress={() => {
-          setModalVisible(true);
-        }}
-      >
-        <View style={style.join}>
+     
+        <TouchableOpacity onPress={toggleModal} style={style.join}>
         <MaterialIcons name="chat" size={30} color="#fff" />
         <Text style = {style.join_text}>Join</Text>
-        </View>
-      </TouchableHighlight>
+        </TouchableOpacity>
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         visible={modalVisible}
         onRequestClose={toggleModal}
