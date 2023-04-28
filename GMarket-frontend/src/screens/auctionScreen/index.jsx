@@ -10,6 +10,7 @@ import {
 import React, { useState } from "react";
 import style from "./style";
 import PosterInfo from "../../components/PosterInfo";
+import ChatModal from "../../components/chatModal";
 
 const AuctionScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -43,7 +44,7 @@ const AuctionScreen = () => {
         visible={modalVisible}
         onRequestClose={toggleModal}
       >
-        
+        <ChatModal onCancel = {toggleModal}/>
       </Modal>
     </ScrollView>
   );
