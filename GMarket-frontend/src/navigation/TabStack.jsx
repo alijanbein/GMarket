@@ -11,6 +11,7 @@ import ProfileScreen from "../screens/profileInfoScreen";
 import HomeScreen from "../screens/homeScreen";
 import MessagesScreen from "../screens/messagesScreen";
 import AddPostScreen from "../screens/addPosterScreen";
+import AuctionScreen from "../screens/auctionScreen";
 
 const defaultState = {
   Home: 30,
@@ -90,7 +91,7 @@ const TabStack = () => {
           ),
         }}
         name="Auction"
-        component={ProfileScreen}
+        component={AuctionScreen}
       />
       <Tabs.Screen
         options={{
