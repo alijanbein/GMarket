@@ -6,12 +6,14 @@ exports.sendMessageToBot = async(req,res,next) => {
     const googlePrivateKey = process.env.googlePrivateKey
     const googleClientEmail = process.env.googleClientEmail
     const dialogFlowSessionLanguageCode = process.env.dialogFlowSessionLanguageCode
-    const {message,sessionId} = req.body;
     const credentials  = {
         client_email:googleClientEmail,
         private_key:googlePrivateKey
     }
+
+    const {message,sessionId} = req.body;
     const sessionClient = new dialogflow.SessionsClient({googleProjectId,credentials});
+
     // const sessionPath = sessionClient.sessionPath(googleProjectId,sessionId)
     const sessionPath = sessionClient.sessionPath(googleProjectId, sessionId);
 
@@ -28,7 +30,7 @@ exports.sendMessageToBot = async(req,res,next) => {
         const response = await sessionClient.detectIntent(request)
         res.send({
             status:"sucess",
-            response
+            response: response[0].queryResult.fulfillmentMessages[0].text.text[0]
         })
     } catch (error) {
         res.send({
@@ -36,5 +38,4 @@ exports.sendMessageToBot = async(req,res,next) => {
            error:  error.message
         })
     }
-    
-}
+} 
