@@ -1,11 +1,23 @@
-import { View, Text, Image } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  Image,
+  Modal,
+  TouchableHighlight,
+  Button,
+  ScrollView,
+} from "react-native";
+import React, { useState } from "react";
 import style from "./style";
 import PosterInfo from "../../components/PosterInfo";
 
 const AuctionScreen = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+  };
   return (
-    <View style={style.container}>
+    <ScrollView style={style.container}>
       <PosterInfo keyname="Remaining Time:" val="02:25" />
       <Image
         style={style.image}
@@ -22,7 +34,18 @@ const AuctionScreen = () => {
           "orem ipsum dolor gna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip "
         }
       />
-    </View>
+      <TouchableHighlight onPress={()=>{setModalVisible(true)}}>
+        <Text>press</Text>
+      </TouchableHighlight>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={toggleModal}
+      >
+        
+      </Modal>
+    </ScrollView>
   );
 };
 
