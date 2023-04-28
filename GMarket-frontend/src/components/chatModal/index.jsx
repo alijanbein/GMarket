@@ -5,7 +5,7 @@ import ConversationTextInput from "../conversationTextInput";
 
 const ChatModal = (props) => {
     const [showButton,setShowButton] = useState(false)
-    const [messageText,setMessageText] = useState(false)
+    const [messageText,setMessageText] = useState('')
     const onTextChange = (text) =>{
         setMessageText(text)
         if(text.length != 0){
