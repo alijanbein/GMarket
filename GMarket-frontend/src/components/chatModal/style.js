@@ -31,6 +31,24 @@ export const styles = StyleSheet.create({
     position:"absolute",
     zIndex: 5,
     // backgroundColor:"yellow"
-
   },
+  header: {
+    backgroundColor:COLORS.second,
+    flexDirection:"row",
+    paddingVertical:10,
+    borderBottomLeftRadius:10,
+    borderBottomRightRadius:10,
+    justifyContent:"center"
+},
+bot_name:{
+    fontSize:30,
+    height:"100%",
+    fontWeight:"700",
+    color:COLORS.main,
+    textAlignVertical:"center",
+    marginLeft:15
+},
+second_name_color:{
+    color:COLORS.textColor
+}
 });
