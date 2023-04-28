@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
   bakcdrop: {
     width: 1000,
     height: 1000,
-    backgroundColor: "rgba(0.3, 0.3, 0.3, 0)",
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     position:"absolute",
     zIndex: 5,
     // backgroundColor:"yellow"
