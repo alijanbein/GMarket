@@ -22,5 +22,6 @@ export const styles = StyleSheet.create({
   desc_text:{
     marginTop:10,
     height:150,
+    fontSize:15
   }
 });
