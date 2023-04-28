@@ -12,11 +12,11 @@ export const styles = StyleSheet.create({
     height: "100%",
     borderRadius: 10,
     textAlign: "center",
-    paddingBottom:150,
+    paddingBottom:100,
     paddingTop:45,
   },
   container: {
-    borderRadius: 10,
+    borderRadius: 20,
     backgroundColor: "#fff",
     width: "95%",
     height: "100%",

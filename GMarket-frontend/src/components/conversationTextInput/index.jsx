@@ -9,7 +9,6 @@ const ConversationTextInput = (props) => {
     <View style={style.container}>
       <TextInput
       value={props.value}
-      ref = {props.ref}
         onChangeText={props.onTextChange}
         style={style.text}
         placeholder="Enter your Text Here"
