@@ -1,11 +1,18 @@
 import { View, Text, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import style from "./style";
 import Avatar from "../../../../components/Avatar";
 import PosterInfo from "../../../../components/PosterInfo";
 import PersonRating from "../../../../components/Rating";
 import PosterCard from "../../../../components/PosterCard";
+import UseHttp from "../../../../hooks/http-hook";
+import { useSelector } from "react-redux";
 const PublicProfile = () => {
+  const [error,isLoading,sendRequest] = UseHttp()
+  const auth = useSelector(state = state.auth)
+  useEffect(() =>{
+
+  })
   return (
     <View style={style.container}>
       <View style={style.header}>
