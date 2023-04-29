@@ -3,7 +3,8 @@ const app = express();
 const AuthRoutes = require("./routes/auth-routes");
 const UserRoutes = require("./routes/user-routes");
 const PostRoutes = require("./routes/poster-routes");
-const botRoutes = require("./routes/bot-routes")
+const botRoutes = require("./routes/bot-routes");
+const AuctionRoutes = require("./routes/auction-routes")
 const adminRoutes = require("./routes/admin-routes")
 const bodyParser = require("body-parser")
 const HttpError = require("./support/http-error")
@@ -43,6 +44,7 @@ app.use("/user",authMiddleware, UserRoutes);
 app.use("/posts",authMiddleware, PostRoutes);
 app.use("/admin",authMiddleware,adminMiddleware,adminRoutes)
 app.use("/bot",botRoutes)
+app.use("/auction",authMiddleware,AuctionRoutes)
 app.use((req, res, next) => {
   const error = new HttpError("can't find route", 404);
   return next(error);
