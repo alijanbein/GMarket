@@ -4,16 +4,17 @@ const AuthRoutes = require("./routes/auth-routes");
 const UserRoutes = require("./routes/user-routes");
 const PostRoutes = require("./routes/poster-routes");
 const botRoutes = require("./routes/bot-routes");
-const AuctionRoutes = require("./routes/auction-routes")
-const adminRoutes = require("./routes/admin-routes")
-const bodyParser = require("body-parser")
-const HttpError = require("./support/http-error")
-const fileUpload = require('express-fileupload');
-const os = require('os');
-const globals = require("./support/globals")
+const AuctionRoutes = require("./routes/auction-routes");
+const adminRoutes = require("./routes/admin-routes");
+const bodyParser = require("body-parser");
+const HttpError = require("./support/http-error");
+const fileUpload = require("express-fileupload");
+const os = require("os");
+const globals = require("./support/globals");
 const { authMiddleware } = require("./middlewares/authMiddleware");
 const { adminMiddleware } = require("./middlewares/adminMiddleware");
-const cors = require('cors');
+const cors = require("cors");
+const { auctionWork } = require("./Controllers/auctionController");
 app.use(cors());
 
 app.use(fileUpload());
@@ -21,10 +22,10 @@ app.use(fileUpload());
 require("dotenv").config();
 
 const interfaces = os.networkInterfaces();
-let ipAddress = '';
+let ipAddress = "";
 for (const iface of Object.values(interfaces)) {
   for (const entry of iface) {
-    if (entry.family === 'IPv4' && !entry.internal) {
+    if (entry.family === "IPv4" && !entry.internal) {
       ipAddress = entry.address;
       break;
     }
@@ -34,17 +35,17 @@ for (const iface of Object.values(interfaces)) {
   }
 }
 console.log(ipAddress);
-globals.setIpAddress(ipAddress)
+globals.setIpAddress(ipAddress);
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use("/photos",express.static('images'));
+app.use("/photos", express.static("images"));
 app.use("/auth", AuthRoutes);
-app.use("/user",authMiddleware, UserRoutes);
-app.use("/posts",authMiddleware, PostRoutes);
-app.use("/admin",authMiddleware,adminMiddleware,adminRoutes)
-app.use("/bot",botRoutes)
-app.use("/auction",authMiddleware,AuctionRoutes)
+app.use("/user", authMiddleware, UserRoutes);
+app.use("/posts", authMiddleware, PostRoutes);
+app.use("/admin", authMiddleware, adminMiddleware, adminRoutes);
+app.use("/bot", botRoutes);
+app.use("/auction", authMiddleware, AuctionRoutes);
 app.use((req, res, next) => {
   const error = new HttpError("can't find route", 404);
   return next(error);
@@ -55,7 +56,8 @@ app.use((error, req, res, next) => {
   res.send({ message: error.message || "sonthing went wrong !" });
 });
 
-app.listen(process.env.PORT, () => {
-    console.log("server is runing ");
-    require("./db.config")
+app.listen(process.env.PORT, async() => {
+   auctionWork()
+  console.log("server is runing ");
+  require("./db.config");
 });

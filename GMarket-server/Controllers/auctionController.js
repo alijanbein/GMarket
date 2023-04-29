@@ -1,4 +1,5 @@
 const Auction = require("../Models/Auction");
+const Message = require("../Models/Message.model");
 const HttpError = require("../support/http-error");
 
 exports.registerToAuction = async (req, res, next) => {
@@ -14,7 +15,7 @@ exports.registerToAuction = async (req, res, next) => {
         now = auctions[0].endTime;
     }
     let end = new Date(now);
-    end.setMinutes(now.getMinutes() + 30);
+    end.setMinutes(now.getMinutes() + 1);
     const newAuction = new Auction();
     newAuction.user = user_id;
     newAuction.poster = posterId;
@@ -80,6 +81,84 @@ exports.joinWithHigherBid = async(req,res,next) => {
 }
 
 
-exports.startAuction = async () => {
-  const auctions = await Auction.find().sort({ endTime: 1 }).exec();
+const deleteAuction = async(auctionId) =>{
+    try {
+    //  const {auctionId} = req.body;
+     const auction = await Auction.findById(auctionId); 
+     const now = new Date()
+     if(auction && now >= auction.endTime){
+        console.log("want to delete");
+         await Auction.findByIdAndDelete(auctionId);
+            return true
+        }
+     else {
+         return false
+     }
+    } catch (error) {
+         return false
+    }
+ }
+ 
+
+const startAuction = async () => {
+    const currentAuction = await Auction.find().find().sort({ startTime: 1 });
+    if(currentAuction.length != 0) {
+        return currentAuction[0];
+    }
+    
 };
+
+
+const sendMessageToWinner = async (recipient, sender,message) => {
+    if(sender == null){
+        return
+    }
+  try {
+    let conversation = await Message.findOne({
+      participants: { $all: [sender, recipient] },
+    });
+    if (!conversation) {
+      const newConversation = new Message({
+        participants: [sender, recipient],
+        messages: [],
+        lastActivity: new Date().toISOString(),
+      });
+      await newConversation.save();
+
+      conversation = newConversation;
+    }
+    conversation.conversation.push({
+      sender,
+      recipient,
+      message,
+      timestamp: new Date().toISOString(),
+    });
+    conversation.lastActivity = new Date().toISOString();
+    await conversation.save();
+    return "sucess"
+  } catch (error) {
+    return error.message
+  }
+}
+
+exports.auctionWork = () =>{
+    setInterval(async()=> {
+        const can = await startAuction();
+        console.log('watcing');
+        if(can){
+            console.log(can);
+            const now = new Date()
+            console.log(can.endTime - now);
+            if(can.endTime - now < 0){
+                sendMessageToWinner(can.user,can.currentWinner,"i won the acution of your poster how i can meet you")
+                const s = await deleteAuction(can._id)
+                console.log(s);
+          } 
+        
+
+          else {
+            console.log("still");
+          }
+        }
+      },10000)
+}
