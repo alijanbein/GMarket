@@ -33,22 +33,22 @@ exports.registerToAuction = async (req, res, next) => {
   }
 };
 
-// exports.getLatestAuction = async (req,res,next) => {
-//     try {
-//         const latestAuction = await Auction.find().sort({ createdAt: 1 })
-//         .limit(1).populate("user").populate("poster");
-//         if(latestAuction.length > 0) {
-//             res.send({status:"sucess",latestAuction})
-//         }
-//         else {
-//             const err = new HttpError("can't find acutions", 405);
-//             return next(err);
-//         }
-//     } catch (error) {
-//         const err = new HttpError("server error", 405);
-//         return next(err);
-//     }
-// }
+exports.getLatestAuction = async (req,res,next) => {
+    try {
+        const latestAuction = await Auction.find().sort({ startTime: 1 })
+        .limit(1).populate("user").populate("poster");
+        if(latestAuction.length > 0) {
+            res.send({status:"sucess",latestAuction})
+        }
+        else {
+            const err = new HttpError("can't find acutions", 405);
+            return next(err);
+        }
+    } catch (error) {
+        const err = new HttpError("server error", 405);
+        return next(err);
+    }
+}
 
 exports.startAuction = async () => {
   const auctions = await Auction.find().sort({ endTime: 1 }).exec();

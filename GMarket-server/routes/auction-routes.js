@@ -3,6 +3,6 @@ const { registerToAuction, getLatestAuction } = require("../Controllers/auctionC
 const router = Router();
 
 router.post("/register_to_auction",registerToAuction)
-// router.get("/get_latest_auction",getLatestAuction)
+router.get("/get_latest_auction",getLatestAuction)
 
 module.exports = router;
