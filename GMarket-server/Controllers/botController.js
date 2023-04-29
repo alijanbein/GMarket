@@ -1,4 +1,6 @@
 const dialogflow = require('dialogflow');
+const Auction = require('../Models/Auction');
+const HttpError = require('../support/http-error');
 
 exports.sendMessageToBot = async(req,res,next) => {
     const googleProjectId = process.env.googleProjectId
@@ -39,3 +41,23 @@ exports.sendMessageToBot = async(req,res,next) => {
         })
     }
 } 
+
+exports.deleteAuction = async(req,res,next) =>{
+    try {
+     const {auctionId} = req.body;
+     const auction = await Auction.findById(auctionId); 
+     const now = new Date()
+     if(auction && now >= auction.endTime){
+         await Auction.findByIdAndDelete(auctionId);
+         res.send({status:"sucess", auction})
+     }
+     else {
+         const err = new HttpError("can't delete auction until it finishes ,Time Remaining:"+ (auction.endTime -now), 405);
+                 return next(err); 
+     }
+    } catch (error) {
+         const err = new HttpError(error.message, 405);
+         return next(err);
+    }
+ }
+ 

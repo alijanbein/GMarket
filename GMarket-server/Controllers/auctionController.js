@@ -61,7 +61,7 @@ exports.joinWithHigherBid = async(req,res,next) => {
             if(auctionExist.startingBid < bid){
                 auctionExist.startingBid = bid;
                 auctionExist.currentWinner = user_id
-                await Auction.save()
+                await auctionExist.save()
                 res.send({status :"sucess", newAuction:auctionExist} )
             }
             else {
@@ -74,10 +74,11 @@ exports.joinWithHigherBid = async(req,res,next) => {
                 return next(err);
         }
        } catch (error) {
-        const err = new HttpError("server error", 405);
+        const err = new HttpError(error.message, 405);
                 return next(err);
        }
 }
+
 
 exports.startAuction = async () => {
   const auctions = await Auction.find().sort({ endTime: 1 }).exec();
