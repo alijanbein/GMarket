@@ -1,9 +1,10 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React from "react";
 import style from "./style";
 import Avatar from "../../../../components/Avatar";
 import PosterInfo from "../../../../components/PosterInfo";
 import PersonRating from "../../../../components/Rating";
+import PosterCard from "../../../../components/PosterCard";
 const PublicProfile = () => {
   return (
     <View style={style.container}>
@@ -20,7 +21,13 @@ const PublicProfile = () => {
       {/* <PosterInfo keyname = "Rate" val = "4.5/5"/> */}
       <PersonRating/>
       <View style={style.line} />
-
+      <Text style={style.posters}>Published Posters:</Text>
+      <ScrollView style = {{marginTop:10}} contentContainerStyle ={{paddingBottom:40}} >
+          <PosterCard/>
+          <PosterCard/>
+          <PosterCard/>
+          <PosterCard/>
+      </ScrollView>
       
     </View>
   );

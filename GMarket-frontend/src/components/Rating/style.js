@@ -14,7 +14,6 @@ export default styles = StyleSheet.create({
       fontSize: 20,
       color:COLORS.textColor,
       fontWeight: 'bold',
-      marginBottom: 10,
     },
     ratingContainer: {
       flexDirection: 'row',

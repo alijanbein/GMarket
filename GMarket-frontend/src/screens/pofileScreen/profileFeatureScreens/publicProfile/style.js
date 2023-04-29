@@ -29,6 +29,12 @@ export default styles = StyleSheet.create({
     borderBottomColor: 'black',
     borderBottomWidth: 1,
     marginTop:10
-  }
+  },
+  posters:{
+    fontSize:20,
+    color:COLORS.textColor,
+    marginTop:10,
+    fontWeight:"bold"
+    }
 
 });
