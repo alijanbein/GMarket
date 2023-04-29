@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./style";
 import Avatar from "../../../../components/Avatar";
 import PosterInfo from "../../../../components/PosterInfo";
@@ -9,9 +9,14 @@ import UseHttp from "../../../../hooks/http-hook";
 import { useSelector } from "react-redux";
 const PublicProfile = () => {
   const [error,isLoading,sendRequest] = UseHttp()
-  const auth = useSelector(state = state.auth)
+  const auth = useSelector(state => state.auth)
+  const [rating,setRating] = useState(0)
+  const [posters,setPosters] = useState([])
   useEffect(() =>{
-
+    const fetshData = async() => {
+      // const phone
+      // const response = await sendRequest("user/add_rate")
+    }
   })
   return (
     <View style={style.container}>

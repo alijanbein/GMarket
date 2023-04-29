@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     paddingBottom:120
   },
   name: {
-    marginLeft: 10,
+    marginLeft: 15,
     height: "100%",
     textAlignVertical: "center",
     fontSize: 20,
@@ -33,4 +33,8 @@ export const styles = StyleSheet.create({
     padding:20
     
   },
+  user:{
+    flexDirection:"row",
+    justifyContent:"center"
+  }
 });

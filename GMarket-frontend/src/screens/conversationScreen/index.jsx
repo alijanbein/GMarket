@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 import { styles } from "./style";
 import Avatar from "../../components/Avatar";
@@ -88,14 +88,16 @@ const ConversationScreen = () => {
           color="#000"
         />
 
-        <View style={{ width: 60, height: 60, marginLeft: 15 }}>
-          <Avatar uri={current.currentPersonData.profile_picture} />
-        </View>
+        <TouchableOpacity style={styles.user} onPress={() =>{navigation.navigate("Public Profile")}}>
+          <View style={{ width: 60, height: 60, marginLeft: 15 }}>
+            <Avatar uri={current.currentPersonData.profile_picture} />
+          </View>
 
-        <Text style={styles.name}>
-          {current.currentPersonData.first_name}
-          {current.currentPersonData.last_name}
-        </Text>
+          <Text style={styles.name}>
+            {current.currentPersonData.first_name}
+            {current.currentPersonData.last_name}
+          </Text>
+        </TouchableOpacity>
       </View>
       <ScrollView
         style={styles.ScrollView}
