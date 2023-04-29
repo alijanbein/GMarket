@@ -78,9 +78,7 @@ const AppStack = () => {
         component={ConversationScreen}
       />
       <stack.Screen
-        options={{
-          headerShown: false,
-        }}
+        options={Tstyles.authOption}
         name="Public Profile"
         component={PublicProfile}
       />

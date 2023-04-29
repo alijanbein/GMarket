@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { SPACING } from "../../../../contansts/spacing";
+import { COLORS } from "../../../../contansts/colors";
 
 export default styles = StyleSheet.create({
   container: {
@@ -7,4 +8,27 @@ export default styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingHorizontal: SPACING.paddingHorizontal,
   },
+  header: {
+    flexDirection: "row",
+    headerShown: false,
+    paddingHorizontal: SPACING.paddingHorizontal,
+    paddingVertical: 10,
+    height:90
+  },
+  name: {
+    textAlignVertical: "center",
+    fontSize: 25,
+    color:COLORS.textColor,
+  },
+  info: {
+    height:"100%",
+    marginLeft:30,
+    justifyContent:"center",
+  },
+  line:{
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    marginTop:10
+  }
+
 });
