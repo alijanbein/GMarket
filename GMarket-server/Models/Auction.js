@@ -13,7 +13,7 @@ const auctionSchema = new mongoose.Schema({
     },
     startingBid: {type:Number,require:true,default:10000},
     startTime: Date,
-    endTime:Date
+    endTime:Date,
 })
 
 
