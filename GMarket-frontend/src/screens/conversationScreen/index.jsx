@@ -21,25 +21,28 @@ const ConversationScreen = () => {
     setMessage(text);
   };
 
-  const sendTextHandler = async() => {
-     if(message.length > 0) {
+  const sendTextHandler = async () => {
+    if (message.length > 0) {
       const formData = new FormData();
       formData.append("message", message);
-      formData.append("recipient",current.currentPersonData._id)
-      const response = await sendRequest("user/send_message","POST",formData,{
-        authorization: "Bearer " + auth.token,
-      })
+      formData.append("recipient", current.currentPersonData._id);
+      const response = await sendRequest(
+        "user/send_message",
+        "POST",
+        formData,
+        {
+          authorization: "Bearer " + auth.token,
+        }
+      );
       console.log(response);
       const newConversation = conversation;
-      newConversation.push({message:message, sender : auth.userData._id})
+      newConversation.push({ message: message, sender: auth.userData._id });
       setMessage("");
-     
-     }
+    }
   };
-  useEffect(()=>{
-    setConversation(current.currentConversation)
-
-  },[])
+  useEffect(() => {
+    setConversation(current.currentConversation);
+  }, []);
   useEffect(() => {
     const fetchData = async () => {
       const formData = new FormData();
@@ -56,12 +59,12 @@ const ConversationScreen = () => {
         setConversation(response.conversation.conversation);
       }
     };
-      const timer = setTimeout(() =>{
-        fetchData()
-      },10000)
-      return () => {
-        clearTimeout(timer)
-      }
+    const timer = setTimeout(() => {
+      fetchData();
+    }, 10000);
+    return () => {
+      clearTimeout(timer);
+    };
   }, [conversation]);
   console.log(conversation);
   useEffect(() => {
@@ -90,7 +93,7 @@ const ConversationScreen = () => {
         </View>
 
         <Text style={styles.name}>
-          {current.currentPersonData.first_name}{" "}
+          {current.currentPersonData.first_name}
           {current.currentPersonData.last_name}
         </Text>
       </View>
@@ -98,11 +101,10 @@ const ConversationScreen = () => {
         style={styles.ScrollView}
         contentContainerStyle={styles.contentContainerStyle}
       >
-
         {conversation.map((data, index) => {
           return (
             <MessageText
-              key = {index}
+              key={index}
               user={data.sender == current.currentPersonData._id ? false : true}
               message={data.message}
             />
@@ -110,7 +112,7 @@ const ConversationScreen = () => {
         })}
       </ScrollView>
       <ConversationTextInput
-      value = {message}
+        value={message}
         showButton={showSendButton}
         onTextChange={changeTextHandler}
         onPress={sendTextHandler}

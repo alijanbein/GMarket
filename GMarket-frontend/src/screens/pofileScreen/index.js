@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { styles } from "./style";
 import ProfileFeature from "../../components/profileFeature";
@@ -12,10 +12,10 @@ const ProfileScreen = () => {
   console.log(auth.userData);
   return (
     <View style={styles.container}>
-      <View>
+      <TouchableOpacity onPress={() => {navigation.navigate("Public Profile")}}>
         <Text style={styles.name}>{`${auth.userData.first_name} ${auth.userData.last_name}`}</Text>
         <Text style={styles.number}>{`+${auth.userData.phone_number}`}</Text>
-      </View>
+      </TouchableOpacity>
       <ProfileFeature onPress = {() =>{navigation.navigate("Empty Screen")}} title = "Payment" icon ="credit-card" />
       <ProfileFeature onPress ={() =>{navigation.navigate("Edit Profile")}} title = "Profile" icon = "user-o"/>
       <ProfileFeature onPress ={() =>{navigation.navigate("Report User")}} title = "Report" icon = "exclamation-triangle"/>

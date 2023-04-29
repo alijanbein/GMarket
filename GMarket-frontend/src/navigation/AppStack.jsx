@@ -10,6 +10,7 @@ import Welcome from "../screens/welcome";
 import SearchScreen from "../screens/searchScreen";
 import PosterScreen from "../screens/posterScreen";
 import ConversationScreen from "../screens/conversationScreen";
+import PublicProfile from "../screens/PofileScreen/profileFeatureScreens/publicProfile";
 
 const AppStack = () => {
   const stack = createStackNavigator();
@@ -57,27 +58,32 @@ const AppStack = () => {
       />
       <stack.Screen
         options={{
-          headerTitle:""
+          headerTitle: "",
         }}
-        name ="Search Screen"
+        name="Search Screen"
         component={SearchScreen}
       />
       <stack.Screen
         options={{
-          headerTitle:""
+          headerTitle: "",
         }}
-        name ="Poster Screen"
+        name="Poster Screen"
         component={PosterScreen}
       />
       <stack.Screen
         options={{
-          headerShown:false,
-          
+          headerShown: false,
         }}
-        name ="Conversation Screen"
+        name="Conversation Screen"
         component={ConversationScreen}
       />
-      
+      <stack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="Public Profile"
+        component={PublicProfile}
+      />
     </stack.Navigator>
   );
 };
