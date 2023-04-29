@@ -16,7 +16,6 @@ const ConversationScreen = () => {
   const auth = useSelector((state) => state.auth);
   const current = useSelector((state) => state.current);
   const [conversation, setConversation] = useState([]);
-  // console.log(current.currentPersonData._id);
   const changeTextHandler = (text) => {
     setMessage(text);
   };
@@ -34,7 +33,6 @@ const ConversationScreen = () => {
           authorization: "Bearer " + auth.token,
         }
       );
-      console.log(response);
       const newConversation = conversation;
       newConversation.push({ message: message, sender: auth.userData._id });
       setMessage("");
@@ -66,7 +64,6 @@ const ConversationScreen = () => {
       clearTimeout(timer);
     };
   }, [conversation]);
-  console.log(conversation);
   useEffect(() => {
     if (message.length == 0) {
       setShouSendButton(false);

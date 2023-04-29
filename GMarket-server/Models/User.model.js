@@ -2,7 +2,7 @@ const { default: mongoose } = require("mongoose");
 
 const ratingSchema = new mongoose.Schema({
   user_number : { type: Number, require: true },
-  rate : { type: Number, require: true },
+  rate : { type: Number, require: true,default:2.5 },
 })
 const reportSchema = new mongoose.Schema({
   user : { type: Number, require: true },
@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
   type: { type: String, require: true, enum: ["customer", "farmer","admin"] },
   email: { type: String, require: true },
   phone_number: { type: Number, require: true, unique: true },
-  rating: [ratingSchema ],
+  rating: [ratingSchema],
   reported : [reportSchema],
   profile_picture: {
     type: String,
