@@ -11,12 +11,12 @@ const auctionSchema = new mongoose.Schema({
         ref:"User",
         require:true
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        required: true
-      },
+    startingBid: {type:Number,require:true,default:10000},
+    startTime: Date,
+    endTime:Date
 })
+
+
 
 const Auction = mongoose.model("Auction",auctionSchema);
 module.exports = Auction

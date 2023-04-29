@@ -1,7 +1,8 @@
 const { Router } = require("express");
-const { registerToAuction } = require("../Controllers/auctionController");
+const { registerToAuction, getLatestAuction } = require("../Controllers/auctionController");
 const router = Router();
 
-router.get("/register_to_auction",registerToAuction)
+// router.post("/register_to_auction",registerToAuction)
+// router.get("/get_latest_auction",getLatestAuction)
 
 module.exports = router;
