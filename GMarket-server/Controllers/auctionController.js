@@ -50,6 +50,35 @@ exports.getLatestAuction = async (req,res,next) => {
     }
 }
 
+exports.joinWithHigherBid = async(req,res,next) => {
+       try {
+        const user = req.user;
+        const user_id = user._id
+        const {auctionId,bid} = req.body;
+
+        const auctionExist = await Auction.findById(auctionId);
+        if(auctionExist) {
+            if(auctionExist.startingBid < bid){
+                auctionExist.startingBid = bid;
+                auctionExist.currentWinner = user_id
+                await Auction.save()
+                res.send({status :"sucess", newAuction:auctionExist} )
+            }
+            else {
+                const err = new HttpError("Bid should be more than the current", 405);
+                return next(err);
+            }
+        }
+        else {
+            const err = new HttpError("can;t find auction", 405);
+                return next(err);
+        }
+       } catch (error) {
+        const err = new HttpError("server error", 405);
+                return next(err);
+       }
+}
+
 exports.startAuction = async () => {
   const auctions = await Auction.find().sort({ endTime: 1 }).exec();
 };
