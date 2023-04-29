@@ -74,3 +74,14 @@ exports.deletePoster = async(req,res,next) =>{
     return next(err);
    }
 } 
+
+exports.getPostersById = async(req,res,next) =>{
+  try {
+    const {userId} = req.body 
+    const posters = await Poster.find({farmer: userId});
+    res.send({ status: "sucess", posters: posters });
+   } catch (error) {
+    const err = new HttpError("server error", 500);
+    return next(err);
+   }
+}
