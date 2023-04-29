@@ -4,6 +4,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import style from "./style";
 import UseHttp from "../../hooks/http-hook";
 import { useSelector } from "react-redux";
+import LoadingOverlay from "../loadingOverlay";
 
 const PersonRating = (props) => {
   const [error, isLoading, sendRequest] = UseHttp();
@@ -11,7 +12,17 @@ const PersonRating = (props) => {
   const current = useSelector((state) => state.current);
   const [rating, setRating] = useState(props.rate);
   const user = current.currentPersonData;
-
+  const addRate = async() => {
+      const formData = new FormData();
+      formData.append("phone_number",user.phone_number);
+      formData.append("rating",rating)
+      const response = await sendRequest("user/add_rate", "POST", formData, {
+        authorization: "Bearer " + auth.token,
+      });
+      if (response.status == "sucess") {
+        console.log("success");
+      }
+  }
   useEffect(() => {
     console.log(current.currentPersonData);
     const fetshData = async () => {
@@ -42,7 +53,9 @@ const PersonRating = (props) => {
         iconName = "star";
       }
       ratings.push(
-        <TouchableOpacity key={i} onPress={() => handleRating(i)}>
+        <TouchableOpacity key={i} onPress={async() => {
+          await addRate()
+          handleRating(i)}}>
           <Icon name={iconName} size={25} color="#F5B041" />
         </TouchableOpacity>
       );
@@ -52,6 +65,7 @@ const PersonRating = (props) => {
 
   return (
     <View style={style.container}>
+    {isLoading && <LoadingOverlay/>}
       <Text style={style.title}>Rate this person:</Text>
       {!!!props.rating && (
         <View style={style.ratingContainer}>{renderRating()}</View>

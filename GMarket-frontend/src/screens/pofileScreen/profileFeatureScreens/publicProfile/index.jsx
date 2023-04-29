@@ -15,22 +15,8 @@ const PublicProfile = () => {
   const user = current.currentPersonData
   console.log(user);
   // useEffect(() =>{
-  //   console.log(current.currentPersonData);
   //   const fetshData = async() => {
-  //     const formData = new FormData();
-  //     formData.append("phone_number",user.phone_number)
-  //     const response = await sendRequest("user/get_rate","POST",formData,{
-  //       authorization: "Bearer " + auth.token
-  //     })
-  //     if(response.status == "sucess"){
-  //       if(response.rating == null){
-  //         setRating(3)
-  //       }
-  //       else {
-  //         setRating(Math.floor(response.rating))
-  //       }
-  //     }
-  //   }
+
   //   fetshData()
   // },[])
   return (
