@@ -1,1 +1,3 @@
-exports.addAuction = () =>{}
+exports.registerToAuction = () =>{
+    
+}

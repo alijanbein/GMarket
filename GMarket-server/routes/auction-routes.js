@@ -1,7 +1,7 @@
 const { Router } = require("express");
-const { addAuction } = require("../Controllers/auctionController");
+const { registerToAuction } = require("../Controllers/auctionController");
 const router = Router();
 
-router.get("test",addAuction)
+router.get("/register_to_auction",registerToAuction)
 
 module.exports = router;
