@@ -1,23 +1,63 @@
-import { View, Text, TouchableHighlight, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import { View, Text, TouchableHighlight, TouchableOpacity, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
 import { styles } from "./style";
 import ConversationTextInput from "../conversationTextInput";
 import Avatar from "../Avatar";
+import MessageText from "../messageText";
+import UseHttp from "../../hooks/http-hook";
 
 const ChatModal = (props) => {
   const [showButton, setShowButton] = useState(false);
   const [messageText, setMessageText] = useState("");
+  const [error,isLoading,sendRequest] = UseHttp() 
+  const [messages,setMessages] = useState([])
+  const [, forceUpdate] = useState();
+
   const onTextChange = (text) => {
     setMessageText(text);
     if (text.length != 0) {
       setShowButton(true);
     }
   };
-  const sendHandler = async () => {
-    console.log(messageText);
-    setMessageText("");
-  };
-  return (
+
+
+  useEffect(() => {
+    const fetchData = async() => {
+        try {
+        const formData = new FormData()
+        formData.append("message","hi");
+        formData.append("sessionId",'alinjsama123')
+        const response = await sendRequest("bot/post_message","POST",formData,{});
+        if(response.status == "sucess"){
+            setMessages((before) =>
+                [...before,{messageText:response.response,user:"bot"} ]
+            )
+         
+            console.log("message:" , messages);
+        }
+        } catch (error) {
+            console.log(error.message);
+        }
+
+    }
+    fetchData()
+  },[])
+
+const sendHandler =  async () => {
+    setMessageText("")
+    setMessages(before => [...before,{messageText,user:"user"}])
+    const formData = new FormData()
+        formData.append("message",messageText);
+        formData.append("sessionId",'alinjsama123')
+        const response = await sendRequest("bot/post_message","POST",formData,{});
+        if(response.status == "sucess"){
+            setMessages((before) =>
+            [...before,{messageText:response.response,user:"bot"} ]
+        )
+        }
+}
+console.log(messages);
+return (
     <View style={styles.overlay}>
       <TouchableOpacity
         style={styles.bakcdrop}
@@ -31,7 +71,17 @@ const ChatModal = (props) => {
           <Text style ={styles.bot_name}>Green <Text style = {styles.second_name_color}>Bot</Text></Text>
         </View>
         {/* <ConversationTextInput onTextChange = {props.onTextChange} value = {props.value} onPress = {props.onPress} /> */}
+        <ScrollView style = {{paddingHorizontal:20}} contentContainerStyle={{paddingBottom:120}}>
+      {messages.length != 0 &&   messages.map((data,index) => 
+        <MessageText
+              key = {index}
+              user={data.user == "bot" ? false: true}
+            //   message={data.message}
 
+            message = {data.messageText}
+            />
+      )}
+        </ScrollView>
         <ConversationTextInput
           onTextChange={onTextChange}
           showButton={showButton}

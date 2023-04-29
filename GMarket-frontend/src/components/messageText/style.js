@@ -5,7 +5,6 @@ import { SPACING } from "../../contansts/spacing";
 export const style = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    height: 50,
     borderRadius: 50,
     flexDirection: "row",
     alignItems: "center",
@@ -21,7 +20,6 @@ export const style = StyleSheet.create({
     fontSize: 20,
     paddingHorizontal: 20,
     paddingVertical: 10,
-    height: 60,
     verticalAlign: "middle",
     borderRadius: 20,
     borderBottomLeftRadius: 0,
