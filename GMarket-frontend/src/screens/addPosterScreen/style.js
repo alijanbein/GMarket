@@ -30,6 +30,24 @@ export default styles = StyleSheet.create({
   },
   contentContainerStyle:{
     paddingBottom:30
+  },
+  switch:{
+    alignItems:"center",
+    flexDirection:"row-reverse",
+    width:45,
+    textAlign:"center",
+  },
+  auction:{
+    marginTop:20
+,    flexDirection:"row",
+    height:50,
+    alignItems:"center"
+  },
+  auction_text:{
+    marginLeft:5,
+    fontSize:17,
+    fontWeight:"500",
+    color:COLORS.textColor
   }
 
 });

@@ -35,6 +35,13 @@ export default styles = StyleSheet.create({
     color:COLORS.textColor,
     marginTop:10,
     fontWeight:"bold"
+    },
+    empty:{
+      height:500,
+      textAlign:"center",
+      verticalAlign:"middle",
+      color:COLORS.textColor,
+      fontSize:25
     }
 
 });

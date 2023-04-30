@@ -12,7 +12,7 @@ const ProfileScreen = () => {
   console.log(auth.userData);
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => {navigation.navigate("Public Profile")}}>
+      <TouchableOpacity onPress={() => {navigation.navigate("Edit Profile")}}>
         <Text style={styles.name}>{`${auth.userData.first_name} ${auth.userData.last_name}`}</Text>
         <Text style={styles.number}>{`+${auth.userData.phone_number}`}</Text>
       </TouchableOpacity>

@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, Image, TouchableOpacity, Switch } from "react-native";
 import React, { useState } from "react";
 import style from "./style";
 import InputForm from "../../components/inputForm";
@@ -9,10 +9,14 @@ import * as ImagePicker from "expo-image-picker";
 import { useSelector } from "react-redux";
 import UseHttp from "../../hooks/http-hook";
 import LoadingOverlay from "../../components/loadingOverlay";
+import { COLORS } from "../../contansts/colors";
 
 const AddPostScreen = () => {
-  const auth = useSelector(state => state.auth);
-  const [error,isLoading,sendRequest] = UseHttp();
+  const auth = useSelector((state) => state.auth);
+  const [error, isLoading, sendRequest] = UseHttp();
+  const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+
+  const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
   const navigation = useNavigation();
   const [data, setData] = useState({
     product_title: "",
@@ -127,29 +131,51 @@ const AddPostScreen = () => {
       setDataVAlid({ ...dataValid, price: false });
     }
     if (valid) {
-        const formData = new FormData();
-        formData.append("title",data.product_title);
-        formData.append("product_type",data.product_type);
-        formData.append("description",data.description);
-        formData.append("operation",data.operation);
-        formData.append("poster_image",{
-          uri:imageURI,
-          type: "image/jpeg" ,
-          name:"poster"+auth.phoneNumber +"/jpeg"
-        })
-        const response = await sendRequest("posts/add_post","POST",formData,{
-          authorization: "Bearer "+ auth.token
-        })
-        console.log(response);
-        if(response.status == "sucess"){
-            navigation.navigate("Home")
+      const formData = new FormData();
+      formData.append("title", data.product_title);
+      formData.append("product_type", data.product_type);
+      formData.append("description", data.description);
+      formData.append("operation", data.operation);
+      formData.append("poster_image", {
+        uri: imageURI,
+        type: "image/jpeg",
+        name: "poster" + auth.phoneNumber + "/jpeg",
+      });
+      const response = await sendRequest("posts/add_post", "POST", formData, {
+        authorization: "Bearer " + auth.token,
+      });
+      console.log(response);
+      if (response.status == "sucess") {
+        if(isSwitchOn){
+          const formData = new FormData();
+          formData.append("posterId",response.poster._id,);
+          formData.append("startingBid",data.price)
+          const auction = await sendRequest("auction/register_to_auction","POST",formData,{
+            authorization:"Bearer " +auth.token
+          })
+          console.log(auction);
         }
+        setData({
+          product_title: "",
+          product_type: "",
+          price: "",
+          description: "",
+          operation: "",
+        })
+        navigation.navigate("Home");
+      }
     }
   };
   return (
-    <ScrollView contentContainerStyle={style.contentContainerStyle} style={style.container}>
-    {isLoading && <LoadingOverlay/>}
-      <TouchableOpacity onPress={openImagePickerAsync} style={style.imageContainer}>
+    <ScrollView
+      contentContainerStyle={style.contentContainerStyle}
+      style={style.container}
+    >
+      {isLoading && <LoadingOverlay />}
+      <TouchableOpacity
+        onPress={openImagePickerAsync}
+        style={style.imageContainer}
+      >
         {!!imageURI && <Image style={style.image} source={{ uri: imageURI }} />}
         {!!!imageURI && <Text style={style.textImage}>+ Add Image</Text>}
       </TouchableOpacity>
@@ -174,6 +200,7 @@ const AddPostScreen = () => {
         placeHolder="price"
         invalid={dataValid.price}
       />
+
       <InputForm
         value={data.description}
         onTextChange={descriptionHandler}
@@ -190,15 +217,26 @@ const AddPostScreen = () => {
         bio
         invalid={dataValid.operation}
       />
+          <View style={style.auction}>
+          <Switch
+        trackColor={{ false: "#767577", true: COLORS.main }}
+        thumbColor={isSwitchOn ? COLORS.main : "#f4f3f4"}
+        onValueChange={setIsSwitchOn}
+        value={isSwitchOn}
+        style={style.switch}
+      />
+
+      <Text style={style.auction_text}>{isSwitchOn?"Auction Enabled":"Enable Auction"}</Text>
+          </View>
       <PassButton
         style={{ marginTop: 20 }}
         active={true}
         title="post"
         onPress={sendData}
       />
+     
     </ScrollView>
   );
 };
 
 export default AddPostScreen;
-
