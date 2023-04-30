@@ -34,6 +34,17 @@ export default styles = StyleSheet.create({
     fontSize:20,
     marginLeft:10,
 
+  },
+  empty:{
+    flex:1,
+    justifyContent:"center",
+    alignItems:"center",
+    backgroundColor:"#fff"
+  },
+  empty_text:{
+    fontSize:20,
+    fontWeight:"500"
   }
+
 
 });

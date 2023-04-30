@@ -21,37 +21,40 @@ const AuctionScreen = () => {
   };
   console.log(modalVisible);
   return (
-    <ScrollView style={style.container}>
-      <PosterInfo keyname="Remaining Time:" val="02:25" />
-      <Image
-        style={style.image}
-        source={{ uri: "https://picsum.photos/id/1003/500/500" }}
-      />
-      <PosterInfo keyname="Last Price:" val="10000" price />
-      <PosterInfo keyname="Product Name:" val="karaz" />
-      <PosterInfo keyname="Product type:" val="Fruits" />
-      <PosterInfo keyname="Farmer Name:" val="Ali janbein" />
-      <PosterInfo
-        keyname="Description:"
-        desc
-        val={
-          "orem ipsum dolor gna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip "
-        }
-      />
+    // <ScrollView style={style.container}>
+    //   <PosterInfo keyname="Remaining Time:" val="02:25" />
+    //   <Image
+    //     style={style.image}
+    //     source={{ uri: "https://picsum.photos/id/1003/500/500" }}
+    //   />
+    //   <PosterInfo keyname="Last Price:" val="10000" price />
+    //   <PosterInfo keyname="Product Name:" val="karaz" />
+    //   <PosterInfo keyname="Product type:" val="Fruits" />
+    //   <PosterInfo keyname="Farmer Name:" val="Ali janbein" />
+    //   <PosterInfo
+    //     keyname="Description:"
+    //     desc
+    //     val={
+    //       "orem ipsum dolor gna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip "
+    //     }
+    //   />
      
-        <TouchableOpacity onPress={toggleModal} style={style.join}>
-        <MaterialIcons name="chat" size={30} color="#fff" />
-        <Text style = {style.join_text}>Join</Text>
-        </TouchableOpacity>
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={toggleModal}
-      >
-        <ChatModal onCancel={toggleModal} />
-      </Modal>
-    </ScrollView>
+    //     <TouchableOpacity onPress={toggleModal} style={style.join}>
+    //     <MaterialIcons name="chat" size={30} color="#fff" />
+    //     <Text style = {style.join_text}>Join</Text>
+    //     </TouchableOpacity>
+    //   <Modal
+    //     animationType="fade"
+    //     transparent={true}
+    //     visible={modalVisible}
+    //     onRequestClose={toggleModal}
+    //   >
+    //     <ChatModal onCancel={toggleModal} />
+    //   </Modal>
+    // </ScrollView>
+    <View style ={style.empty}>
+      <Text style={style.empty_text}>No auction set Yet</Text>
+    </View>
   );
 };
 
