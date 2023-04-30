@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, Image, TouchableOpacity, Switch } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./style";
 import InputForm from "../../components/inputForm";
 import { useNavigation } from "@react-navigation/native";
@@ -48,9 +48,10 @@ const AddPostScreen = () => {
     let pickerResult = await ImagePicker.launchImageLibraryAsync();
     if (!pickerResult.canceled) {
       setImageUri(pickerResult.assets[0].uri);
-      console.log(pickerResult.assets[0].uri);
     }
   };
+
+
 
   const typePressHandler = (type) => {
     setTypeActive(!typeActive);

@@ -15,7 +15,7 @@ exports.registerToAuction = async (req, res, next) => {
         now = auctions[0].endTime;
     }
     let end = new Date(now);
-    end.setMinutes(now.getMinutes() + 1);
+    end.setMinutes(now.getMinutes() + 30);
     const newAuction = new Auction();
     newAuction.user = user_id;
     newAuction.poster = posterId;
@@ -39,11 +39,10 @@ exports.getLatestAuction = async (req,res,next) => {
         const latestAuction = await Auction.find().sort({ startTime: 1 })
         .limit(1).populate("user").populate("poster");
         if(latestAuction.length > 0) {
-            res.send({status:"sucess",latestAuction})
+            res.send({status:"sucess",latestAuction:latestAuction[0]})
         }
         else {
-            const err = new HttpError("can't find acutions", 405);
-            return next(err);
+            res.send({status :"sucess",latestAuction:{}})
         }
     } catch (error) {
         const err = new HttpError("server error", 405);

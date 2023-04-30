@@ -5,6 +5,6 @@ module.exports = {
     ipAddress = ip;
   },
   getIpAddress: function() {
-    return ipAddress;
+    return "http://"+ipAddress;
   }
 };  

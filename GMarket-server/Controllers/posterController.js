@@ -6,7 +6,7 @@ const globals = require("../support/globals")
 exports.addPoster = async (req, res, next) => {
   try {
     console.log(req.body);
-    const { title, product_type,price ,descrtiption,operation } = req.body;
+    const { title, product_type,price ,description,operation } = req.body;
     const user = req.user;
     const userID = user._id;
     const phone_number = user.phone_number;
@@ -33,7 +33,7 @@ exports.addPoster = async (req, res, next) => {
     newPoster.product_type = product_type;
     newPoster.farmer = userID;
     newPoster.image_url = imageURL;
-    newPoster.description = descrtiption;
+    newPoster.description = description;
     newPoster.operation = operation;
     newPoster.price = price;
     await newPoster.save();

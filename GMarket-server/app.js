@@ -21,21 +21,40 @@ app.use(fileUpload());
 
 require("dotenv").config();
 
-const interfaces = os.networkInterfaces();
-let ipAddress = "";
-for (const iface of Object.values(interfaces)) {
-  for (const entry of iface) {
-    if (entry.family === "IPv4" && !entry.internal) {
-      ipAddress = entry.address;
-      break;
+const { networkInterfaces } = require('os');
+
+const nets = networkInterfaces();
+const results = Object.create(null); // Or just '{}', an empty object
+
+for (const name of Object.keys(nets)) {
+    for (const net of nets[name]) {
+        // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
+        // 'IPv4' is in Node <= 17, from 18 it's a number 4 or 6
+        const familyV4Value = typeof net.family === 'string' ? 'IPv4' : 4
+        if (net.family === familyV4Value && !net.internal) {
+            if (!results[name]) {
+                results[name] = [];
+            }
+            results[name].push(net.address);
+        }
     }
-  }
-  if (ipAddress) {
-    break;
-  }
 }
-console.log(ipAddress);
-globals.setIpAddress(ipAddress);
+
+// function getIPAddress() {
+//   const interfaces = os.networkInterfaces();
+//   for (let iface in interfaces) {
+//     for (let alias of interfaces[iface]) {
+//       if (alias.family === 'IPv4' && alias.internal === false) {
+//         return alias.address;
+//       }
+//     }
+//   }
+
+//   return '0.0.0.0';
+// }
+// const ip = getIPAddress()
+console.log(results.WiFi[0]);
+globals.setIpAddress(results.WiFi[0]);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
