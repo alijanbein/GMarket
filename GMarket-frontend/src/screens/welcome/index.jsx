@@ -65,6 +65,7 @@ const Welcome = () => {
         const messages = await sendRequest("user/get_all_messaging_users","GET","",{
           authorization: "Bearer " + token,
         })
+        console.log(messages);
         dispatch(setMessages(messages.messages))
         dispatch(login());
         dispatch(setUserData(response.user));

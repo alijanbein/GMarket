@@ -163,6 +163,7 @@ const AddPostScreen = () => {
           description: "",
           operation: "",
         })
+        setIsSwitchOn(false)
         navigation.navigate("Home");
       }
     }

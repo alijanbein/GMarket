@@ -14,11 +14,11 @@ const MessagesScreen = () => {
       dispatch(setCurrentConversation(data.conversation))
       dispatch(setCurrentPersonData(data.participants.filter(data => data.phone_number != auth.userData.phone_number)[0]))
   }
-
+console.log(app);
   return (
     <View style = {styles.container}>
         <UserCoversationCard bot profile_picture = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF23YFKkFn2nNUDaG7LHDCBIrBoKLIllKRE8_uWrD0&s" first_name ={'Green Bot'}/>
-        {app.messages.map((data,i) => <UserCoversationCard
+        { app.messages.length != 0 && app.messages.map((data,i) => <UserCoversationCard
         onPress = {() => {
           enterHandler(data)
         }}

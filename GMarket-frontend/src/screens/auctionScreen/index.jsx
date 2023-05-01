@@ -21,12 +21,15 @@ const AuctionScreen = () => {
   const auth = useSelector((state) => state.auth);
   const [modalVisible, setModalVisible] = useState(false);
   const [auctionData, setAuctionData] = useState({});
+  const [date,setDate] = useState({minutes:"",seconds:""})
   const toggleModal = () => {
     setModalVisible(!modalVisible);
   };
   function isObjEmpty(obj) {
     return Object.keys(obj).length === 0;
   }
+
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await sendRequest(
@@ -43,15 +46,36 @@ const AuctionScreen = () => {
       }
     };
     fetchData();
+    
   }, []);
 
+
+  const  calculateTimeLeft = () => {
+    const difference = new Date(auctionData.endTime) - new Date();
+    let timeLeft = {};
+
+    if (difference > 0) {
+      setDate({
+        minutes:Math.floor((difference / 1000 / 60) % 60),
+        seconds:Math.floor((difference / 1000) % 60)
+      })
+    }
+    }
+  useEffect(() => {
+    
+    if(!isObjEmpty(auctionData)){
+      const intervalId = setInterval(() => {
+        calculateTimeLeft();
+      }, 1000);
+      return () => clearInterval(intervalId);    }
+  },[auctionData])
+
   console.log(auctionData);
-  console.log(auth.userData);
   return (
     <View style={{ flex: 1 }}>
       {!isObjEmpty(auctionData) ? (
         <ScrollView style={style.container}>
-          <PosterInfo keyname="Remaining Time:" val="02:25" />
+          <PosterInfo keyname="Remaining Time:" val={`${date.minutes} : ${date.seconds}`} />
           <Image
             style={style.image}
             source={{

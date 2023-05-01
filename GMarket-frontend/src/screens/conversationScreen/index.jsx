@@ -33,10 +33,10 @@ const ConversationScreen = () => {
           authorization: "Bearer " + auth.token,
         }
       );
-      const newConversation = conversation;
-      newConversation.push({ message: message, sender: auth.userData._id });
+      setConversation([...conversation,{ message: message, sender: auth.userData._id }])
       setMessage("");
     }
+    console.log("haa");
   };
   useEffect(() => {
     setConversation(current.currentConversation);

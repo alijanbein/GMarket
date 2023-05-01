@@ -61,3 +61,7 @@ exports.deleteAuction = async(req,res,next) =>{
     }
  }
  
+
+ exports.testWebHook = (req,res,next) =>{
+    console.log("it works wow!");
+ }
