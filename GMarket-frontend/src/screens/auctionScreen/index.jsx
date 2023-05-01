@@ -70,7 +70,6 @@ const AuctionScreen = () => {
       return () => clearInterval(intervalId);    }
   },[auctionData])
 
-  console.log(auctionData);
   return (
     <View style={{ flex: 1 }}>
       {!isObjEmpty(auctionData) ? (

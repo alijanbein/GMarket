@@ -15,7 +15,7 @@ exports.registerToAuction = async (req, res, next) => {
         now = auctions[0].endTime;
     }
     let end = new Date(now);
-    end.setMinutes(now.getMinutes() + 30);
+    end.setMinutes(now.getMinutes() + 1);
     const newAuction = new Auction();
     newAuction.user = user_id;
     newAuction.poster = posterId;

@@ -1,7 +1,7 @@
 const dialogflow = require('dialogflow');
 const Auction = require('../Models/Auction');
 const HttpError = require('../support/http-error');
-
+const dfff = require("dialogflow-fulfillment")
 exports.sendMessageToBot = async(req,res,next) => {
     const googleProjectId = process.env.googleProjectId
     const googlePrivateKeyId = process.env.googlePrivateKeyId
@@ -63,5 +63,17 @@ exports.deleteAuction = async(req,res,next) =>{
  
 
  exports.testWebHook = (req,res,next) =>{
-    console.log("it works wow!");
- }
+    console.log(req.body);
+        // const agent = new dfff.WebhookClient({
+        //     request:req,
+        //     response:res
+        // });
+        // const testF = (agent) =>{
+        //     agent.add("sending response from webhook server");
+
+        // } 
+
+        // const intentMap = new Map();
+        // intentMap.set('responseDemo',testF)
+        // agent.handleRequest(intentMap);
+}

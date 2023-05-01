@@ -55,7 +55,7 @@ const TabStack = () => {
         headerShown:false,
         tabBarShowLabel: false,
       }}
-      d
+      
     >
       <Tabs.Screen
         options={{
