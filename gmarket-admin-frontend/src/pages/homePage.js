@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import Table from "../components/table";
+import AuthContext from "../context/auth-context";
+import Shows from "../components/shows";
+import Dashboard from "../components/dashboard";
+import Reports from "../components/reports";
 
 function HomePage() {
+    const auth = useContext(AuthContext)
+    const [activeComponent, setActiveComponent] = useState('dashboard');
+    const dashboardHandler =() =>{
+        setActiveComponent("dashboard")
+    }
+    const showsHandler =() =>{
+        setActiveComponent("shows")
+    }
+    const ReportsHandler =() =>{
+        setActiveComponent("reports")
+    }
   return (
     <div className="wrapper">
       <div className="sidebar">
@@ -10,13 +26,13 @@ function HomePage() {
         <nav>
           <ul>
             <li className="active">
-              <a href="#">Dashboard</a>
+            <button onClick={dashboardHandler}> Dashboard</button>
             </li>
             <li>
-              <a href="#">Shows</a>
+            <button onClick={showsHandler}>Shows</button>
             </li>
             <li>
-              <a href="#">Reports</a>
+            <button onClick={ReportsHandler}>Reports</button>
             </li>
           </ul>
         </nav>
@@ -28,11 +44,16 @@ function HomePage() {
               <a href="#">Dashboard</a>
             </li>
             <li>
-              <a href="#">Shows</a>
+              <a onClick={() =>{auth.logout()}} href="/auth" >logout</a>
             </li>
           
           </ul>
         </nav>
+        <div className="content">
+                {activeComponent === "dashboard" && <Dashboard/>}
+                {activeComponent === "shows" && <Shows/>}
+                {activeComponent === "reports" && <Reports/>}
+        </div>
       </div>
     </div>
   );
