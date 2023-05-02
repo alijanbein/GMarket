@@ -6,12 +6,10 @@ import { width } from "deprecated-react-native-prop-types/DeprecatedImagePropTyp
 import { useNavigation } from "@react-navigation/native";
 
 const UserCoversationCard = (props) => {
-  const navigation = useNavigation()
   return (
     <TouchableOpacity
       onPress={()=>{
         props.onPress()
-        navigation.navigate("Conversation Screen")
       }}
       style={[styles.container, props.bot && styles.botContainer]}
     >

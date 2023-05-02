@@ -2,7 +2,7 @@ const dialogflow = require("dialogflow");
 const Auction = require("../Models/Auction");
 const HttpError = require("../support/http-error");
 const dfff = require("dialogflow-fulfillment");
-const User = require("../Models/User.model")
+const User = require("../Models/User.model");
 exports.sendMessageToBot = async (req, res, next) => {
   const googleProjectId = process.env.googleProjectId;
   const googlePrivateKeyId = process.env.googlePrivateKeyId;
@@ -81,34 +81,39 @@ exports.deleteAuction = async (req, res, next) => {
 };
 
 exports.webhookAPi = (req, res, next) => {
-
   const { queryResult } = req.body;
-  const context = queryResult.outputContexts.find((context) =>
-    context
-  );
-  console.log(context.parameters['phone-number']);
-  const intent = queryResult.intent.displayName
-  console.log(intent);
+  const context = queryResult.outputContexts.find((context) => context);
+  const intent = queryResult.intent.displayName;
   const agent = new dfff.WebhookClient({
     request: req,
     response: res,
   });
   console.log(intent === "confirmPhone");
   function testF(agent) {
-
     agent.add("sending response from webhook server");
   }
-  const  phoneConfirm = async (agent) => {
-    const phoneNumber = context.parameters['phone-number'];
-    const user =await  User.findOne({phone_number:phoneNumber});
-    const currentAuction = await Auction.find().find().sort({ startTime: 1 });
+  const phoneConfirm = async (agent) => {
+    console.log(context);
+    const phoneNumber = context.parameters["phone-number"];
+    const user = await User.findOne({ phone_number: phoneNumber });
+    const currentAuction = await Auction.find().sort({ startTime: 1 });
     const userId = user._id;
-    const auctionId = currentAuction[0]._id
-    
-
-    agent.add("confirmed phone");
-  }
+    const auctionId = currentAuction[0]._id;
+    currentAuction[0].startingBid = context.parameters["number"];
+    const auctionExist = await Auction.findById(auctionId);
+    if (auctionExist) {
+      if (auctionExist.startingBid < context.parameters["number"]) {
+        auctionExist.startingBid = context.parameters["number"];
+        auctionExist.currentWinner = userId;
+        await auctionExist.save();
+        agent.add("confirmed, to apply your Bid please type confirm");
+      }
+    }
+  };
   const intentMap = new Map();
-  intentMap.set("confirmPhone",intent == "confirmPhone" ? phoneConfirm : testF);
+  intentMap.set(
+    "confirmPhone",
+    intent == "confirmPhone" ? phoneConfirm : testF
+  );
   agent.handleRequest(intentMap);
 };

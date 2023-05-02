@@ -4,6 +4,6 @@ const router = Router();
 
 router.post("/register_to_auction",registerToAuction)
 router.get("/get_latest_auction",getLatestAuction)
-router.post("/add_new_bid",joinWithHigherBid)
+// router.post("/add_new_bid",joinWithHigherBid)
 
 module.exports = router;

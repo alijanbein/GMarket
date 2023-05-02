@@ -11,6 +11,7 @@ import SearchScreen from "../screens/searchScreen";
 import PosterScreen from "../screens/posterScreen";
 import ConversationScreen from "../screens/conversationScreen";
 import PublicProfile from "../screens/PofileScreen/profileFeatureScreens/publicProfile";
+import BotConversation from "../screens/conversationScreen/BotConversation";
 
 const AppStack = () => {
   const stack = createStackNavigator();
@@ -62,6 +63,13 @@ const AppStack = () => {
         }}
         name="Search Screen"
         component={SearchScreen}
+      />
+      <stack.Screen
+        options={{
+          headerTitle: "",
+        }}
+        name="Bot"
+        component={BotConversation}
       />
       <stack.Screen
         options={{
