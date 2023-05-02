@@ -65,9 +65,9 @@ const AppStack = () => {
         component={SearchScreen}
       />
       <stack.Screen
-        options={{
-          headerTitle: "",
-        }}
+        options={ {
+            headerShown:false
+          }}
         name="Bot"
         component={BotConversation}
       />
