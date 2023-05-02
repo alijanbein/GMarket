@@ -221,8 +221,10 @@ exports.adminLogin = async (req, res, next) => {
     const { email, password } = req.body;
 
     const emailExist = await User.findOne({ email: email });
-
-    if (emailExist && emailExist.password == password) {
+    console.log(emailExist);
+    console.log(password);
+    console.log(email);
+    if (emailExist && emailExist.password === password) {
       const token = jwt.sign({ emailExist }, process.env.SECRET);
         res.send({status:"sucess", token:token});
     } else {

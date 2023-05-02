@@ -102,7 +102,9 @@ body {
               0 0 100px var(--main);
 }
 
-
+.invalid {
+  color: var(--error) !important;
+}
 @media (max-width:500px) {
     .login-box{
       width: 100%;

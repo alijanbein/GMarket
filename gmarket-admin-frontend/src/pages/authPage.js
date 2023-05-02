@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import UseHttp from "../hooks/http-hook";
+import AuthContext from "../context/auth-context";
 
 const AuthPage = () => {
      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+     const auth = useContext(AuthContext)
 // export const numberRegex = /^\d+$/;
+    const [erro,isLoading,sendRequest] = UseHttp()
     const [data,setData] = useState({
+        email:"",
+        password:""
     })
 
     const [dataValid, setDataVAlid] = useState({
@@ -11,21 +17,22 @@ const AuthPage = () => {
         password: true,
       });
 
-      const emailhandler = (text) => {
+      const emailhandler = (event) => {
         setDataVAlid({
           email: true,
           password: true,
         });
-        setData({ ...data, email: text });
+        setData({ ...data, email: event.target.value });
       };
-      const passwordHandler = (text) => {
+      const passwordHandler = (event) => {
         setDataVAlid({
             email: true,
             password: true,
           });
-          setData({ ...data, password: text });
+          setData({ ...data, password: event.target.value });
       };
-      const sendData = async () => {
+      const sendData = async (event) => {
+        event.preventDefault()
         let valid = true;
         if (data.password.length < 5) {
           setDataVAlid({ ...dataValid, last_name: false });
@@ -40,29 +47,32 @@ const AuthPage = () => {
           const formData = new FormData()
           formData.append("password",data.password);
           formData.append("email",data.email);
-        
-          const response  = await sendRequest("auth/register","POST",formData,{});
-          if(response.status == "sucess"){
             
-          }
+          const response  = await sendRequest("auth/admin_login","POST",formData,{});
+          if(response.status == "sucess"){
+            auth.login(response.token)
+        }
           else{
-            console.log("response","can't");
-          }
+            setDataVAlid({
+                email: false,
+                password: false,
+            })
+        }
         }
       };
   return (
     <div className="login-box">
       <h2>Login</h2>
-      <form>
+      <form onSubmit={sendData}>
         <div className="user-box">
-          <input type="text" name="" required="" />
-          <label>Username</label>
+          <input value={data.email} onChange={emailhandler} type="text" placeholder="Enter your email" />
+          <label className={!dataValid.email && 'invalid'}>Email</label>
         </div>
         <div className="user-box">
-          <input type="password" name="" required="" />
-          <label>Password</label>
+          <input value={data.password} onChange={passwordHandler} type="password" placeholder="Enter your password"  />
+          <label className={!dataValid.password && 'invalid'}>Password</label>
         </div>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
