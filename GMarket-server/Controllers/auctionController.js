@@ -50,34 +50,34 @@ exports.getLatestAuction = async (req,res,next) => {
     }
 }
 
-exports.joinWithHigherBid = async(req,res,next) => {
-       try {
-        const user = req.user;
-        const user_id = user._id
-        const {auctionId,bid} = req.body;
+// exports.joinWithHigherBid = async(req,res,next) => {
+//        try {
+//         const user = req.user;
+//         const user_id = user._id
+//         const {auctionId,bid} = req.body;
 
-        const auctionExist = await Auction.findById(auctionId);
-        if(auctionExist) {
-            if(auctionExist.startingBid < bid){
-                auctionExist.startingBid = bid;
-                auctionExist.currentWinner = user_id
-                await auctionExist.save()
-                res.send({status :"sucess", newAuction:auctionExist} )
-            }
-            else {
-                const err = new HttpError("Bid should be more than the current", 405);
-                return next(err);
-            }
-        }
-        else {
-            const err = new HttpError("can;t find auction", 405);
-                return next(err);
-        }
-       } catch (error) {
-        const err = new HttpError(error.message, 405);
-                return next(err);
-       }
-}
+//         const auctionExist = await Auction.findById(auctionId);
+//         if(auctionExist) {
+//             if(auctionExist.startingBid < bid){
+//                 auctionExist.startingBid = bid;
+//                 auctionExist.currentWinner = user_id
+//                 await auctionExist.save()
+//                 res.send({status :"sucess", newAuction:auctionExist} )
+//             }
+//             else {
+//                 const err = new HttpError("Bid should be more than the current", 405);
+//                 return next(err);
+//             }
+//         }
+//         else {
+//             const err = new HttpError("can;t find auction", 405);
+//                 return next(err);
+//         }
+//        } catch (error) {
+//         const err = new HttpError(error.message, 405);
+//                 return next(err);
+//        }
+// }
 
 
 const deleteAuction = async(auctionId) =>{
@@ -140,23 +140,21 @@ const sendMessageToWinner = async (recipient, sender,message) => {
   }
 }
 
+
 exports.auctionWork = () =>{
     setInterval(async()=> {
         const can = await startAuction();
         console.log('watcing');
         if(can){
-            console.log(can);
             const now = new Date()
             console.log(can.endTime - now);
             if(can.endTime - now < 0){
                 sendMessageToWinner(can.user,can.currentWinner,"i won the acution of your poster how i can meet you")
                 const s = await deleteAuction(can._id)
-                console.log(s);
           } 
         
 
           else {
-            console.log("still");
           }
         }
       },10000)

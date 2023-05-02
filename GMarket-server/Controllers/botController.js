@@ -2,6 +2,7 @@ const dialogflow = require("dialogflow");
 const Auction = require("../Models/Auction");
 const HttpError = require("../support/http-error");
 const dfff = require("dialogflow-fulfillment");
+const User = require("../Models/User.model")
 exports.sendMessageToBot = async (req, res, next) => {
   const googleProjectId = process.env.googleProjectId;
   const googlePrivateKeyId = process.env.googlePrivateKeyId;
@@ -31,17 +32,17 @@ exports.sendMessageToBot = async (req, res, next) => {
         languageCode: dialogFlowSessionLanguageCode,
       },
     },
-    queryParams: {
-      contexts: [
-        {
-          name: `${sessionPath}/contexts/new-context`,
-          lifespanCount: 5,
-          parameters: {
-            myCustomParam: "ya rab",
-          },
-        },
-      ],
-    },
+    // queryParams: {
+    //   contexts: [
+    //     {
+    //       name: `${sessionPath}/contexts/new-context`,
+    //       lifespanCount: 5,
+    //       parameters: {
+    //         myCustomParam: "ya rab",
+    //       },
+    //     },
+    //   ],
+    // },
   };
   try {
     const response = await sessionClient.detectIntent(request);
@@ -79,27 +80,35 @@ exports.deleteAuction = async (req, res, next) => {
   }
 };
 
-exports.testWebHook = (req, res, next) => {
-  // console.log(req.body.queryResult.intent.displayName);
-  // console.log(req.body.queryResult.intent.displayName);
+exports.webhookAPi = (req, res, next) => {
 
-  // console.log("req",req.body);
   const { queryResult } = req.body;
   const context = queryResult.outputContexts.find((context) =>
-    context.name.endsWith("/contexts/new-context")
+    context
   );
-  const customParam = context.parameters.myCustomParam;
-  console.log(context);
+  console.log(context.parameters['phone-number']);
+  const intent = queryResult.intent.displayName
+  console.log(intent);
   const agent = new dfff.WebhookClient({
     request: req,
     response: res,
   });
+  console.log(intent === "confirmPhone");
   function testF(agent) {
-    // const myCustomParam = agent.context.get('my-context').parameters;
-    // console.log(myCustomParam);
+
     agent.add("sending response from webhook server");
   }
+  const  phoneConfirm = async (agent) => {
+    const phoneNumber = context.parameters['phone-number'];
+    const user =await  User.findOne({phone_number:phoneNumber});
+    const currentAuction = await Auction.find().find().sort({ startTime: 1 });
+    const userId = user._id;
+    const auctionId = currentAuction[0]._id
+    
+
+    agent.add("confirmed phone");
+  }
   const intentMap = new Map();
-  intentMap.set("confirmBid", testF);
+  intentMap.set("confirmPhone",intent == "confirmPhone" ? phoneConfirm : testF);
   agent.handleRequest(intentMap);
 };
