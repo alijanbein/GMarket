@@ -2,6 +2,7 @@ import { Routes, BrowserRouter, Route } from "react-router-dom";
 import AuthPage from "./pages/authPage";
 import { useEffect, useState } from "react";
 import AuthContext from "./context/auth-context";
+import HomePage from "./pages/homePage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -20,14 +21,17 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    login(token);
+    if(token){
+        login(token)
+    }
   }, []);
-
+console.log(isLoggedIn);
   return (
     <BrowserRouter>
       <AuthContext.Provider value={{ isLoggedIn, token, login, logout }}>
         <Routes>
-          <Route path="/auth" element={<AuthPage />} />
+          {!isLoggedIn&& <Route path="/auth" element={<AuthPage />} />}
+          {isLoggedIn && <Route path="/" element={<HomePage />} />}
         </Routes>
       </AuthContext.Provider>
     </BrowserRouter>
