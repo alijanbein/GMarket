@@ -26,8 +26,7 @@ exports.sendVerificationCodeSMS = async (req, res, next) => {
         from: "+16203776088",
         to: "+" + phone_number,
       })
-      .then((message) => {
-      })
+      .then((message) => {})
       .catch((error) => {
         const err = new HttpError(error.message, 405);
         return next(err);
@@ -56,7 +55,6 @@ exports.sendVerificationCodeSMS = async (req, res, next) => {
 
 exports.confirmVerificationCode = async (req, res, next) => {
   try {
-
     const { code, phone_number } = req.body;
     const number = await Verification.findOne({ phone_number: phone_number });
     if (!number) {
@@ -112,7 +110,7 @@ exports.register = async (req, res, next) => {
   try {
     const { first_name, last_name, email, phone_number, type, image, bio } =
       req.body;
-      console.log(req.body);
+    console.log(req.body);
     const first_name_valid = inputVerify(first_name, "name");
     const last_name_valid = inputVerify(last_name, "name");
     const email_valid = inputVerify(email, "email");
@@ -131,16 +129,14 @@ exports.register = async (req, res, next) => {
       phone_valid &&
       type_valid
     ) {
-   
-      if(user){
+      if (user) {
         user.first_name = first_name;
         user.last_name = last_name;
         user.email = email;
         user.type = type;
         user.phone_number = phone_number;
         await user.save();
-      }
-      else if (!user) {
+      } else if (!user) {
         user = new User();
         user.first_name = first_name;
         user.last_name = last_name;
@@ -179,7 +175,9 @@ exports.storeSeconderyUserData = async (req, res, next) => {
       const err = new HttpError("can't upload this type of image", 401);
       return next(err);
     }
-    const imageURL = `${globals.getIpAddress()}:${process.env.PORT}/photos/${phone_number}.${extention}`;
+    const imageURL = `${globals.getIpAddress()}:${
+      process.env.PORT
+    }/photos/${phone_number}.${extention}`;
     if (!req.files || Object.keys(req.files).length === 0) {
       const err = new HttpError("No files were uploaded.", 401);
       return next(err);
@@ -218,3 +216,21 @@ exports.storeSeconderyUserData = async (req, res, next) => {
   }
 };
 
+exports.adminLogin = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    const emailExist = await User.findOne({ email: email });
+
+    if (emailExist && emailExist.password == password) {
+      const token = jwt.sign({ emailExist }, process.env.SECRET);
+        res.send({status:"sucess", token:token});
+    } else {
+      const err = new HttpError("invalid email or password", 500);
+      return next(err);
+    }
+  } catch (error) {
+    const err = new HttpError("Somthing wen wrong", 500);
+    return next(err);
+  }
+};
