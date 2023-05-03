@@ -1,13 +1,11 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil&family=Pacifico&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil&family=Pacifico&display=swap");
 :root {
-  --main: #34BB78;
-  --secode: #F4F4F6;
-  --textColor: #2F313F;
-  --white: #F2F2F2;
-  --error: #EB6671;
+  --main: #34bb78;
+  --secode: #f4f4f6;
+  --textColor: #2f313f;
+  --white: #f2f2f2;
+  --error: #eb6671;
 }
-
 
 html {
   height: 100%;
@@ -15,10 +13,9 @@ html {
 body {
   width: 100%;
   height: 100%;
-  margin:0;
-  padding:0;
-  font-family: 'Noto Serif Tamil', serif;
-  
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Serif Tamil", serif;
 }
 
 #root {
@@ -36,12 +33,12 @@ body {
 }
 
 .login-box {
-   width: 450px;
+  width: 450px;
   padding: 40px;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0,0,0,.6);
-  border-radius: 10px; 
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -73,12 +70,12 @@ body {
 }
 .login-box .user-box label {
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
   padding: 10px 0;
   font-size: 16px;
   color: #fff;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .login-box .user-box input:focus ~ label,
@@ -100,34 +97,31 @@ body {
   text-decoration: none;
   text-transform: uppercase;
   overflow: hidden;
-  transition: .5s;
+  transition: 0.5s;
   margin-top: 40px;
-  letter-spacing: 4px
+  letter-spacing: 4px;
 }
 
 .login-box button:hover {
   background: var(--main);
   color: var(--white);
   border-radius: 5px;
-  box-shadow: 0 0 5px var(--main),
-              0 0 25px var(--main),
-              0 0 50px var(--main),
-              0 0 100px var(--main);
+  box-shadow: 0 0 5px var(--main), 0 0 25px var(--main), 0 0 50px var(--main),
+    0 0 100px var(--main);
 }
 
 .invalid {
   color: var(--error) !important;
 }
-@media (max-width:500px) {
-    .login-box{
-      width: 100%;
-    }
+@media (max-width: 500px) {
+  .login-box {
+    width: 100%;
+  }
 }
 
 .wrapper {
   height: 100%;
   display: flex;
-
 }
 
 .header {
@@ -138,7 +132,6 @@ body {
   flex-direction: column;
   height: 100%;
 }
-
 
 .sidebar {
   width: 20%;
@@ -155,11 +148,12 @@ body {
 }
 
 .logo {
-  width: 60%;
+  width: 100%;
 }
 
 .logo img {
-  max-width: 100%;
+  width: 100%;
+  
 }
 
 .sidebar nav ul {
@@ -169,8 +163,7 @@ body {
 }
 
 .sidebar nav ul li {
-margin-top: 20px;
-
+  margin-top: 20px;
 }
 
 .sidebar nav ul li button {
@@ -195,9 +188,8 @@ margin-top: 20px;
 }
 
 .header nav {
-  background-color:var(--textColor);
+  background-color: var(--textColor);
   height: 100px;
-  
 }
 .header nav ul {
   list-style: none;
@@ -206,30 +198,25 @@ margin-top: 20px;
   display: flex;
   justify-content: space-between;
   padding-inline: 30px;
-align-items: center;
+  align-items: center;
   height: 100%;
 }
 
-
-
 .header nav ul li a {
-    text-decoration: none;
-    font-size: 30px; 
-    color: var(--white); 
-  }
-
+  text-decoration: none;
+  font-size: 30px;
+  color: var(--white);
+}
 
 .header .content {
   flex-grow: 1;
   padding: 20px;
-
 }
 .admin-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  border:4px solid var(--textColor);
-
+  border: 4px solid var(--textColor);
 }
 
 .admin-table th {
@@ -237,12 +224,12 @@ align-items: center;
   padding: 12px 15px;
   background-color: rgb(183, 150, 150);
   color: #333;
-  border:2.5px solid var(--textColor);
+  border: 2.5px solid var(--textColor);
 }
 
 .admin-table td {
   background: var(--secode);
-  border:2.5px solid var(--textColor);
+  border: 2.5px solid var(--textColor);
   text-align: center;
   padding: 12px 15px;
   border-bottom: 1px solid #ccc;
@@ -274,10 +261,42 @@ align-items: center;
 
 .admin-table td:last-child button:last-child {
   margin-right: 0;
-  
 }
 
 .carousel-image {
   width: 200px;
   height: 200px;
+}
+
+
+.side-drawer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 70%;
+  background-color: var(--main);
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+slide-in-left-enter {
+  transform: translateX(-100%);
+}
+
+.slide-in-left-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 200ms;
+}
+
+.slide-in-left-exit {
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.slide-in-left-exit-active {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: all 200ms;
 }
