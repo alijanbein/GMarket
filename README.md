@@ -24,7 +24,7 @@
 ### Wireframes
 | Login screen  | Profile screen |  Landing screen |
 | ---| ---| ---|
-| ![Landing](./readme/demo/Frame%20100.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![Landing](./readme/demo/login.png) | ![fsdaf](./readme/demo/Profile%20(2).png) | ![fsdaf](./readme/demo/landing.png) |
 
 ### Mockups
 | Home screen  | Menu Screen | Order Screen |
