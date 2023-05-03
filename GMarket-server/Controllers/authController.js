@@ -225,7 +225,7 @@ exports.adminLogin = async (req, res, next) => {
     console.log(password);
     console.log(email);
     if (emailExist && emailExist.password === password) {
-      const token = jwt.sign({ emailExist }, process.env.SECRET);
+      const token = jwt.sign({ user:emailExist }, process.env.SECRET);
         res.send({status:"sucess", token:token});
     } else {
       const err = new HttpError("invalid email or password", 500);

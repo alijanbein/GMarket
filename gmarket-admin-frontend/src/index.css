@@ -315,7 +315,7 @@ slide-in-left-enter {
 }
 
 
-@media (max-width:9500px) {
+@media (max-width:950px) {
   .admin-table {
     font-size: 0.7rem; 
     border: 2px solid var(--textColor);

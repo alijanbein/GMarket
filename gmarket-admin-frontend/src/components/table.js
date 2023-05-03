@@ -1,13 +1,13 @@
 import React from 'react'
 
 function Table(props) {
-    console.log(props);
+
   return (
     <table className="admin-table">
     <thead>
       <tr>
-            {props.th && props.th.map(data =>
-                <th>{data}</th>
+            {props.th && props.th.map((data,index) =>
+                <th key={index}>{data}</th>
                 )}
 
         {/* <th>Username</th>
@@ -28,8 +28,8 @@ function Table(props) {
         </td>
       </tr> */}
       
-      {props.tr && props.tr.map(data => <tr>
-        {data.map(td => <td>{td}</td>)}
+      {props.tr && props.tr.map((data,index) => <tr key={index}>
+        {data.map((td,index) => <td key={index}>{td}</td>)}
       </tr>)}
     </tbody>
   </table>

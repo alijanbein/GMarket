@@ -48,7 +48,6 @@ function HomePage() {
   const openDrawer = () => {
     setShowDrawer(true);
   };
-  console.log(showDrawer);
   return (
     <div className="wrapper">
       {showDrawer && (

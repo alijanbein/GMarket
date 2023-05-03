@@ -25,7 +25,6 @@ function App() {
         login(token)
     }
   }, []);
-console.log(isLoggedIn);
   return (
     <BrowserRouter>
       <AuthContext.Provider value={{ isLoggedIn, token, login, logout }}>
