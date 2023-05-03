@@ -122,6 +122,7 @@ body {
 .wrapper {
   height: 100%;
   display: flex;
+  width: 100%;
 }
 
 .header {
@@ -141,7 +142,7 @@ body {
   color: #fff;
   padding: 20px;
   box-sizing: border-box;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 .sidebar nav {
   margin-top: 100px;
@@ -161,6 +162,7 @@ body {
   padding: 0;
   margin: 0;
 }
+
 
 .sidebar nav ul li {
   margin-top: 20px;
@@ -190,6 +192,10 @@ body {
 .header nav {
   background-color: var(--textColor);
   height: 100px;
+  width: 100%;
+  min-width: 0px;
+
+
 }
 .header nav ul {
   list-style: none;
@@ -201,7 +207,12 @@ body {
   align-items: center;
   height: 100%;
 }
-
+.header nav ul li:not(:last-child){
+  display: block;
+}
+.hum {
+  display: none;
+}
 .header nav ul li a {
   text-decoration: none;
   font-size: 30px;
@@ -217,6 +228,7 @@ body {
   border-collapse: collapse;
   margin-top: 20px;
   border: 4px solid var(--textColor);
+  overflow: scroll;
 }
 
 .admin-table th {
@@ -274,9 +286,10 @@ body {
   left: 0;
   top: 0;
   height: 100%;
-  width: 70%;
+  width: 60%;
+  max-width: 300px;
   background-color: var(--main);
-  z-index: 100;
+  z-index: 10;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 
@@ -299,4 +312,26 @@ slide-in-left-enter {
   transform: translateX(-100%);
   opacity: 0;
   transition: all 200ms;
+}
+
+
+@media (max-width:9500px) {
+  .admin-table {
+    font-size: 0.7rem; 
+    border: 2px solid var(--textColor);
+    overflow:scroll
+  }
+  .hum{
+    display: block;
+    z-index: 100;
+  }
+  .header nav ul li:not(:last-child){
+    display: none;
+  }
+  .sidebar{
+    width: 100%;
+  }
+  .try{
+    display: none;
+  }
 }

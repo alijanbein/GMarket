@@ -3,7 +3,7 @@ import logo from "../assets/logo.png"
 
 function Sidebar(props) {
   return (
-    <div className="sidebar">
+    <div className={"sidebar " + props.className}>
         <div className="logo">
           <img src={logo} alt="Logo" />
         </div>

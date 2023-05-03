@@ -1,4 +1,3 @@
-import "./SideDrawer.css";
 import ReactDom from "react-dom";
 import { CSSTransition } from "react-transition-group";
 const SideDrawer = (props) => {
