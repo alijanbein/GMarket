@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Table from "../components/table";
 import AuthContext from "../context/auth-context";
 import Shows from "../components/shows";
@@ -7,15 +7,23 @@ import Reports from "../components/reports";
 import Sidebar from "../components/sidebar";
 import Header from "../components/header";
 import SideDrawer from "../components/UIElements/SideDrawer";
+import { useNavigate } from "react-router-dom";
 function HomePage() {
   const auth = useContext(AuthContext);
   const [activeComponent, setActiveComponent] = useState("dashboard");
   const [showDrawer, setShowDrawer] = useState(false);
+  const navigatie = useNavigate()
   const [activeBoard, setActiveBoard] = useState({
     dashboard: true,
     shows: false,
     reports: false,
   });
+
+  useEffect(()=>{
+    if(!auth.isLoggedIn){
+      navigatie("/auth")
+    }
+  })
   const dashboardHandler = () => {
     setActiveComponent("dashboard");
     setActiveBoard({
