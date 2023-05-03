@@ -1,14 +1,57 @@
-import React from 'react'
-import Table from './table'
-    const th = ['re','role','status','Action']
-    const tr = [['JohnDoe','johndoe@example.com',<img className='carousel-image' src='https://picsum.photos/id/1003/200/200' />,'Active',<button>Delete</button>],['JohnDoe','johndoe@example.com',<img className='carousel-image' src='https://picsum.photos/id/1003/200/200' />,'Active',<button>Delete</button>] ]
+import React, { useContext, useEffect, useState } from "react";
+import Table from "./table";
+import UseHttp from "../hooks/http-hook";
+import AuthContext from "../context/auth-context";
+import { useNavigate } from "react-router-dom";
+const th = ["first_name", "last_name", "message", "Action"];
+
+
 function Reports() {
-  return (
-    <Table
-    th = {th}
-    tr = {tr}
-    />
-  )
+  const [error, isLoading, sendRequest] = UseHttp();
+  const [data, setData] = useState([]);
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate()
+
+  const deleteUser = async(_id) => {
+    const formData = new FormData()
+    formData.append("userId",_id)
+      const response = await sendRequest("admin/delete_by_id","POST",formData,{
+        authorization: "Bearer " + auth.token 
+      })
+      if (response.status == "sucess") {
+       navigate(0)
+      }
+  }
+
+  useEffect(() =>{
+    const fetchData = async () => {
+      const response = await sendRequest("admin/reports", "GET", "", {
+        authorization: "Bearer " + auth.token,
+      });
+      console.log(response);
+      if (response.status == "sucess") {
+        const tr = response.reports.map(
+          ({message,reported }) =>  [
+            reported.first_name,
+            reported.last_name,
+            message,
+            <button onClick={() =>{deleteUser(reported._id)}}>Delete</button>
+          ]
+        );
+
+        console.log(tr);
+        setData(tr);
+      } else {
+        console.log("faild");
+      }
+    };
+    fetchData();
+  },[])
+
+  return  <>
+  {data.length != 0 && <Table th={th} tr={data} />}
+</>
+ 
 }
 
-export default Reports
+export default Reports;

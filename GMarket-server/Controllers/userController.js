@@ -80,15 +80,18 @@ exports.getRate = async (req, res, next) => {
 
 exports.reportUser = async (req, res, next) => {
   try {
-    const user_number = req.user.phone_number;
+    const userData = req.user;
+    const user_number = userData._id
     const { message, phone_number } = req.body;
+    const user = await User.findOne({phone_number});
+    const user_id = user._id
     if (message.length <= 0) {
       const err = new HttpError("Invalid input", 405);
       return next(err);
     }
     const reportedBefore = await Report.findOne({
       sender: user_number,
-      reported: phone_number,
+      reported: user_id,
     });
     if (reportedBefore) {
       res.send({ status: "sucess", report: reportedBefore });
@@ -96,7 +99,7 @@ exports.reportUser = async (req, res, next) => {
     }
     const newReport = new Report();
     newReport.sender = user_number;
-    newReport.reported = phone_number;
+    newReport.reported = user_id;
     newReport.message = message;
     await newReport.save();
     res.send({ status: "sucess", report: newReport });

@@ -7,7 +7,7 @@ const globals = require("../support/globals")
 
 exports.getReports = async (req, res, next) => {
   try {
-    const reports = await Report.find();
+    const reports = await Report.find().populate("reported");
     if (!reports) {
       const err = new HttpError("can't find reports", 403);
       return next(err);
