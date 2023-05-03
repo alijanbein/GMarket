@@ -22,14 +22,14 @@
 > We designed Green Market using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
 ### Wireframes
-| Login screen  | Profile screen |  Landing screen |
+| Home screen  | Profile screen |  AddPost screen |
 | ---| ---| ---|
-| ![Landing](./readme/demo/login.png) | ![fsdaf](./readme/demo/Profile%20(2).png) | ![fsdaf](./readme/demo/landing.png) |
+| ![Landing](./readme/demo/profile%20(3).png) | ![fsdaf](./readme/demo/home%20(2).png) | ![fsdaf](./readme/demo/addpost.png) |
 
 ### Mockups
-| Home screen  | Menu Screen | Order Screen |
+| Complete Profile screen  | Login Screen | Auction Screen |
 | ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![Landing](./readme/demo/completeProfile.png) | ![fsdaf](./readme/demo/login.png) | ![fsdaf](./readme/demo/auction.png) |
 
 <br><br>
 
