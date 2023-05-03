@@ -20,7 +20,7 @@ function Header(props) {
     <ul>
    
       <li>
-        <a href="#">Dashboard</a>
+        <a href="#">{props.board}</a>
       </li>
       <li>
         <a

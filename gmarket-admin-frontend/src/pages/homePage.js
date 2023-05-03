@@ -57,6 +57,8 @@ function HomePage() {
             dashboardHandler={dashboardHandler}
             showsHandler={showsHandler}
             ReportsHandler={ReportsHandler}
+            phone
+
           />
         </SideDrawer>
       ) 
@@ -69,7 +71,7 @@ function HomePage() {
           ReportsHandler={ReportsHandler}
         />
       <div className="header">
-        <Header onClick={showDrawer ? closeDrawer : openDrawer} />
+        <Header board = {activeComponent} onClick={showDrawer ? closeDrawer : openDrawer} />
         <div className="content">
           {activeComponent === "dashboard" && <Dashboard />}
           {activeComponent === "shows" && <Shows />}

@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import logo from "../assets/logo.png"
+import AuthContext from '../context/auth-context'
 
 function Sidebar(props) {
+    const auth = useContext(AuthContext)
   return (
     <div className={"sidebar " + props.className}>
         <div className="logo">
@@ -18,6 +20,12 @@ function Sidebar(props) {
             <li className={props.activeBoard.reports ? "active" : ""}>
               <button onClick={props.ReportsHandler}>Reports</button>
             </li>
+            {
+                props.phone &&  <li>
+              <button onClick={()=>{auth.logout()}}>logout</button>
+            </li>
+            }
+
           </ul>
         </nav>
       </div>
