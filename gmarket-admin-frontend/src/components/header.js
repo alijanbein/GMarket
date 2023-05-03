@@ -1,49 +1,47 @@
-import React, { useContext, useState } from 'react'
-import AuthContext from '../context/auth-context';
-import AnimatedButton from './UIElements/animated-button';
+import React, { useContext, useState } from "react";
+import AuthContext from "../context/auth-context";
+import AnimatedButton from "./UIElements/animated-button";
 
 function Header(props) {
-    const auth = useContext(AuthContext)
-    const [className,setClassName] = useState('');
+  const auth = useContext(AuthContext);
+  const [className, setClassName] = useState("");
 
-    const toggleButton = () => {
-        if(className === "on"){
-            setClassName('');
-        }
-        else{
-            setClassName("on");
-        }
+  const toggleButton = () => {
+    if (className === "on") {
+      setClassName("");
+    } else {
+      setClassName("on");
     }
-    
+  };
+
   return (
     <nav>
-    <ul>
-   
-      <li>
-        <a href="#">{props.board}</a>
-      </li>
-      <li>
-        <a
+      <ul>
+        <li>
+          <a href="#">{props.board}</a>
+        </li>
+        <li>
+          <a
+            onClick={() => {
+              auth.logout();
+            }}
+            href="/auth"
+          >
+            logout
+          </a>
+        </li>
+        <li
           onClick={() => {
-            auth.logout();
+            toggleButton();
+            props.onClick();
           }}
-          href="/auth"
+          className="hum"
         >
-          logout
-        </a>
-      </li>
-      <li onClick ={() =>{
-            toggleButton()
-            props.onClick()
-          }}
-           className='hum'>
-          
-          <AnimatedButton className={className}/>
-          
-      </li>
-    </ul>
-  </nav>
-  )
+          <AnimatedButton className={className} />
+        </li>
+      </ul>
+    </nav>
+  );
 }
 
-export default Header
+export default Header;
