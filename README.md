@@ -5,14 +5,14 @@
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
 
-> A mobile app for ordering coffee on-the-go, making it easier for coffee lovers to get their favorite beverages without waiting in line.
+> A mobile app for connecting farmers and customers to sell their products directly, without the need for a middleman. 
 >
-> Coffee Express aims to streamline the coffee-ordering process by providing a user-friendly platform for customers to place orders and pick up their coffee at their convenience. We believe in enhancing the coffee experience by saving time and ensuring customer satisfaction.
+> Green Market is a great way to support local farmers and get fresh, high-quality produce at a lower price. If you're looking for a more convenient and affordable way to shop for food, then this app is a great option for you.
 
 ### User Stories
-- As a user, I want to browse the menu, so I can find my favorite coffee drinks.
-- As a user, I want to customize my order, so I can add or remove ingredients according to my preferences.
-- As a user, I want to pay for my order through the app, so I can avoid waiting in line at the store.
+- As a Farmer, I want to post my  offer about my production, so that let me offer my production without going to the market.
+- As a Farmer, I want to join auctions, so I can have the best price for my product.
+- As a customer, I want to search for production to buy, so I can choise the best quality and price.
 
 <br><br>
 
