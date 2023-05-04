@@ -34,14 +34,17 @@ const Welcome = () => {
 
     const setData = async () => {
       const token = await AsyncStorage.getItem("token");
-      const response = await sendRequest(
-        "user/get_user_by_nummber",
-        "POST",
-        "",
-        {
-          authorization: "Bearer " + token,
-        }
-      );
+      let response
+      if(token){
+         response = await sendRequest(
+          "user/get_user_by_nummber",
+          "POST",
+          "",
+          {
+            authorization: "Bearer " + token,
+          }
+        );
+      }
       if (!!token && response.status == "sucess") {
         dispatch(setToken(token))
         const shows = await sendRequest("user/get_carousel_images", "GET", "", {
@@ -65,7 +68,6 @@ const Welcome = () => {
         const messages = await sendRequest("user/get_all_messaging_users","GET","",{
           authorization: "Bearer " + token,
         })
-        console.log(messages);
         dispatch(setMessages(messages.messages))
         dispatch(login());
         dispatch(setUserData(response.user));

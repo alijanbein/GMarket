@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { setPhoneNumberSlice } from "../../redux/slices/authSlice";
 import { COLORS } from "../../contansts/colors";
 import LoadingOverlay from "../../components/loadingOverlay";
-import axios from 'axios';
+import axios from "axios";
 import UseHttp from "../../hooks/http-hook";
 const AuthPhoneInputScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -15,7 +15,7 @@ const AuthPhoneInputScreen = () => {
   const [isValid, setIsValid] = useState(true);
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const [isLoading,error,sendRequest] = UseHttp()
+  const [isLoading, error, sendRequest] = UseHttp();
   const textChangeHandler = (text) => {
     setIsValid(true);
     setPhoneNumber(text);
@@ -23,15 +23,17 @@ const AuthPhoneInputScreen = () => {
 
   const clickHandler = async () => {
     dispatch(setPhoneNumberSlice(phoneNumber));
-    const formData = new FormData()
-    formData.append("phone_number","961"+phoneNumber)
-    const data = await sendRequest("auth/send_verification_code_sms","POST",formData)
+    const formData = new FormData();
+    formData.append("phone_number", "961" + phoneNumber);
+    const data = await sendRequest(
+      "auth/send_verification_code_sms",
+      "POST",
+      formData
+    );
     console.log(data);
-    if(data.status == "sucess"){
-
-        navigation.navigate("Code Verification");
-    }
-    else {
+    if (data.status == "sucess") {
+      navigation.navigate("Code Verification");
+    } else {
       console.log("no");
     }
   };
@@ -44,11 +46,9 @@ const AuthPhoneInputScreen = () => {
     }
   }, [phoneNumber]);
 
-
-
   return (
     <View style={styles.container}>
-      {isLoading && <LoadingOverlay/>}
+      {isLoading && <LoadingOverlay />}
       <Text style={styles.header}>
         <Text style={styles.span}>Green</Text> Market
       </Text>

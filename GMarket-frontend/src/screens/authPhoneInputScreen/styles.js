@@ -7,8 +7,8 @@ export default styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingHorizontal:SPACING.paddingHorizontal,
-    paddingVertical:20,
+    paddingHorizontal: SPACING.paddingHorizontal,
+    paddingVertical: 20,
     flexDirection: "column",
     justifyContent: "space-between",
   },
@@ -24,6 +24,8 @@ export default styles = StyleSheet.create({
   phone_input: {
     flexDirection: "row",
     justifyContent: "center",
+  },
+  invalid_container: {
   },
   phone: {
     backgroundColor: COLORS.second,
@@ -48,12 +50,11 @@ export default styles = StyleSheet.create({
     marginTop: 5,
     marginLeft: 15,
     fontSize: 15,
-    color:COLORS.error
+    color: COLORS.error,
   },
 
   invalid_input: {
     borderWidth: 2,
     borderColor: COLORS.error,
   },
-
 });

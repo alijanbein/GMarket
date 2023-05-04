@@ -11,14 +11,16 @@ import { useNavigation } from "@react-navigation/native";
 import UseHttp from "../../hooks/http-hook";
 import LoadingOverlay from "../../components/loadingOverlay";
 import { useDispatch, useSelector } from "react-redux";
-import { setToken, setUserData } from "../../redux/slices/authSlice";
+import { login, setToken, setUserData } from "../../redux/slices/authSlice";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { setCarouseImages, setCategores, setMessages, setRecomendedProduct } from "../../redux/slices/appDataSlice";
 
 const ProfileInfoScreen = () => {
   const dispatch = useDispatch()
   const auth = useSelector(state => state.auth)
   const navigation = useNavigation();
-  const [isLoading,error,sendRequest] = UseHttp()
+  const [isLoading,setIsLoading] = useState(false)
+  const [i,error,sendRequest] = UseHttp()
   const [data, setData] = useState({
     first_name: "",
     last_name: "",
@@ -77,6 +79,7 @@ const ProfileInfoScreen = () => {
       setDataVAlid({ ...dataValid, email: false });
     }
     if (valid) {
+      setIsLoading(true)
       const formData = new FormData()
       formData.append("first_name",data.first_name);
       formData.append("email",data.email);
@@ -85,9 +88,38 @@ const ProfileInfoScreen = () => {
       formData.append("last_name",data.last_name);
       const response  = await sendRequest("auth/register","POST",formData,{});
       if(response.status == "sucess"){
+        const token = response.token
+
+
+        dispatch(setToken(token))
+        const shows = await sendRequest("user/get_carousel_images", "GET", "", {
+          authorization: "Bearer " + token,
+        });
+        if (shows.status == "sucess") {
+          dispatch(setCarouseImages(shows.show[0].carousel));
+          dispatch(setCategores(shows.show[0].categories));
+        }
+        const recomended = await sendRequest(
+          "posts/get_recommended_posters",
+          "POST",
+          "",
+          {
+            authorization: "Bearer " + token,
+          }
+        );
+        if(recomended.status == "sucess"){
+          dispatch(setRecomendedProduct(recomended.posters))
+        }
+        const messages = await sendRequest("user/get_all_messaging_users","GET","",{
+          authorization: "Bearer " + token,
+        })
+        dispatch(setMessages(messages.messages))
         dispatch(setUserData(response.user));
-        dispatch(setToken(response.token))
+
+
+
         await AsyncStorage.setItem("token",response.token)
+        setIsLoading(false)
         navigation.navigate("Complete Profile Info");
       }
       else{
