@@ -2,7 +2,6 @@ import { View, Text, TextInput } from "react-native";
 import React from "react";
 import style from "./style";
 import SendeButton from "../sendButton";
-import { styles } from "../sendButton/style";
 
 const ConversationTextInput = (props) => {
   return (

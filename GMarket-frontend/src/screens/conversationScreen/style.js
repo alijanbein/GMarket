@@ -5,7 +5,6 @@ import { COLORS } from "../../contansts/colors";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingHorizontal:SPACING.paddingHorizontal,
     backgroundColor: "#fff",
     
   },

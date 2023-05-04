@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 import { COLORS } from "../../contansts/colors";
-import { SPACING } from "../../contansts/spacing";
 
 export const style = StyleSheet.create({
   btn: {

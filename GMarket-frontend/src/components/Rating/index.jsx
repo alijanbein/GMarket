@@ -20,11 +20,9 @@ const PersonRating = (props) => {
         authorization: "Bearer " + auth.token,
       });
       if (response.status == "sucess") {
-        console.log("success");
       }
   }
   useEffect(() => {
-    console.log(current.currentPersonData);
     const fetshData = async () => {
       const formData = new FormData();
       formData.append("phone_number", user.phone_number);

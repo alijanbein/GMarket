@@ -3,24 +3,35 @@ import React from "react";
 import { styles } from "./style";
 import PosterInfo from "../../components/PosterInfo";
 import PassButton from "../../components/passButton";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import { setCurrentPersonData } from "../../redux/slices/currentSlice";
 
 const PosterScreen = () => {
+  const current = useSelector(state => state.current);
+  const data = current.currentPosterData
+  const navigation = useNavigation();
+  const dispatch = useDispatch()
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>ALi Janbein</Text>
+      <Text style={styles.title}>{data.farmer.first_name} {data.farmer.last_name}</Text>
       <Image
         style={styles.image}
-        source={{ uri: "https://picsum.photos/id/1004/500/500" }}
+        source={{ uri: data.image_url }}
       />
-      <PosterInfo keyname="Product Name:" val="Cherry" />
-      <PosterInfo keyname="First Price:" price val="10,000 LBP" />
-      <PosterInfo keyname="Operation:" val="Every Day" />
+      <PosterInfo keyname="Product Name:" val={data.title} />
+      <PosterInfo keyname="First Price:" price val={data.price}  />
+      <PosterInfo keyname="Operation:" val={data.operation} />
       <PosterInfo
         keyname="Description:"
         desc
-        val="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galle"
+        val={data.description}
       />
-      <PassButton active ={true} title="Conatct" />
+      <PassButton onPress = {() =>
+      
+      {
+        dispatch(setCurrentPersonData(data.farmer))
+        navigation.navigate("Conversation Screen")}} active ={true} title="Conatct" />
     </View>
   );
 };

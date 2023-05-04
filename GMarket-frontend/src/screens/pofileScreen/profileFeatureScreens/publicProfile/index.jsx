@@ -2,7 +2,6 @@ import { View, Text, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import style from "./style";
 import Avatar from "../../../../components/Avatar";
-import PosterInfo from "../../../../components/PosterInfo";
 import PersonRating from "../../../../components/Rating";
 import PosterCard from "../../../../components/PosterCard";
 import UseHttp from "../../../../hooks/http-hook";
@@ -47,7 +46,6 @@ const PublicProfile = () => {
         </View>
       </View>
       <View style={style.line} />
-      {/* <PosterInfo keyname = "Rate" val = "4.5/5"/> */}
       <PersonRating />
       <View style={style.line} />
       <Text style={style.posters}>Published Posters:</Text>
@@ -55,7 +53,7 @@ const PublicProfile = () => {
         style={{ marginTop: 10 }}
         contentContainerStyle={{ paddingBottom: 40 }}
       >
-        {posters.length > 0 && posters.map((data, index) => <PosterCard data = {data}/>)}
+        {posters.length > 0 && posters.map((data, index) => <PosterCard key={index} data = {data}/>)}
         {posters.length == 0 && <Text style = {style.empty}>no posters yet</Text>}
       </ScrollView>
     </View>

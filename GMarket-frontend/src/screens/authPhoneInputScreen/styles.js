@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 import { COLORS } from "../../contansts/colors";
-import { FONTS } from "../../contansts/fonts";
 import { SPACING } from "../../contansts/spacing";
 
 export default styles = StyleSheet.create({

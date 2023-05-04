@@ -23,7 +23,6 @@ const MessagesScreen = () => {
 
 
   }
-console.log(app);
 
   return (
     <View style = {styles.container}>

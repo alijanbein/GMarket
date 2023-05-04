@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import Table from "../components/table";
 import AuthContext from "../context/auth-context";
 import Shows from "../components/shows";
 import Dashboard from "../components/dashboard";

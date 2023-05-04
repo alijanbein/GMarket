@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 const AuthPage = () => {
      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
      const auth = useContext(AuthContext)
-// export const numberRegex = /^\d+$/;
     const [erro,isLoading,sendRequest] = UseHttp()
     const navigation = useNavigate()
     const [data,setData] = useState({

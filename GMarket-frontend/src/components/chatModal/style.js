@@ -30,7 +30,6 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     position:"absolute",
     zIndex: 5,
-    // backgroundColor:"yellow"
   },
   header: {
     backgroundColor:COLORS.second,

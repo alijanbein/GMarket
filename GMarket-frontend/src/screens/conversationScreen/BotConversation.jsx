@@ -7,7 +7,6 @@ import Icon from "react-native-vector-icons/Ionicons";
 import ConversationTextInput from "../../components/conversationTextInput";
 import MessageText from "../../components/messageText";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
 import useHttp from "../../hooks/http-hook";
 const BotConversation = () => {
 const navigation = useNavigation();
@@ -15,8 +14,7 @@ const navigation = useNavigation();
   const [showSendButton, setShouSendButton] = useState(false);
   const [messages,setMessages] = useState([])
   const [errr, isLoading, sendRequest] = useHttp();
-  const auth = useSelector((state) => state.auth);
-  const current = useSelector((state) => state.current);
+
   const changeTextHandler = (text) => {
     setMessageText(text);
     if (text.length != 0) {
@@ -49,7 +47,6 @@ const navigation = useNavigation();
                 [...before,{messageText:response.response,user:"bot"} ]
             )
          
-            console.log("message:" , messages);
         }
         } catch (error) {
             console.log(error.message);
@@ -90,7 +87,6 @@ const navigation = useNavigation();
         return (
           <MessageText
             key={index}
-            // user={data.sender == current.currentPersonData._id ? false : true}
             user={data.user == "bot" ? false: true}
             message={data.messageText}
           />

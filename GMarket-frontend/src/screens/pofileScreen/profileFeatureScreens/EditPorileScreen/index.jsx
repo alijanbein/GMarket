@@ -80,7 +80,6 @@ const EditProfileScreen = () => {
       const response = await sendRequest("user/update_user_data","POST",formData,{
         authorization : "Bearer "+ auth.token
       });
-      console.log(response);
       if(response.status == "sucess"){
         dispatch(setUserData(response.data))
         navigation.navigate("Profile");

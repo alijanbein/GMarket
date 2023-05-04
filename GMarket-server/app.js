@@ -9,7 +9,6 @@ const adminRoutes = require("./routes/admin-routes");
 const bodyParser = require("body-parser");
 const HttpError = require("./support/http-error");
 const fileUpload = require("express-fileupload");
-const os = require("os");
 const globals = require("./support/globals");
 const { authMiddleware } = require("./middlewares/authMiddleware");
 const { adminMiddleware } = require("./middlewares/adminMiddleware");
@@ -24,12 +23,11 @@ require("dotenv").config();
 const { networkInterfaces } = require('os');
 
 const nets = networkInterfaces();
-const results = Object.create(null); // Or just '{}', an empty object
+const results = Object.create(null); 
 
 for (const name of Object.keys(nets)) {
     for (const net of nets[name]) {
-        // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
-        // 'IPv4' is in Node <= 17, from 18 it's a number 4 or 6
+        
         const familyV4Value = typeof net.family === 'string' ? 'IPv4' : 4
         if (net.family === familyV4Value && !net.internal) {
             if (!results[name]) {
@@ -40,20 +38,7 @@ for (const name of Object.keys(nets)) {
     }
 }
 
-// function getIPAddress() {
-//   const interfaces = os.networkInterfaces();
-//   for (let iface in interfaces) {
-//     for (let alias of interfaces[iface]) {
-//       if (alias.family === 'IPv4' && alias.internal === false) {
-//         return alias.address;
-//       }
-//     }
-//   }
 
-//   return '0.0.0.0';
-// }
-// const ip = getIPAddress()
-console.log(results.WiFi[0]);
 globals.setIpAddress(results.WiFi[0]);
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -77,6 +62,5 @@ app.use((error, req, res, next) => {
 
 app.listen(process.env.PORT, async() => {
    auctionWork()
-  console.log("server is runing ");
   require("./db.config");
 });

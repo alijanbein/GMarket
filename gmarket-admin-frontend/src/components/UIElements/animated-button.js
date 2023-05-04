@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./animated-button.css";
 const AnimatedButton = (props) => {
     

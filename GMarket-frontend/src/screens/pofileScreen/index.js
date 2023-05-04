@@ -9,7 +9,6 @@ const ProfileScreen = () => {
   const auth = useSelector(state => state.auth)
   const navigation = useNavigation()
   const dispatch = useDispatch()
-  console.log(auth.userData);
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => {navigation.navigate("Edit Profile")}}>

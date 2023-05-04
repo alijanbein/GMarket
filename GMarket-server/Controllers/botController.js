@@ -21,7 +21,6 @@ exports.sendMessageToBot = async (req, res, next) => {
     credentials,
   });
 
-  // const sessionPath = sessionClient.sessionPath(googleProjectId,sessionId)
   const sessionPath = sessionClient.sessionPath(googleProjectId, sessionId);
 
   const request = {
@@ -32,17 +31,7 @@ exports.sendMessageToBot = async (req, res, next) => {
         languageCode: dialogFlowSessionLanguageCode,
       },
     },
-    // queryParams: {
-    //   contexts: [
-    //     {
-    //       name: `${sessionPath}/contexts/new-context`,
-    //       lifespanCount: 5,
-    //       parameters: {
-    //         myCustomParam: "ya rab",
-    //       },
-    //     },
-    //   ],
-    // },
+   
   };
   try {
     const response = await sessionClient.detectIntent(request);
@@ -88,12 +77,10 @@ exports.webhookAPi = (req, res, next) => {
     request: req,
     response: res,
   });
-  console.log(intent === "confirmPhone");
   function testF(agent) {
     agent.add("sending response from webhook server");
   }
   const phoneConfirm = async (agent) => {
-    console.log(context);
     const phoneNumber = context.parameters["phone-number"];
     const user = await User.findOne({ phone_number: phoneNumber });
     const currentAuction = await Auction.find().sort({ startTime: 1 });

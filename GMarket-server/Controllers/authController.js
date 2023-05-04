@@ -2,7 +2,6 @@ const User = require("../Models/User.model");
 const HttpError = require("../support/http-error");
 const Verification = require("../Models/Verification");
 const jwt = require("jsonwebtoken");
-const fileUpload = require("express-fileupload");
 const globals = require("../support/globals");
 
 var mime = require("mime");
@@ -10,7 +9,6 @@ var mime = require("mime");
 exports.sendVerificationCodeSMS = async (req, res, next) => {
   const { phone_number } = req.body;
   const verificationCode = Math.floor(Math.random() * 9000 + 1000);
-  console.log(verificationCode);
   const message =
     "to verifiy your number this is the verification Code " + verificationCode;
 
@@ -50,7 +48,6 @@ exports.sendVerificationCodeSMS = async (req, res, next) => {
     const err = new HttpError("Server Error try again later", 405);
     next(err);
   }
-  console.log(phone_number);
 };
 
 exports.confirmVerificationCode = async (req, res, next) => {
@@ -64,14 +61,12 @@ exports.confirmVerificationCode = async (req, res, next) => {
       );
       return next(err);
     }
-    console.log(number.verification_code);
     if (code != number.verification_code) {
       const err = new HttpError("Invalid Code", 401);
       return next(err);
     }
     res.send({ status: "sucess" });
   } catch (error) {
-    console.log(error.message);
     const err = new HttpError("server error", 401);
     return next(err);
   }
@@ -110,18 +105,13 @@ exports.register = async (req, res, next) => {
   try {
     const { first_name, last_name, email, phone_number, type, image, bio } =
       req.body;
-    console.log(req.body);
     const first_name_valid = inputVerify(first_name, "name");
     const last_name_valid = inputVerify(last_name, "name");
     const email_valid = inputVerify(email, "email");
     const phone_valid = inputVerify(phone_number, "phone");
     const type_valid = inputVerify(type, "type");
     let user = await User.findOne({ phone_number });
-    console.log(first_name_valid);
-    console.log(last_name_valid);
-    console.log(email_valid);
-    console.log(type_valid);
-    console.log(phone_valid);
+  
     if (
       first_name_valid &&
       last_name_valid &&
@@ -170,7 +160,6 @@ exports.storeSeconderyUserData = async (req, res, next) => {
       return next(err);
     }
     const extention = mime.getExtension(req.files.image.mimetype);
-    console.log(extention);
     if (extention != "png" && extention != "jpg" && extention != "jpeg") {
       const err = new HttpError("can't upload this type of image", 401);
       return next(err);
@@ -221,9 +210,7 @@ exports.adminLogin = async (req, res, next) => {
     const { email, password } = req.body;
 
     const emailExist = await User.findOne({ email: email });
-    console.log(emailExist);
-    console.log(password);
-    console.log(email);
+   
     if (emailExist && emailExist.password === password) {
       const token = jwt.sign({ user:emailExist }, process.env.SECRET);
         res.send({status:"sucess", token:token});

@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, Image, TouchableOpacity, Switch } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./style";
 import InputForm from "../../components/inputForm";
 import { useNavigation } from "@react-navigation/native";
@@ -137,6 +137,7 @@ const AddPostScreen = () => {
       formData.append("product_type", data.product_type);
       formData.append("description", data.description);
       formData.append("operation", data.operation);
+      formData.append("price", data.price);
       formData.append("poster_image", {
         uri: imageURI,
         type: "image/jpeg",
@@ -145,7 +146,6 @@ const AddPostScreen = () => {
       const response = await sendRequest("posts/add_post", "POST", formData, {
         authorization: "Bearer " + auth.token,
       });
-      console.log(response);
       if (response.status == "sucess") {
         if(isSwitchOn){
           const formData = new FormData();
@@ -154,7 +154,6 @@ const AddPostScreen = () => {
           const auction = await sendRequest("auction/register_to_auction","POST",formData,{
             authorization:"Bearer " +auth.token
           })
-          console.log(auction);
         }
         setData({
           product_title: "",

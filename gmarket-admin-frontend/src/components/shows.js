@@ -48,7 +48,6 @@ function Shows() {
       const response = await sendRequest("user/get_carousel_images", "GET", "", {
         authorization: "Bearer " + auth.token,
       });
-      console.log(response.show[0].carousel);
       if (response.status == "sucess") {
         const tr = response.show[0].carousel.map(
           ({image_url,_id}) =>  [
@@ -61,7 +60,6 @@ function Shows() {
           ]
         );
 
-        console.log(tr);
         setData(tr);
       } else {
         console.log("faild");

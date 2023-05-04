@@ -5,7 +5,6 @@ import styles from './style'
 import PosterCard from '../../components/PosterCard'
 import UseHttp from '../../hooks/http-hook'
 import { useSelector } from 'react-redux'
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SearchScreen = () => {
     const[searchText,setSeachText] = useState('');

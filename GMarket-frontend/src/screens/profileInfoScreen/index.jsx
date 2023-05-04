@@ -122,9 +122,7 @@ const ProfileInfoScreen = () => {
         setIsLoading(false)
         navigation.navigate("Complete Profile Info");
       }
-      else{
-        console.log("response","can't");
-      }
+     
     }
   };
 

@@ -1,11 +1,9 @@
-import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import IconI from "react-native-vector-icons/Ionicons";
 import IconA from "react-native-vector-icons/MaterialCommunityIcons";
 import { COLORS } from "../contansts/colors";
-import Welcome from "../screens/welcome";
 import { useNavigation } from "@react-navigation/native";
 import HomeScreen from "../screens/homeScreen";
 import MessagesScreen from "../screens/messagesScreen";
@@ -67,7 +65,7 @@ const TabStack = () => {
               }}
               name="home-outline"
               size={iconSize.Home}
-              color={COLORS.textColor}
+              color={COLORS.main}
             />
           ),
         }}
@@ -93,7 +91,7 @@ const TabStack = () => {
               }}
               name="gavel"
               size={iconSize.Auction}
-              color={COLORS.textColor}
+              color={COLORS.main}
             />
           ),
         }}

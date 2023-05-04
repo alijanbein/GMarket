@@ -65,7 +65,6 @@ const ReportScreen = () => {
           navigator.navigate("Profile");
       }
       
-      console.log("valid");
     }
   };
   return (
@@ -95,4 +94,3 @@ const ReportScreen = () => {
 };
 
 export default ReportScreen;
-//96179797979

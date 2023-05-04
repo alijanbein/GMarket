@@ -3,8 +3,6 @@ import {
   Text,
   Image,
   Modal,
-  TouchableHighlight,
-  Button,
   ScrollView,
   TouchableOpacity,
 } from "react-native";
@@ -15,13 +13,13 @@ import ChatModal from "../../components/chatModal";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import UseHttp from "../../hooks/http-hook";
 import { useSelector } from "react-redux";
-import sadBot from "../../../assets/sad-bot.png"
+import sadBot from "../../../assets/sad-bot.png";
 const AuctionScreen = () => {
   const [error, isLoading, sendRequest] = UseHttp();
   const auth = useSelector((state) => state.auth);
   const [modalVisible, setModalVisible] = useState(false);
   const [auctionData, setAuctionData] = useState({});
-  const [date,setDate] = useState({minutes:"",seconds:""})
+  const [date, setDate] = useState({ minutes: "", seconds: "" });
   const toggleModal = () => {
     setModalVisible(!modalVisible);
   };
@@ -29,9 +27,9 @@ const AuctionScreen = () => {
     return Object.keys(obj).length === 0;
   }
 
-
   useEffect(() => {
     const fetchData = async () => {
+    
       const response = await sendRequest(
         "auction/get_latest_auction",
         "GET",
@@ -41,44 +39,49 @@ const AuctionScreen = () => {
         }
       );
       if (response.status == "sucess") {
-        // console.log(response.latestAuction.poster.image_url);
         setAuctionData(response.latestAuction);
+      }
+      else{
+        setAuctionData({})
       }
     };
     fetchData();
-    
+    const timer = setInterval(() => {
+      fetchData();
+    }, 5000);
   }, []);
 
-
-  const  calculateTimeLeft = () => {
+  const calculateTimeLeft = () => {
     const difference = new Date(auctionData.endTime) - new Date();
     let timeLeft = {};
 
     if (difference > 0) {
       setDate({
-        minutes:Math.floor((difference / 1000 / 60) % 60),
-        seconds:Math.floor((difference / 1000) % 60)
-      })
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      });
     }
-    }
+  };
   useEffect(() => {
-    
-    if(!isObjEmpty(auctionData)){
+    if (!isObjEmpty(auctionData)) {
       const intervalId = setInterval(() => {
         calculateTimeLeft();
       }, 1000);
-      return () => clearInterval(intervalId);    }
-  },[auctionData])
-console.log(sadBot);
+      return () => clearInterval(intervalId);
+    }
+  }, [auctionData]);
   return (
     <View style={{ flex: 1 }}>
       {!isObjEmpty(auctionData) ? (
         <ScrollView style={style.container}>
-          <PosterInfo keyname="Remaining Time:" val={`${date.minutes} : ${date.seconds}`} />
+          <PosterInfo
+            keyname="Remaining Time:"
+            val={`${date.minutes} : ${date.seconds}`}
+          />
           <Image
             style={style.image}
             source={{
-              uri:auctionData.poster.image_url,
+              uri: auctionData.poster.image_url,
             }}
           />
           <PosterInfo
@@ -116,7 +119,7 @@ console.log(sadBot);
         </ScrollView>
       ) : (
         <View style={style.empty}>
-        <Image source={sadBot} style={{width:100,height:150}} />
+          <Image source={sadBot} style={{ width: 100, height: 150 }} />
           <Text style={style.empty_text}>No auction set Yet</Text>
         </View>
       )}

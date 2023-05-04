@@ -1,6 +1,5 @@
 import { Dimensions, StyleSheet } from "react-native";
 import { COLORS } from "../../contansts/colors";
-import { FONTS } from "../../contansts/fonts";
 import { SPACING } from "../../contansts/spacing";
 const { width: screenWidth } = Dimensions.get("window");
 

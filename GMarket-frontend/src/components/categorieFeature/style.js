@@ -8,7 +8,6 @@ export const styles = StyleSheet.create( {
         alignItems:"center",
         height:"100%",
         width:70,
-        // marginHorizontal:10,
 
     },
     img : {

@@ -36,7 +36,6 @@ const ConversationScreen = () => {
       setConversation([...conversation,{ message: message, sender: auth.userData._id }])
       setMessage("");
     }
-    console.log("haa");
   };
   useEffect(() => {
     setConversation(current.currentConversation);

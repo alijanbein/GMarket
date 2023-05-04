@@ -28,7 +28,6 @@ function Reports() {
       const response = await sendRequest("admin/reports", "GET", "", {
         authorization: "Bearer " + auth.token,
       });
-      console.log(response);
       if (response.status == "sucess") {
         const tr = response.reports.map(
           ({message,reported }) =>  [
@@ -39,7 +38,6 @@ function Reports() {
           ]
         );
 
-        console.log(tr);
         setData(tr);
       } else {
         console.log("faild");

@@ -3,18 +3,21 @@ import React from "react";
 import { styles } from "./style";
 import { useNavigation } from "@react-navigation/native";
 
-const PosterCard = () => {
+const PosterCard = (props) => {
   const navigation = useNavigation()
   return (
-    <TouchableOpacity onPress={()=>{navigation.navigate("Poster Screen")}} style={styles.container}>
+    <TouchableOpacity onPress={
+      ()=>{
+        props.onPress()
+        navigation.navigate("Poster Screen")}} style={styles.container}>
       <Image
-        source={{ uri: "https://picsum.photos/id/1004/500/500" }}
+        source={{ uri: props.data.image_url }}
         style={styles.image}
       />
       <View style={styles.info}>
-        <Text style ={styles.name}>Product Name </Text>
-        <Text style ={styles.price}>9000 LBP</Text>
-        <Text style ={styles.desc}>decription goes her fsefefsefsfsef fsefsd eesf se lorem upsum deuirun lorm upsum deurum</Text>
+        <Text style ={styles.name}>{props.data.farmer.first_name} {props.data.farmer.last_name}</Text>
+        <Text style ={styles.price}>{props.data.price} LBP</Text>
+        <Text style ={styles.desc}>{props.data.description}</Text>
       </View>
     </TouchableOpacity>
   );

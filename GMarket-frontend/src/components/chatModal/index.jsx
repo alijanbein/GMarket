@@ -1,4 +1,4 @@
-import { View, Text, TouchableHighlight, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { styles } from "./style";
 import ConversationTextInput from "../conversationTextInput";
@@ -11,7 +11,6 @@ const ChatModal = (props) => {
   const [messageText, setMessageText] = useState("");
   const [error,isLoading,sendRequest] = UseHttp() 
   const [messages,setMessages] = useState([])
-  const [, forceUpdate] = useState();
 
   const onTextChange = (text) => {
     setMessageText(text);
@@ -33,7 +32,6 @@ const ChatModal = (props) => {
                 [...before,{messageText:response.response,user:"bot"} ]
             )
          
-            console.log("message:" , messages);
         }
         } catch (error) {
             console.log(error.message);
@@ -56,7 +54,6 @@ const sendHandler =  async () => {
         )
         }
 }
-console.log(messages);
 return (
     <View style={styles.overlay}>
       <TouchableOpacity

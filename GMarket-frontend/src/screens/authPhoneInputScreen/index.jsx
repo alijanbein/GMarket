@@ -5,9 +5,7 @@ import PassButton from "../../components/passButton";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import { setPhoneNumberSlice } from "../../redux/slices/authSlice";
-import { COLORS } from "../../contansts/colors";
 import LoadingOverlay from "../../components/loadingOverlay";
-import axios from "axios";
 import UseHttp from "../../hooks/http-hook";
 const AuthPhoneInputScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -30,12 +28,9 @@ const AuthPhoneInputScreen = () => {
       "POST",
       formData
     );
-    console.log(data);
     if (data.status == "sucess") {
       navigation.navigate("Code Verification");
-    } else {
-      console.log("no");
-    }
+    } 
   };
 
   useEffect(() => {

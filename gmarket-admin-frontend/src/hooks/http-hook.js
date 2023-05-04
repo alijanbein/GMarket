@@ -18,11 +18,8 @@ const UseHttp = () => {
         setIsLoading(false)
       data = await Response.json();
 
-      // if (!Response.ok) {
-      //   throw new Error(data.message);
-      // }
+
     } catch (err) {
-      console.log("erro",err.message);
       setIsLoading(false)
       setIsError(data.message)
     }

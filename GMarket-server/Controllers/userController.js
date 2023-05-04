@@ -8,7 +8,6 @@ const { inputVerify } = require("../support/utils");
 
 exports.getUserByNumber = async (req, res, next) => {
   try {
-    console.log("set");
     const authUser = req.user;
     const phone_number = authUser.phone_number;
     if (!!!phone_number) {
@@ -20,7 +19,6 @@ exports.getUserByNumber = async (req, res, next) => {
       const err = new HttpError("user does not exist", 401);
       return next(err);
     }
-    console.log(req.user);
     res.send({
       status: "sucess",
       user: user,

@@ -1,4 +1,4 @@
-import { View, Text, Button, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 import { styles } from "./style";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as ImagePicker from "expo-image-picker";
 import InputForm from "../../components/inputForm";
 import PassButton from "../../components/passButton";
-import { login, setUserData } from "../../redux/slices/authSlice";
+import { login } from "../../redux/slices/authSlice";
 import UseHttp from "../../hooks/http-hook";
 import LoadingOverlay from "../../components/loadingOverlay";
 
@@ -53,13 +53,11 @@ const CompleteProfileScren = () => {
       type: "image/jpeg" ,
       name: "profile"  + auth.phoneNumber +"/jpeg",
     });
-    console.log(formData);
     const response = await sendRequest(
       "auth/complet_profile",
       "POST",
       formData
     );
-    console.log(response.status);
     if (response.status == "sucess") {
       dispatch(login());
     }

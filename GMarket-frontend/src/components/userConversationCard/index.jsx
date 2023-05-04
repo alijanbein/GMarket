@@ -2,8 +2,7 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { styles } from "./style";
 import Avatar from "../Avatar";
-import { width } from "deprecated-react-native-prop-types/DeprecatedImagePropType";
-import { useNavigation } from "@react-navigation/native";
+
 
 const UserCoversationCard = (props) => {
   return (
