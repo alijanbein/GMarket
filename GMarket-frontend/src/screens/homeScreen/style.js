@@ -31,7 +31,7 @@ cat_title: {
 ,
 cat_container:{
   flexDirection:"row",
-  marginTop:10,
+  marginTop:20,
   height: 90,
   justifyContent:"space-around"
 },

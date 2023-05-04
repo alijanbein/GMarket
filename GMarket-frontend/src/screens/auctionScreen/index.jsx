@@ -15,7 +15,7 @@ import ChatModal from "../../components/chatModal";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import UseHttp from "../../hooks/http-hook";
 import { useSelector } from "react-redux";
-
+import sadBot from "../../../assets/sad-bot.png"
 const AuctionScreen = () => {
   const [error, isLoading, sendRequest] = UseHttp();
   const auth = useSelector((state) => state.auth);
@@ -69,7 +69,7 @@ const AuctionScreen = () => {
       }, 1000);
       return () => clearInterval(intervalId);    }
   },[auctionData])
-
+console.log(sadBot);
   return (
     <View style={{ flex: 1 }}>
       {!isObjEmpty(auctionData) ? (
@@ -116,6 +116,7 @@ const AuctionScreen = () => {
         </ScrollView>
       ) : (
         <View style={style.empty}>
+        <Image source={sadBot} style={{width:100,height:150}} />
           <Text style={style.empty_text}>No auction set Yet</Text>
         </View>
       )}

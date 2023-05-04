@@ -77,7 +77,15 @@ const TabStack = () => {
 
       <Tabs.Screen
         options={{
+          headerShown:true,
+          headerTitleAlign: "center",
+        headerTitleStyle:  {
+          fontWeight: "bold",
+          color:COLORS.textColor
+          },
+          title:"The Acution",
           tabBarIcon: () => (
+            
             <IconA
               style={defaultStyle}
               onPress={() => {
@@ -94,10 +102,18 @@ const TabStack = () => {
       />
       <Tabs.Screen
         options={{
+          headerShown:true,
+          headerTitleAlign: "center",
+        headerTitleStyle:  {
+          fontWeight: "bold",
+          color:COLORS.textColor
+          },
+          title:"Add Poster",
           tabBarIcon: () => (
             <Icon
               style={defaultStyle}
               name="edit"
+              
               onPress={() => {
                 activeIcon("Add");
               }}
@@ -112,7 +128,13 @@ const TabStack = () => {
       />
       <Tabs.Screen
         options={{
-          tabBarLabel: "Messages",
+          headerShown:true,
+          headerTitleAlign: "center",
+        headerTitleStyle:  {
+          fontWeight: "bold",
+          color:COLORS.textColor
+          },
+          title:"Inbox",
           tabBarIcon: () => (
             <Icon
               style={defaultStyle}
@@ -131,6 +153,13 @@ const TabStack = () => {
       <Tabs.Screen
         options={{
           tabBarLabel: "Profile",
+          headerShown:true,
+          headerTitleAlign: "center",
+        headerTitleStyle:  {
+          fontWeight: "bold",
+          color:COLORS.textColor
+          },
+          title:"Profile",
           tabBarIcon: () => (
             <Icon
               style={defaultStyle}
