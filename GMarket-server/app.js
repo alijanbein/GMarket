@@ -6,7 +6,6 @@ const PostRoutes = require("./routes/poster-routes");
 const botRoutes = require("./routes/bot-routes");
 const AuctionRoutes = require("./routes/auction-routes");
 const adminRoutes = require("./routes/admin-routes");
-const bodyParser = require("body-parser");
 const HttpError = require("./support/http-error");
 const fileUpload = require("express-fileupload");
 const globals = require("./support/globals");
@@ -41,8 +40,7 @@ for (const name of Object.keys(nets)) {
 
 globals.setIpAddress(results.WiFi[0]);
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.json());
 app.use("/photos", express.static("images"));
 app.use("/auth", AuthRoutes);
 app.use("/user", authMiddleware, UserRoutes);

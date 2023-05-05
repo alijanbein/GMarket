@@ -2,6 +2,7 @@ import { View, Text, TextInput } from "react-native";
 import React from "react";
 import { styles } from "./style";
 import { COLORS } from "../../contansts/colors";
+import { FontAwesome } from '@expo/vector-icons';
 
 const InputForm = (props) => {
   return (
@@ -15,8 +16,14 @@ const InputForm = (props) => {
         value={props.value}
         placeholder={props.placeHolder}
         editable ={props.phone ? false : true}
-        style={[styles.input, !props.invalid && styles.invalid,props.phone && {backgroundColor: COLORS.main,color:COLORS.white}]}
+        style={[styles.input, !props.invalid && styles.invalid,props.phone && {color:'gray'}]}
       />
+      {
+        props.phone && <FontAwesome style ={styles.icon} name="check" size={24} color={COLORS.main} />
+
+
+
+      }
     </View>
   );
 };

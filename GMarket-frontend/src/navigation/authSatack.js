@@ -10,7 +10,11 @@ const AuthSatack = () => {
   const stack = createStackNavigator();
   return (
     <stack.Navigator>
-     
+        <stack.Screen
+    options={Tstyles.authOption}
+        name="Code Verification"
+        component={CodeVerificationScreen}
+      />
 
       <stack.Screen
         options={{
@@ -19,11 +23,7 @@ const AuthSatack = () => {
         name="auth_phone_input"
         component={AuthPhoneInputScreen}
       />
-      <stack.Screen
-        options={Tstyles.authOption}
-        name="Code Verification"
-        component={CodeVerificationScreen}
-      />
+   
 
       <stack.Screen
         options={Tstyles.authOption}

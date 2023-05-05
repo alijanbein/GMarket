@@ -26,5 +26,10 @@ export const styles = StyleSheet.create( {
     invalid:{
         borderColor: COLORS.error,
         borderWidth:2
+    },
+    icon: {
+        position:"absolute",
+        right:20,
+        top:"50%"
     }
 })
