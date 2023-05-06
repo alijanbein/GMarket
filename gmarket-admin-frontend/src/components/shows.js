@@ -4,28 +4,7 @@ import UseHttp from "../hooks/http-hook";
 import AuthContext from "../context/auth-context";
 import { useNavigate } from "react-router-dom";
 const th = ["image", "Action"];
-const tr = [
-  [
-    "JohnDoe",
-    "johndoe@example.com",
-    <img
-      className="carousel-image"
-      src="https://picsum.photos/id/1003/200/200"
-    />,
-    "Active",
-    <button>Delete</button>,
-  ],
-  [
-    "JohnDoe",
-    "johndoe@example.com",
-    <img
-      className="carousel-image"
-      src="https://picsum.photos/id/1003/200/200"
-    />,
-    "Active",
-    <button>Delete</button>,
-  ],
-];
+
 function Shows() {
   const [error, isLoading, sendRequest] = UseHttp();
   const [data, setData] = useState([]);
@@ -106,7 +85,7 @@ function Shows() {
         </svg>
         <span>Upload Image</span></label>
     </div>
-    {data.length != 0 && <Table th={th} tr={data} />}
+    {data.length != 0 && <Table show th={th} tr={data} />}
   </>
 }
 

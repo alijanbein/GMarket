@@ -276,10 +276,7 @@ body {
   margin-right: 0;
 }
 
-.carousel-image {
-  width: 200px;
-  height: 200px;
-}
+
 
 
 .side-drawer {
@@ -390,3 +387,22 @@ body {
   margin-right: 4px;
 }
 
+.show-table {
+  width: 50%;
+  border: none;
+}
+
+.show-table td,tr, th {
+  border: none;
+  background: #fff;
+}
+
+.show-table th {
+  display: none;
+}
+
+.carousel-image {
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+}

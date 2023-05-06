@@ -3,7 +3,7 @@ import React from 'react'
 function Table(props) {
 
   return (
-    <table className={"admin-table"}>
+    <table className={`admin-table ${props.show && 'show-table'}`}>
     <thead>
       <tr>
             {props.th && props.th.map((data,index) =>
