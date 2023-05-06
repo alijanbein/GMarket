@@ -10,6 +10,12 @@ const AuthSatack = () => {
   const stack = createStackNavigator();
   return (
     <stack.Navigator>
+    
+    <stack.Screen
+        options={Tstyles.authOption}
+        name="Profile Info"
+        component={ProfileInfoScreen}
+      />
         <stack.Screen
     options={Tstyles.authOption}
         name="Code Verification"
@@ -25,11 +31,6 @@ const AuthSatack = () => {
       />
    
 
-      <stack.Screen
-        options={Tstyles.authOption}
-        name="Profile Info"
-        component={ProfileInfoScreen}
-      />
       <stack.Screen
         options={Tstyles.authOption}
         name="Complete Profile Info"

@@ -311,7 +311,7 @@ body {
   border-radius: 25px;
 }
 
-slide-in-left-enter {
+.slide-in-left-enter {
   transform: translateX(-100%);
 }
 
@@ -389,3 +389,4 @@ slide-in-left-enter {
   height: 16px;
   margin-right: 4px;
 }
+

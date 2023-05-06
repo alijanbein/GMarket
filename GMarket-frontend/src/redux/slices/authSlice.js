@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const initialState = {
   isLoggedin: false,
   token: "",
-  phoneNumber: "70838043",
+  phoneNumber: "70075348",
   userData: {},
   token:""
 };
