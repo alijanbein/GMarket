@@ -39,11 +39,11 @@
 > Using the wireframes and mockups as a guide, we implemented the Green Market app with the following features:
 
 ### User Screens (Mobile)
-| Login screen  | Register screen | Landing screen | Loading screen |
+| Welcome screen  | Login screen | Verification screen | Register screen |
 | ---| ---| ---| ---|
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
-| Home screen  | Menu Screen | Order Screen | Checkout Screen |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+| ![Landing](./readme/demo/w.jpg) | ![fsdaf](./readme/demo/p.jpg) | ![fsdaf](./readme/demo/v.jpg) | ![fsdaf](./readme/demo/edit_p.jpg) |
+| Home screen  | Auction Screen | Profile Screen | Messages Screen |
+| ![Landing](./readme/demo/home_s.jpg) | ![fsdaf](./readme/demo/a.jpg) | ![fsdaf](./readme/demo/profile_s.jpg) | ![fsdaf](./readme/demo/m.jpg) |
 
 ### Admin Screens (Web)
 | Login screen  | Register screen |  Landing screen |
