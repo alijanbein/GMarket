@@ -12,7 +12,7 @@ const CategorieFeature = (props) => {
     >
       <Image
         style={styles.img}
-        source={{ uri: "https://picsum.photos/id/1004/500/500" }}
+        source={props.source}
       />
       <Text style={styles.text}>{props.text}</Text>
     </TouchableOpacity>

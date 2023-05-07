@@ -15,7 +15,7 @@ const PosterCard = (props) => {
         style={styles.image}
       />
       <View style={styles.info}>
-        <Text style ={styles.name}>{props.data.farmer.first_name} {props.data.farmer.last_name}</Text>
+        <Text style ={styles.name}>{props.data.title}</Text>
         <Text style ={styles.price}>{props.data.price} LBP</Text>
         <Text style ={styles.desc}>{props.data.description}</Text>
       </View>

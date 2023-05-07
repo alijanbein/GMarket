@@ -9,6 +9,13 @@ import PosterCard from "../../components/PosterCard";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPosterData } from "../../redux/slices/currentSlice";
 
+import fruit from "../../../assets/fruit.jpg"
+import summer from "../../../assets/summer.jpg"
+import winter from "../../../assets/winter.jpg"
+import vegetable from "../../../assets/vegetable.jpg"
+
+const categories = [fruit,vegetable,summer,winter]
+
 const HomeScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -19,6 +26,7 @@ const HomeScreen = () => {
   };
 
   const categoriesPressHandler = async (cat) => {
+    //
   };
 
   return (
@@ -36,6 +44,7 @@ const HomeScreen = () => {
         <View style={styles.cat_container}>
           {app.categoriesImages.map((data, index) => (
             <CategorieFeature
+            source ={categories[index]}
               key={index}
               onPress={categoriesPressHandler}
               text={data}

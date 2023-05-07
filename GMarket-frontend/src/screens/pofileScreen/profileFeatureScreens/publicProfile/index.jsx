@@ -42,7 +42,7 @@ const PublicProfile = () => {
           <Text style={style.name}>
             {user.first_name} {user.last_name}
           </Text>
-          <Text style={style.name}>[{user.type}]</Text>
+          <Text style={[style.name,{fontSize:15,marginTop:5}]}>[{user.phone_number}]</Text>
         </View>
       </View>
       <View style={style.line} />

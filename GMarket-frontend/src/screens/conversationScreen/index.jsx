@@ -90,8 +90,7 @@ const ConversationScreen = () => {
           </View>
 
           <Text style={styles.name}>
-            {current.currentPersonData.first_name}
-            {current.currentPersonData.last_name}
+            {current.currentPersonData.first_name} {current.currentPersonData.last_name}
           </Text>
         </TouchableOpacity>
       </View>

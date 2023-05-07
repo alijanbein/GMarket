@@ -24,13 +24,14 @@ const SearchScreen = () => {
         authorization: "Bearer " + auth.token
       })
       if (response.status ="sucess") {
+        console.log(response);
           setData(response.search_response)
       }
     }
   return (
     <ScrollView style = {styles.container}  contentContainerStyle ={{paddingBottom:50}}>
         <SearchBar  onPress ={serchHandler}  textChange = {serchTextHandler} />
-        {data.map((element,index) =>
+        {data[0].map((element,index) =>
             <PosterCard key={index} data = {element}/>
           )}
     </ScrollView>
