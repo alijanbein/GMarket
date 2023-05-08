@@ -46,11 +46,11 @@
 | ![Landing](./readme/demo/home_s.jpg) | ![fsdaf](./readme/demo/a.jpg) | ![fsdaf](./readme/demo/profile_s.jpg) | ![fsdaf](./readme/demo/m.jpg) |
 
 ### Admin Screens (Web)
-| Login screen  | Register screen |  Landing screen |
+| Login screen  | Dashboard screen |  Reports screen |
 | ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
-| Home screen  | Menu Screen | Order Screen |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![Landing](./readme/demo/admin-login.png) | ![fsdaf](./readme/demo/dashboard.png) | ![fsdaf](./readme/demo/r-board.png) |
+<!-- | Home screen  | Menu Screen | Order Screen |
+| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | -->
 
 <br><br>
 
