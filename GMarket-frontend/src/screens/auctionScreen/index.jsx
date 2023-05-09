@@ -86,7 +86,7 @@ const AuctionScreen = () => {
           />
           <PosterInfo
             keyname="Last Price:"
-            val={auctionData.startingBid}
+            val={auctionData.startingBid.toLocaleString('en-LB')}
             price
           />
           <PosterInfo

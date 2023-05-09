@@ -47,7 +47,7 @@ function Dashboard() {
     };
     fetchData();
   }, []);
-  return <>{data.length != 0 && <Table th={th} tr={data} />}</>;
+  return <>{data.length != 0 && <Table dashboard th={th} tr={data} />}</>;
 }
 
 export default Dashboard;

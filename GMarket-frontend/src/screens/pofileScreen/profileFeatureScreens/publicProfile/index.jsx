@@ -6,6 +6,7 @@ import PersonRating from "../../../../components/Rating";
 import PosterCard from "../../../../components/PosterCard";
 import UseHttp from "../../../../hooks/http-hook";
 import { useSelector } from "react-redux";
+import { phoneStyle } from "../../../../contansts/styles";
 const PublicProfile = () => {
   const [error, isLoading, sendRequest] = UseHttp();
   const auth = useSelector((state) => state.auth);
@@ -32,6 +33,9 @@ const PublicProfile = () => {
     };
     fetshData();
   }, []);
+
+  
+  
   return (
     <View style={style.container}>
       <View style={style.header}>
@@ -42,7 +46,7 @@ const PublicProfile = () => {
           <Text style={style.name}>
             {user.first_name} {user.last_name}
           </Text>
-          <Text style={[style.name,{fontSize:15,marginTop:5}]}>[{user.phone_number}]</Text>
+          <Text style={[style.name,{fontSize:15,marginTop:5}]}>[{phoneStyle(user.phone_number)}]</Text> 
         </View>
       </View>
       <View style={style.line} />

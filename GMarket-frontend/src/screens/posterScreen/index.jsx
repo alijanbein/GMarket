@@ -20,7 +20,7 @@ const PosterScreen = () => {
         source={{ uri: data.image_url }}
       />
       <PosterInfo keyname="Product Name:" val={data.title} />
-      <PosterInfo keyname="First Price:" price val={data.price}  />
+      <PosterInfo keyname="First Price:" price val={data.price.toLocaleString('en-LB')}  />
       <PosterInfo keyname="Operation:" val={data.operation} />
       <PosterInfo
         keyname="Description:"

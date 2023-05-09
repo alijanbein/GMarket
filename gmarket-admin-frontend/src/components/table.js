@@ -1,4 +1,5 @@
 import React from 'react'
+import { phoneStyle } from '../constants/utils'
 
 function Table(props) {
 
@@ -16,7 +17,8 @@ function Table(props) {
     <tbody>
 
       {props.tr && props.tr.map((data,index) => <tr key={index}>
-        {data.map((td,index) => <td key={index}>{td}</td>)}
+        {data.map((td,index) => <td key={index}>{
+          index == 3 && props.dashboard ? phoneStyle(td) :td}</td>)}
       </tr>)}
     </tbody>
   </table>

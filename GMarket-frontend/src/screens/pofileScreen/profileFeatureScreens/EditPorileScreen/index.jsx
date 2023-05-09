@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import UseHttp from "../../../../hooks/http-hook";
 import { setUserData } from "../../../../redux/slices/authSlice";
 import LoadingOverlay from "../../../../components/loadingOverlay";
+import { phoneStyle } from "../../../../contansts/styles";
 
 const EditProfileScreen = () => {
   const dispatch = useDispatch()
@@ -113,7 +114,7 @@ const EditProfileScreen = () => {
           invalid={dataValid.email}
         />
         <InputForm
-          value={`+${auth.userData.phone_number}`}
+          value={`+${phoneStyle(auth.userData.phone_number)}`}
           keyboardType="email-address"
           onTextChange={emailHandler}
           label="Phone Number"

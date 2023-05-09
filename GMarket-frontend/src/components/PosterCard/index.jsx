@@ -16,7 +16,7 @@ const PosterCard = (props) => {
       />
       <View style={styles.info}>
         <Text style ={styles.name}>{props.data.title}</Text>
-        <Text style ={styles.price}>{props.data.price} LBP</Text>
+        <Text style ={styles.price}>{props.data.price.toLocaleString('en-LB')} LBP</Text>
         <Text style ={styles.desc}>{props.data.description}</Text>
       </View>
     </TouchableOpacity>
