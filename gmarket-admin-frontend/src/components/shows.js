@@ -58,7 +58,7 @@ function Shows() {
         navigate(0)
       }
   }
-  return <>
+  return <div className="show">
   <div class="file-input">
       <input
         type="file"
@@ -86,7 +86,7 @@ function Shows() {
         <span>Upload Image</span></label>
     </div>
     {data.length != 0 && <Table show th={th} tr={data} />}
-  </>
+  </div>
 }
 
 export default Shows;

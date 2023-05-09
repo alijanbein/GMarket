@@ -91,9 +91,9 @@ const AuctionScreen = () => {
           />
           <PosterInfo
             keyname="Product Name:"
-            val={auctionData.poster.product_type}
+            val={auctionData.poster.title}
           />
-          <PosterInfo keyname="Product type:" val={auctionData.poster.title} />
+          <PosterInfo keyname="Product type:" val={auctionData.poster.product_type} />
           <PosterInfo
             keyname="Farmer Name:"
             val={auctionData.user.first_name + " " + auctionData.user.last_name}

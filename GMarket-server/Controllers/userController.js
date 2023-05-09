@@ -189,14 +189,14 @@ exports.search = async (req, res, next) => {
     const search_response = [];
     const regex = new RegExp("^" + search_text, "i");
     const ExistUser = await User.find({ first_name: { $regex: regex } });
-    const ExistPoster = await Poster.find({ title: { $regex: regex } });
+    const ExistPoster = await Poster.find({ title: { $regex: regex } }).populate("farmer");
     if (!ExistUser.length == 0) {
       search_response.push(ExistUser);
     }
     if (!ExistPoster.length == 0) {
       search_response.push(ExistPoster);
     }
-    res.send({ status: "sucess", search_response: search_response });
+    res.send({ status: "sucess", search_response: search_response[0] });
   } catch (error) {
     const err = new HttpError("Server Error", 500);
     return next(err);

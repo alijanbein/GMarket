@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil&family=Pacifico&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil&family=Pacifico&display=swap"); */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 :root {
   --main: #34bb78;
   --secode: #f4f4f6;
@@ -15,7 +16,8 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: "Noto Serif Tamil", serif;
+  font-family: "Roboto", sans-serif;
+  background: var(--textColor);
 }
 
 #root {
@@ -127,7 +129,7 @@ body {
 
 .header {
   flex-grow: 1;
-  background-color: #fff;
+  background: linear-gradient(var(--main), var(--textColor));
   color: #333;
   display: flex;
   flex-direction: column;
@@ -135,8 +137,8 @@ body {
 }
 
 .sidebar {
-
-  width: 20%;
+  display: block;
+  width: 300px;
   max-width: 400px;
   height: 100%;
   background-color: var(--main);
@@ -144,6 +146,11 @@ body {
   padding: 20px;
   box-sizing: border-box;
   overflow-y: hidden;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12),
+    inset 0 1px 2px rgba(1, 1, 1, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 .sidebar nav {
   margin-top: 100px;
@@ -155,7 +162,6 @@ body {
 
 .logo img {
   width: 100%;
-  
 }
 
 .sidebar nav ul {
@@ -163,7 +169,6 @@ body {
   padding: 0;
   margin: 0;
 }
-
 
 .sidebar nav ul li {
   margin-top: 20px;
@@ -192,11 +197,9 @@ body {
 
 .header nav {
   background-color: var(--textColor);
-  height: 100px;
+  padding: 20px 0px;
   width: 100%;
   min-width: 0px;
-
-
 }
 .header nav ul {
   list-style: none;
@@ -208,54 +211,70 @@ body {
   align-items: center;
   height: 100%;
 }
-.header nav ul li:not(:last-child){
+.header nav ul li:not(:last-child) {
   display: block;
 }
 .hum {
   display: none;
 }
 .header nav ul li a {
+  display: flex;
+  align-items: center;
+  
   text-decoration: none;
   font-size: 30px;
   color: var(--white);
 }
 
 .header .content {
-  flex-grow: 1;
-  padding: 20px;
+  background: transparent !important;
+  padding: 20px 40px;
+  display: flex;
+  width: 100%;
 }
 .admin-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  border: 4px solid var(--textColor);
-  overflow: scroll;
+  background-color: transparent;
+  height: auto;
+  display: block;
+}
+
+.admin-table tr {
+  background: transparent !important;
 }
 
 .admin-table th {
-  text-align: left;
-  padding: 12px 15px;
-  background-color: rgb(183, 150, 150);
-  color: #333;
-  border: 2.5px solid var(--textColor);
+  padding: 20px 15px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+  color: #fff;
+  text-transform: uppercase;
 }
 
 .admin-table td {
-  background: var(--secode);
-  border: 2.5px solid var(--textColor);
-  text-align: center;
-  padding: 12px 15px;
-  border-bottom: 1px solid #ccc;
+  padding: 10px 15px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 300;
+  font-size: 18px;
+  color: #fff;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+  background-color: transparent !important;
+  border-color: var(--white);
 }
 
-.admin-table tbody tr:nth-child(even) {
+.admin-table tr:hover {
+  background: var(--textColor) !important;
+}
+
+/* .admin-table tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
 .admin-table tbody tr:hover {
   background-color: #e0e0e0;
   cursor: pointer;
-}
+} */
 
 .admin-table button {
   padding: 6px 12px;
@@ -276,9 +295,6 @@ body {
   margin-right: 0;
 }
 
-
-
-
 .side-drawer {
   position: fixed;
   left: 0;
@@ -291,7 +307,7 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 
-.add-image{
+.add-image {
   display: flex;
   justify-content: end;
   align-items: center;
@@ -329,32 +345,29 @@ body {
   transition: all 200ms;
 }
 
-
-@media (max-width:950px) {
+@media (max-width: 1000px) {
   .admin-table {
-    font-size: 0.7rem; 
+    font-size: 0.7rem;
     border: 2px solid var(--textColor);
-    overflow:scroll
+    overflow: scroll;
   }
-  .hum{
+  .hum {
     display: block;
     z-index: 100;
   }
-  .header nav ul li:not(:last-child){
+  .header nav ul li:not(:last-child) {
     display: none;
   }
-  .sidebar{
-    width: 100%;
-  }
-  .try{
+
+  .try {
     display: none;
   }
 }
 
-.file-input{
+.file-input {
   display: flex;
   justify-content: end;
-  width: 95%;
+  width: 90%;
 }
 
 .file-input__input {
@@ -364,7 +377,6 @@ body {
   overflow: hidden;
   position: absolute;
   z-index: -1;
-  
 }
 
 .file-input__label {
@@ -379,7 +391,6 @@ body {
   padding: 10px 12px;
   background-color: var(--main);
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
-  
 }
 
 .file-input__label svg {
@@ -388,13 +399,14 @@ body {
 }
 
 .show-table {
-  width: 50%;
   border: none;
+  display: block;
 }
 
-.show-table td,tr, th {
+.show-table td,
+tr,
+th {
   border: none;
-  background: #fff;
 }
 
 .show-table th {
@@ -406,3 +418,8 @@ body {
   height: 300px;
   border-radius: 20px;
 }
+
+.show {
+width: 100%;
+}
+

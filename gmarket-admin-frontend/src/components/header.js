@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import AuthContext from "../context/auth-context";
 import AnimatedButton from "./UIElements/animated-button";
-
+import { RiLogoutCircleRLine } from "react-icons/ri";
 function Header(props) {
   const auth = useContext(AuthContext);
   const [className, setClassName] = useState("");
@@ -27,7 +27,8 @@ function Header(props) {
             }}
             href="/auth"
           >
-            logout
+            <RiLogoutCircleRLine style={{marginRight:'5px'}} /> Logout
+
           </a>
         </li>
         <li

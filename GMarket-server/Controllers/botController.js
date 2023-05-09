@@ -78,29 +78,36 @@ exports.webhookAPi = (req, res, next) => {
     response: res,
   });
   function testF(agent) {
-    agent.add("sending response from webhook server");
+    agent.add("Please repeat");
   }
   const phoneConfirm = async (agent) => {
     const phoneNumber = context.parameters["phone-number"];
-    const user = await User.findOne({ phone_number: phoneNumber });
+    const user = await User.findOne({ phone_number: '961'+ phoneNumber });
+    console.log(user);
     const currentAuction = await Auction.find().sort({ startTime: 1 });
     const userId = user._id;
     const auctionId = currentAuction[0]._id;
     currentAuction[0].startingBid = context.parameters["number"];
     const auctionExist = await Auction.findById(auctionId);
     if (auctionExist) {
+      console.log(auctionExist.startingBid);
+      console.log(context.parameters);
       if (auctionExist.startingBid < context.parameters["number"]) {
+        agent.add("confirmed!,your bid is been commited ");
         auctionExist.startingBid = context.parameters["number"];
         auctionExist.currentWinner = userId;
         await auctionExist.save();
-        agent.add("confirmed, to apply your Bid please type confirm");
+      }
+      else {
+        agent.add("your bid should be higher than the current bid");
+
       }
     }
   };
   const intentMap = new Map();
   intentMap.set(
     "confirmPhone",
-    intent == "confirmPhone" ? phoneConfirm : testF
+    phoneConfirm 
   );
   agent.handleRequest(intentMap);
 };

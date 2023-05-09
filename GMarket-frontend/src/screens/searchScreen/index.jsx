@@ -4,14 +4,15 @@ import SearchBar from '../../components/searchBar'
 import styles from './style'
 import PosterCard from '../../components/PosterCard'
 import UseHttp from '../../hooks/http-hook'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { setCurrentPosterData } from '../../redux/slices/currentSlice'
 
 const SearchScreen = () => {
     const[searchText,setSeachText] = useState('');
     const [data,setData] = useState([])
     const auth = useSelector(state => state.auth)
     const [error,isLoading,sendRequest] = UseHttp();
-    
+    const dispatch = useDispatch()
     const serchTextHandler = (text) => {
       setSeachText(text)
     }
@@ -28,11 +29,15 @@ const SearchScreen = () => {
           setData(response.search_response)
       }
     }
+    console.log(data);
   return (
     <ScrollView style = {styles.container}  contentContainerStyle ={{paddingBottom:50}}>
         <SearchBar  onPress ={serchHandler}  textChange = {serchTextHandler} />
-        {data[0].map((element,index) =>
-            <PosterCard key={index} data = {element}/>
+        {data && data.map((element,index) =>
+            <PosterCard 
+              onPress={() => {
+              dispatch(setCurrentPosterData(element));
+            }} key={index} data = {element}/>
           )}
     </ScrollView>
   )

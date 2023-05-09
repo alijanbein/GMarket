@@ -9,13 +9,13 @@ import SideDrawer from "../components/UIElements/SideDrawer";
 import { useNavigate } from "react-router-dom";
 function HomePage() {
   const auth = useContext(AuthContext);
-  const [activeComponent, setActiveComponent] = useState("dashboard");
+  const [activeComponent, setActiveComponent] = useState("Dashboard");
   const [showDrawer, setShowDrawer] = useState(false);
   const navigatie = useNavigate()
   const [activeBoard, setActiveBoard] = useState({
-    dashboard: true,
-    shows: false,
-    reports: false,
+    Dashboard: true,
+    Categories: false,
+    Reports: false,
   });
 
   useEffect(()=>{
@@ -24,7 +24,7 @@ function HomePage() {
     }
   })
   const dashboardHandler = () => {
-    setActiveComponent("dashboard");
+    setActiveComponent("Dashboard");
     setActiveBoard({
       dashboard: true,
       shows: false,
@@ -32,7 +32,7 @@ function HomePage() {
     });
   };
   const showsHandler = () => {
-    setActiveComponent("shows");
+    setActiveComponent("Categories");
     setActiveBoard({
       dashboard: false,
       shows: true,
@@ -40,7 +40,7 @@ function HomePage() {
     });
   };
   const ReportsHandler = () => {
-    setActiveComponent("reports");
+    setActiveComponent("Reports");
     setActiveBoard({
       dashboard: false,
       shows: false,
@@ -80,9 +80,9 @@ function HomePage() {
       <div className="header">
         <Header board = {activeComponent} onClick={showDrawer ? closeDrawer : openDrawer} />
         <div className="content">
-          {activeComponent === "dashboard" && <Dashboard />}
-          {activeComponent === "shows" && <Shows />}
-          {activeComponent === "reports" && <Reports />}
+          {activeComponent === "Dashboard" && <Dashboard />}
+          {activeComponent === "Categories" && <Shows />}
+          {activeComponent === "Reports" && <Reports />}
         </div>
       </div>
     </div>
