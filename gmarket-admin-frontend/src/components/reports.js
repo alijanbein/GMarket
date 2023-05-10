@@ -29,13 +29,14 @@ function Reports() {
         authorization: "Bearer " + auth.token,
       });
       if (response.status == "sucess") {
+        console.log(response.reports);
         const tr = response.reports.map(
-          ({message,reported }) =>  [
+          ({message,reported }) => !!reported ? [
             reported.first_name,
             reported.last_name,
             message,
             <button onClick={() =>{deleteUser(reported._id)}}>Delete</button>
-          ]
+          ]:[]
         );
 
         setData(tr);
