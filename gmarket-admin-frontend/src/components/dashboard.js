@@ -14,7 +14,7 @@ function Dashboard() {
   const deleteUser = async(_id) => {
     const formData = new FormData()
     formData.append("userId",_id)
-      const response = await sendRequest("admin/delete_by_id","POST",formData,{
+      const response = await sendRequest("admin/delete_by_id","DELETE",formData,{
         authorization: "Bearer " + auth.token 
       })
       if (response.status == "sucess") {

@@ -15,8 +15,7 @@ import {
   setRecomendedProduct,
 } from "../../redux/slices/appDataSlice";
 
-const logo = require("../../../assets/logo.png");
-
+import logo from '../../../assets/logo.png'
 const loadFonts = async () => {
   await Font.loadAsync({
     [FONTS.NotoSerifTamil.name]: { uri: FONTS.NotoSerifTamil.url },
@@ -56,7 +55,7 @@ const Welcome = () => {
         }
         const recomended = await sendRequest(
           "posts/get_recommended_posters",
-          "POST",
+          "GET",
           "",
           {
             authorization: "Bearer " + token,

@@ -101,7 +101,7 @@ const ProfileInfoScreen = () => {
         }
         const recomended = await sendRequest(
           "posts/get_recommended_posters",
-          "POST",
+          "GET",
           "",
           {
             authorization: "Bearer " + token,

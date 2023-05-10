@@ -61,9 +61,7 @@ const deleteAuction = async(auctionId) =>{
          await Auction.findByIdAndDelete(auctionId);
             return true
         }
-     else {
-         return false
-     }
+  
     } catch (error) {
          return false
     }

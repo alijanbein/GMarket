@@ -228,7 +228,7 @@ body {
 
 .header .content {
   background: transparent !important;
-  padding: 20px 40px;
+  padding: 20px 0;
   display: flex;
   width: 100%;
 }
@@ -236,6 +236,7 @@ body {
   background-color: transparent;
   height: auto;
   display: block;
+  margin-left: 40px;
 }
 
 .admin-table tr {

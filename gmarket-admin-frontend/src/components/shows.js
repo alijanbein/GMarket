@@ -13,7 +13,7 @@ function Shows() {
   const deleteImage = async(_id) =>{
     const formData = new FormData();
     formData.append("image_id",_id);
-    const response = await sendRequest("admin/delete_carousel_image","POST",formData,{
+    const response = await sendRequest("admin/delete_carousel_image","DELETE",formData,{
       authorization: "Bearer " + auth.token,
     })
 

@@ -39,14 +39,12 @@ exports.getUsers = async (req, res, next) => {
 exports.deleteUser = async (req, res, next) => {
   try {
     const { userId } = req.body;
-    User.findOneAndDelete({ _id: userId })
-      .then((deletetedUser) => {
-        res.send({ status: "sucess", user: deletetedUser });
-      })
-      .catch((error) => {
-        const err = new HttpError(error.message, 500);
-        return next(err);
-      });
+ 
+    const deletetedUser = await  User.findOneAndDelete({ _id: userId });
+    if(deletetedUser) {
+              res.send({ status: "sucess", user: deletetedUser });
+    }
+
   } catch (error) {
     const err = new HttpError(error.message, 500);
     return next(err);
@@ -55,10 +53,12 @@ exports.deleteUser = async (req, res, next) => {
 
 
 exports.addCarouselImages = async(req,res,next) => {
+  const allowedExtensions = ["png", "jpg", "jpeg"];
+
   const random = Math.floor(100000000 + Math.random() * 900000000);
   try {
     const extention = mime.getExtension(req.files.c_image.mimetype);
-  if (extention != "png" && extention != "jpg" && extention != "jpeg") {
+  if(!allowedExtensions.includes(extention)) {
     const err = new HttpError("can't upload this type of image", 401);
     return next(err);
   }

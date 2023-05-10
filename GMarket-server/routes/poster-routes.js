@@ -3,7 +3,7 @@ const { addPoster, getRecommedePosts, deletePoster, getPostersById } = require("
 const router = Router();
 
 router.post('/add_post',addPoster)
-router.post('/get_recommended_posters',getRecommedePosts)
+router.get('/get_recommended_posters',getRecommedePosts)
 router.post('/delete_poster',deletePoster)
 router.post('/get_poster_by_user_id',getPostersById)
 
