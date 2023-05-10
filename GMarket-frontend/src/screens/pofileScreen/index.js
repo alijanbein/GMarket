@@ -5,15 +5,17 @@ import ProfileFeature from "../../components/profileFeature";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/slices/authSlice";
+import { phoneStyle } from "../../contansts/styles";
 const ProfileScreen = () => {
   const auth = useSelector(state => state.auth)
   const navigation = useNavigation()
   const dispatch = useDispatch()
+  
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => {navigation.navigate("Edit Profile")}}>
         <Text style={styles.name}>{`${auth.userData.first_name} ${auth.userData.last_name}`}</Text>
-        <Text style={styles.number}>{`+${auth.userData.phone_number}`}</Text>
+        <Text style={styles.number}>{`+${phoneStyle(auth.userData.phone_number)}`}</Text>
       </TouchableOpacity>
       <ProfileFeature onPress ={() =>{navigation.navigate("Edit Profile")}} title = "Profile" icon = "user-o"/>
       <ProfileFeature onPress ={() =>{navigation.navigate("Report User")}} title = "Report" icon = "exclamation-triangle"/>

@@ -41,9 +41,9 @@
 ### User Screens (Mobile)
 | Welcome screen  | Login screen | Verification screen | Register screen |
 | ---| ---| ---| ---|
-| ![Landing](./readme/demo/w.jpg) | ![fsdaf](./readme/demo/p.jpg) | ![fsdaf](./readme/demo/v.jpg) | ![fsdaf](./readme/demo/edit_p.jpg) |
+| ![Landing](./readme/demo/w.jpg) | ![fsdaf](./readme/demo/p.jpg) | ![fsdaf](./readme/demo/v.jpg) | ![fsdaf](./readme/demo/edit-profile.jpg) |
 | Home screen  | Auction Screen | Profile Screen | Messages Screen |
-| ![Landing](./readme/demo/home_s.jpg) | ![fsdaf](./readme/demo/a.jpg) | ![fsdaf](./readme/demo/profile_s.jpg) | ![fsdaf](./readme/demo/m.jpg) |
+| ![Landing](./readme/demo/home.jpg) | ![fsdaf](./readme/demo/auction.jpg) | ![fsdaf](./readme/demo/profile.jpg) | ![fsdaf](./readme/demo/m.jpg) |
 
 ### Admin Screens (Web)
 | Login screen  | Dashboard screen |  Reports screen |
