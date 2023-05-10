@@ -15,7 +15,6 @@ const ProfileScreen = () => {
         <Text style={styles.name}>{`${auth.userData.first_name} ${auth.userData.last_name}`}</Text>
         <Text style={styles.number}>{`+${auth.userData.phone_number}`}</Text>
       </TouchableOpacity>
-      <ProfileFeature onPress = {() =>{navigation.navigate("Empty Screen")}} title = "Payment" icon ="credit-card" />
       <ProfileFeature onPress ={() =>{navigation.navigate("Edit Profile")}} title = "Profile" icon = "user-o"/>
       <ProfileFeature onPress ={() =>{navigation.navigate("Report User")}} title = "Report" icon = "exclamation-triangle"/>
       <ProfileFeature onPress = {() =>{navigation.navigate("Empty Screen")}} title = "Info" icon = "info"/>

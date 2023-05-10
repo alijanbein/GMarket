@@ -137,15 +137,15 @@ const ProfileInfoScreen = () => {
           <InputForm
             value={data.first_name}
             onTextChange={fnameHandler}
-            label="First name"
-            placeHolder="fname"
+            label="First Name"
+            placeHolder="First Name"
             invalid={dataValid.first_name}
           />
           <InputForm
             value={data.last_name}
             onTextChange={lnameHandler}
-            label="Last name"
-            placeHolder="lname"
+            label="Last Name"
+            placeHolder="Last Name"
             invalid={dataValid.last_name}
           />
           <InputForm

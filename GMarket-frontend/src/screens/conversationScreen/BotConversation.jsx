@@ -39,7 +39,7 @@ const navigation = useNavigation();
     const fetchData = async() => {
         try {
         const formData = new FormData()
-        formData.append("message","hi");
+        formData.append("message","info");
         formData.append("sessionId",'alinjsama123')
         const response = await sendRequest("bot/post_message","POST",formData,{});
         if(response.status == "sucess"){

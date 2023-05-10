@@ -7,7 +7,7 @@ import CarouselScreen from "../../components/Carousel";
 import CategorieFeature from "../../components/categorieFeature";
 import PosterCard from "../../components/PosterCard";
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentPosterData } from "../../redux/slices/currentSlice";
+import { setCurrentCategorie, setCurrentPosterData } from "../../redux/slices/currentSlice";
 
 import fruit from "../../../assets/fruit.jpg"
 import summer from "../../../assets/summer.jpg"
@@ -26,7 +26,8 @@ const HomeScreen = () => {
   };
 
   const categoriesPressHandler = async (cat) => {
-    //
+    dispatch(setCurrentCategorie(cat));
+    navigation.navigate("Categorie Screen")
   };
 
   return (

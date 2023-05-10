@@ -93,7 +93,7 @@ exports.webhookAPi = (req, res, next) => {
       console.log(auctionExist.startingBid);
       console.log(context.parameters);
       if (auctionExist.startingBid < context.parameters["number"]) {
-        agent.add("confirmed!,your bid is been commited ");
+        agent.add("Your bid has been confirmed and is now in the system ");
         auctionExist.startingBid = context.parameters["number"];
         auctionExist.currentWinner = userId;
         await auctionExist.save();

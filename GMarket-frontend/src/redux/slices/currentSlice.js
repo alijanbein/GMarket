@@ -4,6 +4,7 @@ const initialState ={
     currentConversation : [],
     currentPersonData :{},
     currentPosterData :{},
+    currentCategorie:"Fruit",
 }
 
 const currentSlice = createSlice({
@@ -18,9 +19,12 @@ const currentSlice = createSlice({
         },
         setCurrentPosterData:(state,action) => {
             state.currentPosterData =  action.payload
+        },
+        setCurrentCategorie:(state,action) => {
+            state.currentCategorie = action.payload
         }
     }
 })
 
-export const {setCurrentConversation,setCurrentPersonData,setCurrentPosterData} = currentSlice.actions;
+export const {setCurrentConversation,setCurrentPersonData,setCurrentPosterData,setCurrentCategorie} = currentSlice.actions;
 export default currentSlice.reducer;

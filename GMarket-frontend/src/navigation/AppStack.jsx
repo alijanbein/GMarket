@@ -12,9 +12,13 @@ import PosterScreen from "../screens/posterScreen";
 import ConversationScreen from "../screens/conversationScreen";
 import PublicProfile from "../screens/PofileScreen/profileFeatureScreens/publicProfile";
 import BotConversation from "../screens/conversationScreen/BotConversation";
+import CategorieScreen from "../screens/categoriesScreen";
+import { useSelector } from "react-redux";
+import { COLORS } from "../contansts/colors";
 
 const AppStack = () => {
   const stack = createStackNavigator();
+  const current = useSelector((state) => state.current);
   useEffect(() => {
     const backAction = () => {
       Alert.alert("Confirm exit", "Are you sure you want to exit?", [
@@ -65,9 +69,21 @@ const AppStack = () => {
         component={SearchScreen}
       />
       <stack.Screen
-        options={ {
-            headerShown:false
-          }}
+        options={{
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: COLORS.textColor,
+          },
+          title: `${current.currentCategorie}`,
+        }}
+        name="Categorie Screen"
+        component={CategorieScreen}
+      />
+      <stack.Screen
+        options={{
+          headerShown: false,
+        }}
         name="Bot"
         component={BotConversation}
       />
