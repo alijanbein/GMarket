@@ -9,6 +9,7 @@ var mime = require("mime");
 exports.sendVerificationCodeSMS = async (req, res, next) => {
   const { phone_number } = req.body;
   const verificationCode = Math.floor(Math.random() * 9000 + 1000);
+  console.log(phone_number);
   const message =
     "to verifiy your number this is the verification Code " + verificationCode;
 
@@ -21,10 +22,11 @@ exports.sendVerificationCodeSMS = async (req, res, next) => {
     client.messages
       .create({
         body: message,
-        from: "+16203776088",
+        
+        from: "+12705155704",
         to: "+" + phone_number,
       })
-      .then((message) => {})
+      .then((message) => {console.log(message)})
       .catch((error) => {
         const err = new HttpError(error.message, 405);
         return next(err);

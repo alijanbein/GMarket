@@ -83,15 +83,13 @@ exports.webhookAPi = (req, res, next) => {
   const phoneConfirm = async (agent) => {
     const phoneNumber = context.parameters["phone-number"];
     const user = await User.findOne({ phone_number: '961'+ phoneNumber });
-    console.log(user);
+    console.log(user._id);
     const currentAuction = await Auction.find().sort({ startTime: 1 });
     const userId = user._id;
     const auctionId = currentAuction[0]._id;
     currentAuction[0].startingBid = context.parameters["number"];
     const auctionExist = await Auction.findById(auctionId);
     if (auctionExist) {
-      console.log(auctionExist.startingBid);
-      console.log(context.parameters);
       if (auctionExist.startingBid < context.parameters["number"]) {
         agent.add("Your bid has been confirmed and is now in the system ");
         auctionExist.startingBid = context.parameters["number"];
