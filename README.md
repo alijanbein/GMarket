@@ -41,9 +41,9 @@
 ### User Screens (Mobile)
 | Welcome screen  | Login screen | Verification screen | Register screen |
 | ---| ---| ---| ---|
-| ![Landing](./readme/demo/w.jpg) | ![fsdaf](./readme/demo/p.jpg) | ![fsdaf](./readme/demo/v.jpg) | ![fsdaf](./readme/demo/edit-profile.jpg) |
+| ![Landing](./readme/demo/w.jpg) | ![fsdaf](./readme/demo/phone_input.gif) | ![fsdaf](./readme/demo/verification.gif) | ![fsdaf](./readme/demo/edit-profile.jpg) |
 | Home screen  | Auction Screen | Profile Screen | Messages Screen |
-| ![Landing](./readme/demo/home.jpg) | ![fsdaf](./readme/demo/auction.jpg) | ![fsdaf](./readme/demo/profile.jpg) | ![fsdaf](./readme/demo/m.jpg) |
+| ![Landing](./readme/demo/home.gif) | ![fsdaf](./readme/demo/auction.jpg) | ![fsdaf](./readme/demo/profile.jpg) | ![fsdaf](./readme/demo/messaginf.gif) |
 
 ### Admin Screens (Web)
 | Login screen  | Dashboard screen |  Reports screen |
@@ -57,7 +57,7 @@
 <!-- Tech stack -->
 <img src="./readme/title5.svg"/>
 
-###  Coffee Express is built using the following technologies:
+###  Green Market is built using the following technologies:
 
 - This project uses the [React Native framework](https://reactnative.dev/). React Native apps can be built for multiple platforms, including Android, iOS, macOS, tvOS, Web, Windows and UWP. 
 - For persistent storage (database), the app uses the [mongodb](https://www.mongodb.com/)  which allows the app to store all data in different schema 
