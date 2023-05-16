@@ -10,9 +10,19 @@
 > Green Market is a great way to support local farmers and get fresh, high-quality produce at a lower price. If you're looking for a more convenient and affordable way to shop for food, then this app is a great option for you.
 
 ### User Stories
-- As a Farmer, I want to post my  offer about my production, so that let me offer my production without going to the market.
-- As a Farmer, I want to join auctions, so I can have the best price for my product.
-- As a customer, I want to search for production to buy, so I can choise the best quality and price.
+- As a Farmer, I want to be able to post my production offers, allowing me to sell my products without needing to visit the market physically.
+- As a Farmer, I want to participate in auctions, enabling me to obtain the best price for my products.
+- As a customer, I want to search for available products to purchase, so that I can choose the best quality and price.
+
+### Admin Stories
+- As an admin, I want to have access to a complete user list, enabling me to ban users based on reported incidents, thus helping me maintain control over the app.
+- As an Admin, I want to have the capability to upload and display images for product offers, as it will enhance the marketing aspect within the app.
+- As an admin, I want to be able to view a list of all users and have the ability to delete a user or access their information as needed.
+
+
+
+
+
 
 <br><br>
 
