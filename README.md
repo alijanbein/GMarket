@@ -54,6 +54,10 @@
 | ![Landing](./readme/demo/w.jpg) | ![fsdaf](./readme/demo/phone_input.gif) | ![fsdaf](./readme/demo/verification.gif) | ![fsdaf](./readme/demo/edit-profile.jpg) |
 | Home screen  | Auction Screen | Profile Screen | Messages Screen |
 | ![Landing](./readme/demo/home.gif) | ![fsdaf](./readme/demo/auction.jpg) | ![fsdaf](./readme/demo/profile.jpg) | ![fsdaf](./readme/demo/messaginf.gif) |
+| Search screen  | AddPost Screen | Report Screen | Categories Screen |
+| ![Landing](./readme/demo/search.gif) | ![fsdaf](./readme/demo/add-poster.gif) | ![fsdaf](./readme/demo/report.jpg) | ![fsdaf](./readme/demo/categories.gif) |
+
+
 
 ### Admin Screens (Web)
 | Login screen  | Dashboard screen |  Reports screen |
