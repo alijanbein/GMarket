@@ -9,7 +9,7 @@ var mime = require("mime");
 exports.sendVerificationCodeSMS = async (req, res, next) => {
   const { phone_number } = req.body;
   const verificationCode = Math.floor(Math.random() * 9000 + 1000);
-  console.log(phone_number);
+  console.log(verificationCode);
   const message =
     "to verifiy your number this is the verification Code " + verificationCode;
 
